@@ -1,0 +1,35 @@
+\chapter{Modélisation}
+\section{Mise sous forme d'espace d'état}
+\textit{Écriture des modèles sous forme d'espace d'état}
+
+Notre modélisation sera basée sur les modèles physiques qui décrivent les différents constituants de notre système de procédé : deux moteurs couplés l'un à l'autre par un arbre simple. L'un étant générateur de force mécanique et l'autre générateur de courant afin de faire office de charge (il dissipe son énergie sur une résistance). Il y a aussi un tachymètre couplé à l'arbre principal par un réducteur.
+Notre modélisation est donc un modèle de connaissance.
+
+Nous avons choisit de faire une modélisation espace d'état pour différentes raisons. La première est que cette représentation permet de d'étudier facilement la valeur des différents états de façon plus fine (permettant d'étudier la stabilité asymptotique par exemple). Le choix d'un modèle de connaissance améliore aussi l'analyse de l'influence des différents paramètres du modèle. Elle permet de garder les états non observables et non commandables dans le modèle, qu'une modélisation fonction de transfert ne met pas en évidence. Elle permet aussi, pour la suite, de faire un retour d'état aisément, ainsi qu'un observateur. \\ \\
+
+%Notre modèle de connaissance fait apparaitre les 
+
+
+% Insérer schéma modèle
+
+\hspace{5mm} \textbullet \hspace{5mm} Voici les différentes équations décrivant notre procédé:
+\begin{eqnarray}
+V_m(t)  					&=& 	R i_1(t) + L \frac{D i_1(t)}{d t} + e_1(t) \\
+e_2(t) 						&=& 	(R+R_{CH}) i_2(t) + L \frac{d i_2(t)}{d t} \\
+J \frac{d \omega(t)}{dt} 	&=&		C_m(t) + C_f(t)		\\
+ \frac{d \theta_s(t)}{dt} 	&=&		\frac{1}{R}\omega(t) \\
+\end{eqnarray}
+
+\hspace{5mm} \textbullet \hspace{5mm} Variables d'état :
+\begin{equation}
+\begin{pmatrix}
+\theta_s(t)\\
+\omega(t)\\
+i_1(t)\\
+i_2(t)\\
+\end{pmatrix}
+=
+X(t)
+\end{equation}
+
+\hspace{5mm} \textbullet \hspace{5mm} Variables d'état :
