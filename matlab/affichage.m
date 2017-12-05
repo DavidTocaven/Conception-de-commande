@@ -8,7 +8,7 @@ legend('EE1','EE2')
 %%
 figure(2)
 %subplot(1,2,1)
-step(EE1.ee,EE2.ee)
-legend('EE1','EE2')
+step(EE1.ee-EE2.ee)
+aaa=legend('\epsilon = EE1-EE2','Interpreter','latex','FontSize',12)
 
 
