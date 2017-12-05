@@ -31,4 +31,44 @@ i_2(t)\\
 =
 X(t)
 \end{equation}
+\subsection{Modèle 0}
+Pour commencer l'étude avec un espace d'état, nous proposons de poser un premier modèle d'état d'ordre 4 qui est :
+\begin{align}
+\label{EE0}
+\left\lbrace
+\begin{aligned}
+&\dot{X}(t) = \begin{pmatrix}
+-\frac{R}{L}	& 	    0				&   -\frac{K_e}{L}	& 0\\
+      0			&  -\frac{(R+R_{ch})}{L}	&	-\frac{K_e}{L}	& 0\\
+\frac{K_c}{J_2}	&	\frac{K_c}{J_2}		&	\frac{\mu}{J_2}	&	0\\
+0&	0&	1&	0
+\end{pmatrix}X(t)+\begin{pmatrix}
+\frac{1}{L}\\0\\0\\0
+\end{pmatrix}V_m(t)\\
+&Y(t) = \begin{pmatrix}
+0&	0&	K_g	&	0\\
+0&	0&	0	&	K_rK_s\\
+\end{pmatrix}X(t)
+\end{aligned}
+\right.
+\end{align}
+\subsection{Espace d'état d'ordre 2}
+Pour correspondre avec un modèle de comportement, nous allons a nouveau réduire la représentation d'état ~\eqref{EE0} pour obtenir un modèle d'ordre 2. Pour cela, nous allons annuler l'effet des dynamiques des courants $i_1$ et $i_2$ qui sont beaucoup plus grandes que les dynamiques de $\omega$ et $\theta$, qui sont celles que nous sommes capable de mesurer et que nous souhaitons asservir.\\
 
+\begin{align}
+\label{EE2}
+\left\lbrace
+\begin{aligned}
+&\dot{X}(t) = \begin{pmatrix}
+-\frac{(K_cK_e)}{J_2R}-\frac{\mu}{J_2}	&	0\\
+1&	0
+\end{pmatrix}X(t)+\begin{pmatrix}
+\frac{K_c}{J_2R}\\0
+\end{pmatrix}V_m(t)\\
+&Y(t) = \begin{pmatrix}
+K_g	&	0\\
+0	&	K_rK_s\\
+\end{pmatrix}X(t)
+\end{aligned}
+\right.
+\end{align}
