@@ -55,8 +55,8 @@ EE1.vp = eig(EE1.ee);
 % Matrices EE
 % EE2.a = [ -(Ks*Ke)/(J2*R) , 0 ;
 %           1               , 0 ]; % ca marche pas...
-EE2.a = [   0  ,   -(Kc*Ke)/(R*J2)-(mu/J2) ;
-            0  ,   1                       ];
+EE2.a = [  0  ,   1 ;
+           0  ,   -(Kc*Ke)/(R*J2)-(mu/J2)];
 EE2.b = [ 0         ;
           Kc/(J2*R) ];
       
