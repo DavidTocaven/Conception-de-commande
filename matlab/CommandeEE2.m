@@ -31,24 +31,11 @@ EE1_c.ee = ss(EE1_c.a,EE1_c.b,EE1_c.c,EE1.ee.d);
 
 %% Calcul du système en boucle fermé basé observateur de EE1
 %       cf Cours de GOUAISBAULT
-A1 = EE1_c.ee.a(1:2,1:2);
-A2 = EE1_c.ee.a(1:2, 3);
-A3 = EE1_c.ee.a(3, 1:2);
-A4 = EE1_c.ee.a(3,3);
+% Etat EE0 : x = [ i1    ; i2    ; theta ; omega ]
+% Etat EE1 : x = [ i1    ; theta ; omega ]
+% Etat EE2 : x = [ theta ; omega ]
 
-B1 = EE1_c.ee.b(1:2);
-B2 = EE1_c.ee.b(3);
 
-EE1_bf.a = [A1-(B1*K),  A2 ,    -B1*K    ;
-            A3-(B2*K),  A4 ,    -B2*K    ;
-        zeros(size(obsver.F))   , -A2 ,   obsver.F  ];
-EE1_bf.b = [B1;B2; [0;0] ];
-
-EE1_bf.c = [EE1_c.ee.c [0 0 ;0 0]];
-
-EE1_bf.ee = ss(EE1_bf.a, EE1_bf.b, EE1_bf.c, [0;0]);
-
-EE1_bf.vp = eig(EE1_bf.a);
-
+step(EE1_c.ee)
 
 
