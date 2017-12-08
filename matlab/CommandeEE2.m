@@ -18,7 +18,9 @@ obsver.ee = ss(obsver.F, [obsver.G obsver.H], obsver.M, 0);
 
 K = place(EE2.ee.a, EE2.ee.b, vp_desire);
 
-%% Changement de base de EE1
+%%  Analyse du retour d'état basé observateur 
+% Pour EE1 :
+%Changement de base de EE1
 P = [0     0     1;
      1     0     0;
      0     1     0];
@@ -27,6 +29,20 @@ EE1_c.b = inv(P)*EE1.ee.b;
 EE1_c.c = EE1.ee.c*P;
 
 EE1_c.ee = ss(EE1_c.a,EE1_c.b,EE1_c.c,EE1.ee.d);
+
+% Partitionnement de l'EE
+EE1.A1 = EE1_c.ee.a(1:2,1:2);
+EE1.A2 = EE1_c.ee.a(1:2,3);
+EE1.A3 = EE1_c.ee.a(3,1:1);
+EE1.A4 = EE1_c.ee.a(3,3);
+
+EE1.B1 = EE1_c.ee.b(1:2);
+EE1.B2 = EE1_c.ee.b(3);
+
+EE1.C = [EE1_c.ee.c];
+
+
+%% 
 
 
 %% Calcul du système en boucle fermé basé observateur de EE1
