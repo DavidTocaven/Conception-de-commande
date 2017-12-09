@@ -49,10 +49,17 @@ EE1_obsver.A = [EE1.A1      EE1.A2     [0 0;0 0]   ;
 EE1_obsver.B = [EE1.B1; EE1.B2; [0;0]];
 EE1_obsver.C = [EE1.C [0 0;0 0]; 
                     [0 0 0 0 1]];   % Pour afffiche de l'erreur 
-                                % de reconstrcution de la vitesse
+                                % de reconstrcution de la
 
 % Espace d'état
 EE1_obsver.ee = ss(EE1_obsver.A ,EE1_obsver.B, EE1_obsver.C, [0;0;0]);
+
+
+% gain statique
+EE1_obsver.gain = dcgain(EE1_obsver.ee(1));
+% comparaison de gain statique
+
+err_gain_stat=EE2.gain - EE1_obsver.gain;
 
 % Analyse du trasfert de epsilon
 % EE1_obsver.vp = eig(EE1_obsver.ee);
