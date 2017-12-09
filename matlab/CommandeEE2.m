@@ -33,7 +33,7 @@ EE1_c.ee = ss(EE1_c.a,EE1_c.b,EE1_c.c,EE1.ee.d);
 % Partitionnement de l'EE
 EE1.A1 = EE1_c.ee.a(1:2,1:2);
 EE1.A2 = EE1_c.ee.a(1:2,3);
-EE1.A3 = EE1_c.ee.a(3,1:1);
+EE1.A3 = EE1_c.ee.a(3,1:2);
 EE1.A4 = EE1_c.ee.a(3,3);
 
 EE1.B1 = EE1_c.ee.b(1:2);
@@ -41,6 +41,22 @@ EE1.B2 = EE1_c.ee.b(3);
 
 EE1.C = [EE1_c.ee.c];
 
+
+% Construction des matrices
+EE1_obsver.A = [EE1.A1      EE1.A2     [0 0;0 0]   ;
+                EE1.A3      EE1.A4      [0 0 ] ;
+                [0 0;0 0]   -EE1.A2       obsver.F];
+EE1_obsver.B = [EE1.B1; EE1.B2; [0;0]];
+EE1_obsver.C = [EE1.C [0 0;0 0]; 
+                    [0 0 0 0 1]];   % Pour afffiche de l'erreur 
+                                % de reconstrcution de la vitesse
+
+% Espace d'état
+EE1_obsver.ee = ss(EE1_obsver.A ,EE1_obsver.B, EE1_obsver.C, [0;0;0]);
+
+% Analyse du trasfert de epsilon
+% EE1_obsver.vp = eig(EE1_obsver.ee);
+% bodemag(EE1.ee(1), EE1_obsver.ee(1))
 
 %% 
 
