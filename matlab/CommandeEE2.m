@@ -18,7 +18,9 @@ obsver.ee = ss(obsver.F, [obsver.G obsver.H], obsver.M, 0);
 
 K = place(EE2.ee.a, EE2.ee.b, vp_desire);
 
-%% Changement de base de EE1
+%%  Analyse du retour d'état basé observateur 
+% Pour EE1 :
+%Changement de base de EE1
 P = [0     0     1;
      1     0     0;
      0     1     0];
@@ -28,27 +30,44 @@ EE1_c.c = EE1.ee.c*P;
 
 EE1_c.ee = ss(EE1_c.a,EE1_c.b,EE1_c.c,EE1.ee.d);
 
+% Partitionnement de l'EE
+EE1.A1 = EE1_c.ee.a(1:2,1:2);
+EE1.A2 = EE1_c.ee.a(1:2,3);
+EE1.A3 = EE1_c.ee.a(3,1:2);
+EE1.A4 = EE1_c.ee.a(3,3);
+
+EE1.B1 = EE1_c.ee.b(1:2);
+EE1.B2 = EE1_c.ee.b(3);
+
+EE1.C = [EE1_c.ee.c];
+
+
+% Construction des matrices
+EE1_obsver.A = [EE1.A1      EE1.A2     [0 0;0 0]   ;
+                EE1.A3      EE1.A4      [0 0 ] ;
+                [0 0;0 0]   -EE1.A2       obsver.F];
+EE1_obsver.B = [EE1.B1; EE1.B2; [0;0]];
+EE1_obsver.C = [EE1.C [0 0;0 0]; 
+                    [0 0 0 0 1]];   % Pour afffiche de l'erreur 
+                                % de reconstrcution de la vitesse
+
+% Espace d'état
+EE1_obsver.ee = ss(EE1_obsver.A ,EE1_obsver.B, EE1_obsver.C, [0;0;0]);
+
+% Analyse du trasfert de epsilon
+% EE1_obsver.vp = eig(EE1_obsver.ee);
+% bodemag(EE1.ee(1), EE1_obsver.ee(1))
+
+%% 
+
 
 %% Calcul du système en boucle fermé basé observateur de EE1
 %       cf Cours de GOUAISBAULT
-A1 = EE1_c.ee.a(1:2,1:2);
-A2 = EE1_c.ee.a(1:2, 3);
-A3 = EE1_c.ee.a(3, 1:2);
-A4 = EE1_c.ee.a(3,3);
+% Etat EE0 : x = [ i1    ; i2    ; theta ; omega ]
+% Etat EE1 : x = [ i1    ; theta ; omega ]
+% Etat EE2 : x = [ theta ; omega ]
 
-B1 = EE1_c.ee.b(1:2);
-B2 = EE1_c.ee.b(3);
 
-EE1_bf.a = [A1-(B1*K),  A2 ,    -B1*K    ;
-            A3-(B2*K),  A4 ,    -B2*K    ;
-        zeros(size(obsver.F))   , -A2 ,   obsver.F  ];
-EE1_bf.b = [B1;B2; [0;0] ];
-
-EE1_bf.c = [EE1_c.ee.c [0 0 ;0 0]];
-
-EE1_bf.ee = ss(EE1_bf.a, EE1_bf.b, EE1_bf.c, [0;0]);
-
-EE1_bf.vp = eig(EE1_bf.a);
-
+step(EE1_c.ee)
 
 

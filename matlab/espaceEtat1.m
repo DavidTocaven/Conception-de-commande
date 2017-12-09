@@ -3,23 +3,24 @@ close all
 MoteurScript
 %% Modèle Niveau 0 - Ordre 4 - EE
 %%% Modele espace d'état LINEAIRE
-% etat    = [ i1 ; i2 ; omega ; theta ]
+% etat    = [ i1 ; i2 ; theta ; omega ]
 % entrée  = [ Vm ]
 % sorties = [ Vg ; Vs]
 
 % Matrices EE
-EE0.a   =[-R/L,     0,             -Ke/L,      0;
-          0,        -(R+Rchn)/L,   -Ke/L,      0;
-          Kc/J2,    Kc/J2,         -mu/J2,     0;
-          0,        0,             1,          0];
+
+EE0.a   =[-R/L,     0,             0,   -Ke/L;
+          0,        -(R+Rchn)/L,   0,   -Ke/L;
+          0,        0,             0,   1;
+          Kc/J2,    Kc/J2,         0,   -mu/J2];
       
 EE0.b   =[1/L;
           0;
           0;
           0];
       
-EE0.c   =[0, 0, Kg, 0;
-          0, 0, 0,  Kr*Ks];
+EE0.c   =[0, 0, 0,      Kg;
+          0, 0, Kr*Ks,  0 ];
       
 EE0.d   =[0;
           0];
@@ -47,17 +48,17 @@ EE1.vp = eig(EE1.ee);
 
 %% Modèle Niveau 2 - Ordre 2 - EE
 %%% Modele espace d'état LINEAIRE
-% etat    = [ omega ; theta ]
+% etat    = [ theta ; omega ]
 % entrée  = [ Vm ]
 % sorties = [ Vg ; Vs]
 
 % Matrices EE
 % EE2.a = [ -(Ks*Ke)/(J2*R) , 0 ;
 %           1               , 0 ]; % ca marche pas...
-EE2.a = [ -(Kc*Ke)/(R*J2)-(mu/J2)             , 0 ;
-           1               , 0 ];
-EE2.b = [ Kc/(J2*R);
-          0        ];
+EE2.a = [  0  ,   1 ;
+           0  ,   -(Kc*Ke)/(R*J2)-(mu/J2)];
+EE2.b = [ 0         ;
+          Kc/(J2*R) ];
       
 EE2.c = EE1.c(:,[2, 3]);
 %EE2.c =[];
