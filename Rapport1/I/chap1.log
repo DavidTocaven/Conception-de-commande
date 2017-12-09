@@ -1,11 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2017.11.13)  6 DEC 2017 13:51
+This is XeTeX, Version 3.14159265-2.6-0.99996 (MiKTeX 2.9) (preloaded format=xelatex 2017.11.15)  9 DEC 2017 08:31
 entering extended mode
- restricted \write18 enabled.
- %&-line parsing enabled.
-**chap1.tex
-(./chap1.tex
-LaTeX2e <2017-04-15>
-Babel <3.12> and hyphenation patterns for 84 language(s) loaded.
+**./chap1.tex
+(chap1.tex
+LaTeX2e <2016/03/31> patch level 3
+Babel <3.9r> and hyphenation patterns for 75 language(s) loaded.
 ! Undefined control sequence.
 l.1 \chapter
             {Mod√©lisation}
@@ -30,8 +28,7 @@ If that doesn't work, type  X <return>  to quit.
 Missing character: There is no M in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no d in font nullfont!
-Missing character: There is no √ in font nullfont!
-Missing character: There is no © in font nullfont!
+Missing character: There is no √© in font nullfont!
 Missing character: There is no l in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no s in font nullfont!
@@ -72,17 +69,13 @@ Missing character: There is no c in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no d in font nullfont!
 Missing character: There is no ' in font nullfont!
-Missing character: There is no √ in font nullfont!
-Missing character: There is no © in font nullfont!
+Missing character: There is no √© in font nullfont!
 Missing character: There is no t in font nullfont!
 Missing character: There is no a in font nullfont!
 Missing character: There is no t in font nullfont!
-Missing character: There is no √ in font cmti10!
-Missing character: There is no â in font cmti10!
-Missing character: There is no √ in font cmti10!
-Missing character: There is no ® in font cmti10!
-Missing character: There is no √ in font cmti10!
-Missing character: There is no © in font cmti10!
+Missing character: There is no √â in font cmti10!
+Missing character: There is no √® in font cmti10!
+Missing character: There is no √© in font cmti10!
 
 Overfull \hbox (20.0pt too wide) in paragraph at lines 1--4
 []
@@ -164,8 +157,7 @@ Missing character: There is no e in font nullfont!
 Missing character: There is no m in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no d in font nullfont!
-Missing character: There is no √ in font nullfont!
-Missing character: There is no © in font nullfont!
+Missing character: There is no √© in font nullfont!
 Missing character: There is no l in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no s in font nullfont!
@@ -181,8 +173,7 @@ Missing character: There is no a in font nullfont!
 Missing character: There is no b in font nullfont!
 Missing character: There is no a in font nullfont!
 Missing character: There is no s in font nullfont!
-Missing character: There is no √ in font nullfont!
-Missing character: There is no © in font nullfont!
+Missing character: There is no √© in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no s in font nullfont!
 Missing character: There is no u in font nullfont!
@@ -193,8 +184,7 @@ Missing character: There is no s in font nullfont!
 Missing character: There is no m in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no d in font nullfont!
-Missing character: There is no √ in font nullfont!
-Missing character: There is no ® in font nullfont!
+Missing character: There is no √® in font nullfont!
 Missing character: There is no l in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no s in font nullfont!
@@ -211,8 +201,7 @@ Missing character: There is no q in font nullfont!
 Missing character: There is no u in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no d in font nullfont!
-Missing character: There is no √ in font nullfont!
-Missing character: There is no © in font nullfont!
+Missing character: There is no √© in font nullfont!
 Missing character: There is no c in font nullfont!
 Missing character: There is no r in font nullfont!
 Missing character: There is no i in font nullfont!
@@ -227,8 +216,7 @@ Missing character: There is no d in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no f in font nullfont!
 Missing character: There is no f in font nullfont!
-Missing character: There is no √ in font nullfont!
-Missing character: There is no © in font nullfont!
+Missing character: There is no √© in font nullfont!
 Missing character: There is no r in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no n in font nullfont!
@@ -257,8 +245,7 @@ Missing character: There is no s in font nullfont!
 Missing character: There is no y in font nullfont!
 Missing character: There is no s in font nullfont!
 Missing character: There is no t in font nullfont!
-Missing character: There is no √ in font nullfont!
-Missing character: There is no ® in font nullfont!
+Missing character: There is no √® in font nullfont!
 Missing character: There is no m in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no d in font nullfont!
@@ -267,11 +254,9 @@ Missing character: There is no p in font nullfont!
 Missing character: There is no r in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no c in font nullfont!
-Missing character: There is no √ in font nullfont!
-Missing character: There is no © in font nullfont!
+Missing character: There is no √© in font nullfont!
 Missing character: There is no d in font nullfont!
-Missing character: There is no √ in font nullfont!
-Missing character: There is no © in font nullfont!
+Missing character: There is no √© in font nullfont!
 Missing character: There is no : in font nullfont!
 Missing character: There is no d in font nullfont!
 Missing character: There is no e in font nullfont!
@@ -289,15 +274,13 @@ Missing character: There is no o in font nullfont!
 Missing character: There is no u in font nullfont!
 Missing character: There is no p in font nullfont!
 Missing character: There is no l in font nullfont!
-Missing character: There is no √ in font nullfont!
-Missing character: There is no © in font nullfont!
+Missing character: There is no √© in font nullfont!
 Missing character: There is no s in font nullfont!
 Missing character: There is no l in font nullfont!
 Missing character: There is no ' in font nullfont!
 Missing character: There is no u in font nullfont!
 Missing character: There is no n in font nullfont!
-Missing character: There is no √ in font nullfont!
-Missing character: There is no † in font nullfont!
+Missing character: There is no √† in font nullfont!
 Missing character: There is no l in font nullfont!
 Missing character: There is no ' in font nullfont!
 Missing character: There is no a in font nullfont!
@@ -326,18 +309,15 @@ Missing character: There is no L in font nullfont!
 Missing character: There is no ' in font nullfont!
 Missing character: There is no u in font nullfont!
 Missing character: There is no n in font nullfont!
-Missing character: There is no √ in font nullfont!
-Missing character: There is no © in font nullfont!
+Missing character: There is no √© in font nullfont!
 Missing character: There is no t in font nullfont!
 Missing character: There is no a in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no t in font nullfont!
 Missing character: There is no g in font nullfont!
-Missing character: There is no √ in font nullfont!
-Missing character: There is no © in font nullfont!
+Missing character: There is no √© in font nullfont!
 Missing character: There is no n in font nullfont!
-Missing character: There is no √ in font nullfont!
-Missing character: There is no © in font nullfont!
+Missing character: There is no √© in font nullfont!
 Missing character: There is no r in font nullfont!
 Missing character: There is no a in font nullfont!
 Missing character: There is no t in font nullfont!
@@ -352,8 +332,7 @@ Missing character: There is no r in font nullfont!
 Missing character: There is no c in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no m in font nullfont!
-Missing character: There is no √ in font nullfont!
-Missing character: There is no © in font nullfont!
+Missing character: There is no √© in font nullfont!
 Missing character: There is no c in font nullfont!
 Missing character: There is no a in font nullfont!
 Missing character: There is no n in font nullfont!
@@ -371,11 +350,9 @@ Missing character: There is no t in font nullfont!
 Missing character: There is no r in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no g in font nullfont!
-Missing character: There is no √ in font nullfont!
-Missing character: There is no © in font nullfont!
+Missing character: There is no √© in font nullfont!
 Missing character: There is no n in font nullfont!
-Missing character: There is no √ in font nullfont!
-Missing character: There is no © in font nullfont!
+Missing character: There is no √© in font nullfont!
 Missing character: There is no r in font nullfont!
 Missing character: There is no a in font nullfont!
 Missing character: There is no t in font nullfont!
@@ -429,8 +406,7 @@ Missing character: There is no e in font nullfont!
 Missing character: There is no s in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no n in font nullfont!
-Missing character: There is no √ in font nullfont!
-Missing character: There is no © in font nullfont!
+Missing character: There is no √© in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no r in font nullfont!
@@ -444,8 +420,7 @@ Missing character: There is no u in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no r in font nullfont!
-Missing character: There is no √ in font nullfont!
-Missing character: There is no © in font nullfont!
+Missing character: There is no √© in font nullfont!
 Missing character: There is no s in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no s in font nullfont!
@@ -473,8 +448,7 @@ Missing character: There is no c in font nullfont!
 Missing character: There is no h in font nullfont!
 Missing character: There is no y in font nullfont!
 Missing character: There is no m in font nullfont!
-Missing character: There is no √ in font nullfont!
-Missing character: There is no ® in font nullfont!
+Missing character: There is no √® in font nullfont!
 Missing character: There is no t in font nullfont!
 Missing character: There is no r in font nullfont!
 Missing character: There is no e in font nullfont!
@@ -483,10 +457,8 @@ Missing character: There is no o in font nullfont!
 Missing character: There is no u in font nullfont!
 Missing character: There is no p in font nullfont!
 Missing character: There is no l in font nullfont!
-Missing character: There is no √ in font nullfont!
-Missing character: There is no © in font nullfont!
-Missing character: There is no √ in font nullfont!
-Missing character: There is no † in font nullfont!
+Missing character: There is no √© in font nullfont!
+Missing character: There is no √† in font nullfont!
 Missing character: There is no l in font nullfont!
 Missing character: There is no ' in font nullfont!
 Missing character: There is no a in font nullfont!
@@ -509,8 +481,7 @@ Missing character: There is no r in font nullfont!
 Missing character: There is no u in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no r in font nullfont!
-Missing character: There is no √ in font nullfont!
-Missing character: There is no © in font nullfont!
+Missing character: There is no √© in font nullfont!
 Missing character: There is no d in font nullfont!
 Missing character: There is no u in font nullfont!
 Missing character: There is no c in font nullfont!
@@ -527,8 +498,7 @@ Missing character: There is no e in font nullfont!
 Missing character: There is no m in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no d in font nullfont!
-Missing character: There is no √ in font nullfont!
-Missing character: There is no © in font nullfont!
+Missing character: There is no √© in font nullfont!
 Missing character: There is no l in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no s in font nullfont!
@@ -549,8 +519,7 @@ Missing character: There is no n in font nullfont!
 Missing character: There is no m in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no d in font nullfont!
-Missing character: There is no √ in font nullfont!
-Missing character: There is no ® in font nullfont!
+Missing character: There is no √® in font nullfont!
 Missing character: There is no l in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no d in font nullfont!
@@ -615,8 +584,7 @@ Missing character: There is no e in font nullfont!
 Missing character: There is no m in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no d in font nullfont!
-Missing character: There is no √ in font nullfont!
-Missing character: There is no © in font nullfont!
+Missing character: There is no √© in font nullfont!
 Missing character: There is no l in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no s in font nullfont!
@@ -633,8 +601,7 @@ Missing character: There is no c in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no d in font nullfont!
 Missing character: There is no ' in font nullfont!
-Missing character: There is no √ in font nullfont!
-Missing character: There is no © in font nullfont!
+Missing character: There is no √© in font nullfont!
 Missing character: There is no t in font nullfont!
 Missing character: There is no a in font nullfont!
 Missing character: There is no t in font nullfont!
@@ -646,8 +613,7 @@ Missing character: There is no d in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no f in font nullfont!
 Missing character: There is no f in font nullfont!
-Missing character: There is no √ in font nullfont!
-Missing character: There is no © in font nullfont!
+Missing character: There is no √© in font nullfont!
 Missing character: There is no r in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no n in font nullfont!
@@ -669,8 +635,7 @@ Missing character: There is no r in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no m in font nullfont!
 Missing character: There is no i in font nullfont!
-Missing character: There is no √ in font nullfont!
-Missing character: There is no ® in font nullfont!
+Missing character: There is no √® in font nullfont!
 Missing character: There is no r in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no e in font nullfont!
@@ -688,8 +653,7 @@ Missing character: There is no r in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no p in font nullfont!
 Missing character: There is no r in font nullfont!
-Missing character: There is no √ in font nullfont!
-Missing character: There is no © in font nullfont!
+Missing character: There is no √© in font nullfont!
 Missing character: There is no s in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no n in font nullfont!
@@ -709,8 +673,7 @@ Missing character: There is no d in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no d in font nullfont!
 Missing character: There is no ' in font nullfont!
-Missing character: There is no √ in font nullfont!
-Missing character: There is no © in font nullfont!
+Missing character: There is no √© in font nullfont!
 Missing character: There is no t in font nullfont!
 Missing character: There is no u in font nullfont!
 Missing character: There is no d in font nullfont!
@@ -742,15 +705,13 @@ Missing character: There is no d in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no f in font nullfont!
 Missing character: There is no f in font nullfont!
-Missing character: There is no √ in font nullfont!
-Missing character: There is no © in font nullfont!
+Missing character: There is no √© in font nullfont!
 Missing character: There is no r in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no t in font nullfont!
 Missing character: There is no s in font nullfont!
-Missing character: There is no √ in font nullfont!
-Missing character: There is no © in font nullfont!
+Missing character: There is no √© in font nullfont!
 Missing character: There is no t in font nullfont!
 Missing character: There is no a in font nullfont!
 Missing character: There is no t in font nullfont!
@@ -759,8 +720,7 @@ Missing character: There is no d in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no f in font nullfont!
 Missing character: There is no a in font nullfont!
-Missing character: There is no √ in font nullfont!
-Missing character: There is no ß in font nullfont!
+Missing character: There is no √ß in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no p in font nullfont!
@@ -784,8 +744,7 @@ Missing character: There is no n in font nullfont!
 Missing character: There is no t in font nullfont!
 Missing character: There is no d in font nullfont!
 Missing character: There is no ' in font nullfont!
-Missing character: There is no √ in font nullfont!
-Missing character: There is no © in font nullfont!
+Missing character: There is no √© in font nullfont!
 Missing character: There is no t in font nullfont!
 Missing character: There is no u in font nullfont!
 Missing character: There is no d in font nullfont!
@@ -802,8 +761,7 @@ Missing character: There is no i in font nullfont!
 Missing character: There is no l in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no t in font nullfont!
-Missing character: There is no √ in font nullfont!
-Missing character: There is no © in font nullfont!
+Missing character: There is no √© in font nullfont!
 Missing character: There is no a in font nullfont!
 Missing character: There is no s in font nullfont!
 Missing character: There is no y in font nullfont!
@@ -842,8 +800,7 @@ Missing character: There is no n in font nullfont!
 Missing character: There is no m in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no d in font nullfont!
-Missing character: There is no √ in font nullfont!
-Missing character: There is no ® in font nullfont!
+Missing character: There is no √® in font nullfont!
 Missing character: There is no l in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no d in font nullfont!
@@ -862,8 +819,7 @@ Missing character: There is no c in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no a in font nullfont!
 Missing character: There is no m in font nullfont!
-Missing character: There is no √ in font nullfont!
-Missing character: There is no © in font nullfont!
+Missing character: There is no √© in font nullfont!
 Missing character: There is no l in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no o in font nullfont!
@@ -903,8 +859,7 @@ Missing character: There is no d in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no f in font nullfont!
 Missing character: There is no f in font nullfont!
-Missing character: There is no √ in font nullfont!
-Missing character: There is no © in font nullfont!
+Missing character: There is no √© in font nullfont!
 Missing character: There is no r in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no n in font nullfont!
@@ -915,8 +870,7 @@ Missing character: There is no a in font nullfont!
 Missing character: There is no r in font nullfont!
 Missing character: There is no a in font nullfont!
 Missing character: There is no m in font nullfont!
-Missing character: There is no √ in font nullfont!
-Missing character: There is no ® in font nullfont!
+Missing character: There is no √® in font nullfont!
 Missing character: There is no t in font nullfont!
 Missing character: There is no r in font nullfont!
 Missing character: There is no e in font nullfont!
@@ -926,8 +880,7 @@ Missing character: There is no u in font nullfont!
 Missing character: There is no m in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no d in font nullfont!
-Missing character: There is no √ in font nullfont!
-Missing character: There is no ® in font nullfont!
+Missing character: There is no √® in font nullfont!
 Missing character: There is no l in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no . in font nullfont!
@@ -952,8 +905,7 @@ Missing character: There is no r in font nullfont!
 Missing character: There is no l in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no s in font nullfont!
-Missing character: There is no √ in font nullfont!
-Missing character: There is no © in font nullfont!
+Missing character: There is no √© in font nullfont!
 Missing character: There is no t in font nullfont!
 Missing character: There is no a in font nullfont!
 Missing character: There is no t in font nullfont!
@@ -998,8 +950,7 @@ Missing character: There is no e in font nullfont!
 Missing character: There is no m in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no d in font nullfont!
-Missing character: There is no √ in font nullfont!
-Missing character: There is no ® in font nullfont!
+Missing character: There is no √® in font nullfont!
 Missing character: There is no l in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no , in font nullfont!
@@ -1012,8 +963,7 @@ Missing character: There is no e in font nullfont!
 Missing character: There is no m in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no d in font nullfont!
-Missing character: There is no √ in font nullfont!
-Missing character: There is no © in font nullfont!
+Missing character: There is no √© in font nullfont!
 Missing character: There is no l in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no s in font nullfont!
@@ -1051,8 +1001,7 @@ Missing character: There is no a in font nullfont!
 Missing character: There is no s in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no n in font nullfont!
-Missing character: There is no √ in font nullfont!
-Missing character: There is no © in font nullfont!
+Missing character: There is no √© in font nullfont!
 Missing character: There is no v in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no d in font nullfont!
@@ -1106,16 +1055,14 @@ Missing character: There is no u in font nullfont!
 Missing character: There is no r in font nullfont!
 Missing character: There is no d in font nullfont!
 Missing character: There is no ' in font nullfont!
-Missing character: There is no √ in font nullfont!
-Missing character: There is no © in font nullfont!
+Missing character: There is no √© in font nullfont!
 Missing character: There is no t in font nullfont!
 Missing character: There is no a in font nullfont!
 Missing character: There is no t in font nullfont!
 Missing character: There is no a in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no s in font nullfont!
-Missing character: There is no √ in font nullfont!
-Missing character: There is no © in font nullfont!
+Missing character: There is no √© in font nullfont!
 Missing character: There is no m in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no n in font nullfont!
@@ -1149,24 +1096,183 @@ Overfull \hbox (20.0pt too wide) in paragraph at lines 8--9
  []
 
 
+! LaTeX Error: Environment figure undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.13 \begin{figure}
+                   [!ht]
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
 ! LaTeX Error: Missing \begin{document}.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.15 \hspace{5mm}
+l.13 \begin{figure}[
+                    !ht]
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no [ in font nullfont!
+Missing character: There is no ! in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no ] in font nullfont!
+! Undefined control sequence.
+l.15 \includegraphics
+                     [width=.8\textwidth]{./I/images/schema0.png}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no [ in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no . in font nullfont!
+Missing character: There is no 8 in font nullfont!
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.15 \includegraphics[width=.8\textwidth]
+                                         {./I/images/schema0.png}
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.15 \includegraphics[width=.8\textwidth]
+                                         {./I/images/schema0.png}
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+Missing character: There is no ] in font nullfont!
+Missing character: There is no . in font nullfont!
+Missing character: There is no / in font nullfont!
+Missing character: There is no I in font nullfont!
+Missing character: There is no / in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no / in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no 0 in font nullfont!
+Missing character: There is no . in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no g in font nullfont!
+
+! LaTeX Error: \caption outside float.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.16 \caption
+             {Sch√©ma √©lectrique/physique du banc moteur}
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no S in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no √© in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no √© in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no q in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no / in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no q in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+
+! LaTeX Error: \begin{document} ended by \end{figure}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.18 \end{figure}
+                 
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 13--19
+[]
+ []
+
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.20 \hspace{5mm}
                   \textbullet \hspace{5mm} Voici les diff√©rentes √©quations...
 
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 15.
-(/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 20.
+("D:\MiKTeX 2.9\tex\latex\base\omscmr.fd"
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 15.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 20.
 Missing character: There is no V in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no i in font nullfont!
@@ -1179,16 +1285,14 @@ Missing character: There is no d in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no f in font nullfont!
 Missing character: There is no f in font nullfont!
-Missing character: There is no √ in font nullfont!
-Missing character: There is no © in font nullfont!
+Missing character: There is no √© in font nullfont!
 Missing character: There is no r in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no t in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no s in font nullfont!
-Missing character: There is no √ in font nullfont!
-Missing character: There is no © in font nullfont!
+Missing character: There is no √© in font nullfont!
 Missing character: There is no q in font nullfont!
 Missing character: There is no u in font nullfont!
 Missing character: There is no a in font nullfont!
@@ -1198,8 +1302,7 @@ Missing character: There is no o in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no s in font nullfont!
 Missing character: There is no d in font nullfont!
-Missing character: There is no √ in font nullfont!
-Missing character: There is no © in font nullfont!
+Missing character: There is no √© in font nullfont!
 Missing character: There is no c in font nullfont!
 Missing character: There is no r in font nullfont!
 Missing character: There is no i in font nullfont!
@@ -1216,28 +1319,26 @@ Missing character: There is no p in font nullfont!
 Missing character: There is no r in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no c in font nullfont!
-Missing character: There is no √ in font nullfont!
-Missing character: There is no © in font nullfont!
+Missing character: There is no √© in font nullfont!
 Missing character: There is no d in font nullfont!
-Missing character: There is no √ in font nullfont!
-Missing character: There is no © in font nullfont!
+Missing character: There is no √© in font nullfont!
 Missing character: There is no : in font nullfont!
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 15--16
+Overfull \hbox (20.0pt too wide) in paragraph at lines 20--21
 []
  []
 
 
-Overfull \hbox (5.00002pt too wide) in paragraph at lines 15--16
+Overfull \hbox (5.00002pt too wide) in paragraph at lines 20--21
 \OMS/cmsy/m/n/10 ^^O
  []
 
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 16.
+(Font)              <7> on input line 21.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 16.
+(Font)              <5> on input line 21.
 
-Overfull \hbox (154.20845pt too wide) in alignment at lines 16--21
+Overfull \hbox (154.20845pt too wide) in alignment at lines 21--26
  [][][] []
  []
 
@@ -1248,7 +1349,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.23 \hspace{5mm}
+l.28 \hspace{5mm}
                   \textbullet \hspace{5mm} Variables d'√©tat :
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -1264,24 +1365,23 @@ Missing character: There is no e in font nullfont!
 Missing character: There is no s in font nullfont!
 Missing character: There is no d in font nullfont!
 Missing character: There is no ' in font nullfont!
-Missing character: There is no √ in font nullfont!
-Missing character: There is no © in font nullfont!
+Missing character: There is no √© in font nullfont!
 Missing character: There is no t in font nullfont!
 Missing character: There is no a in font nullfont!
 Missing character: There is no t in font nullfont!
 Missing character: There is no : in font nullfont!
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 23--24
+Overfull \hbox (20.0pt too wide) in paragraph at lines 28--29
 []
  []
 
 
-Overfull \hbox (5.00002pt too wide) in paragraph at lines 23--24
+Overfull \hbox (5.00002pt too wide) in paragraph at lines 28--29
 \OMS/cmsy/m/n/10 ^^O
  []
 
 
-Overfull \hbox (123.81729pt too wide) detected at line 33
+Overfull \hbox (123.81729pt too wide) detected at line 38
 [][] \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t\OT1/cmr/m/n/10 )[] \OML/cmm/m/it/10 !\
 OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t\OT1/cmr/m/n/10 )[] \OML/cmm/m/it/10 i[]\OT1/
 cmr/m/n/10 (\OML/cmm/m/it/10 t\OT1/cmr/m/n/10 )[] \OML/cmm/m/it/10 i[]\OT1/cmr/
@@ -1290,8 +1390,8 @@ m/n/10 (\OML/cmm/m/it/10 t\OT1/cmr/m/n/10 )[]  = \OML/cmm/m/it/10 X\OT1/cmr/m/n
  []
 
 ! Undefined control sequence.
-l.34 \subsection
-                {Mod√®le 0}
+l.39 \subsection
+                {Mod√®le de niveau 0}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -1301,10 +1401,17 @@ and I'll forget about whatever was undefined.
 Missing character: There is no M in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no d in font nullfont!
-Missing character: There is no √ in font nullfont!
-Missing character: There is no ® in font nullfont!
+Missing character: There is no √® in font nullfont!
 Missing character: There is no l in font nullfont!
 Missing character: There is no e in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no u in font nullfont!
 Missing character: There is no 0 in font nullfont!
 Missing character: There is no P in font nullfont!
 Missing character: There is no o in font nullfont!
@@ -1321,8 +1428,7 @@ Missing character: There is no e in font nullfont!
 Missing character: There is no r in font nullfont!
 Missing character: There is no l in font nullfont!
 Missing character: There is no ' in font nullfont!
-Missing character: There is no √ in font nullfont!
-Missing character: There is no © in font nullfont!
+Missing character: There is no √© in font nullfont!
 Missing character: There is no t in font nullfont!
 Missing character: There is no u in font nullfont!
 Missing character: There is no d in font nullfont!
@@ -1341,8 +1447,7 @@ Missing character: There is no c in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no d in font nullfont!
 Missing character: There is no ' in font nullfont!
-Missing character: There is no √ in font nullfont!
-Missing character: There is no © in font nullfont!
+Missing character: There is no √© in font nullfont!
 Missing character: There is no t in font nullfont!
 Missing character: There is no a in font nullfont!
 Missing character: There is no t in font nullfont!
@@ -1379,14 +1484,12 @@ Missing character: There is no r in font nullfont!
 Missing character: There is no m in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no d in font nullfont!
-Missing character: There is no √ in font nullfont!
-Missing character: There is no ® in font nullfont!
+Missing character: There is no √® in font nullfont!
 Missing character: There is no l in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no d in font nullfont!
 Missing character: There is no ' in font nullfont!
-Missing character: There is no √ in font nullfont!
-Missing character: There is no © in font nullfont!
+Missing character: There is no √© in font nullfont!
 Missing character: There is no t in font nullfont!
 Missing character: There is no a in font nullfont!
 Missing character: There is no t in font nullfont!
@@ -1398,12 +1501,90 @@ Missing character: There is no d in font nullfont!
 Missing character: There is no r in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no 4 in font nullfont!
-Missing character: There is no q in font nullfont!
+Missing character: There is no . in font nullfont!
+Missing character: There is no L in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no e in font nullfont!
 Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no ' in font nullfont!
+Missing character: There is no √© in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no o in font nullfont!
 Missing character: There is no i in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no t in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no s in font nullfont!
 Missing character: There is no t in font nullfont!
+Missing character: There is no : in font nullfont!
+
+! LaTeX Error: Environment bmatrix undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.42 X(t)=\begin{bmatrix}
+                         
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! LaTeX Error: \begin{equation} on input line 41 ended by \end{bmatrix}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.47 \end{bmatrix}
+                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+Overfull \hbox (79.84634pt too wide) detected at line 48
+\OML/cmm/m/it/10 X\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t\OT1/cmr/m/n/10 ) = \OML/c
+mm/m/it/10 i[][] i[][] \OT1/cmr/m/n/10 
+[][] ^^B[][] 
+ []
+
+Missing character: There is no L in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no √® in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no ' in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no 4 in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no c in font nullfont!
 Missing character: There is no : in font nullfont!
 
 ! LaTeX Error: Environment align undefined.
@@ -1412,7 +1593,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.36 \begin{align}
+l.50 \begin{align}
                   
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -1421,7 +1602,7 @@ or  <return>  to continue without it.
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.38 \left
+l.52 \left
           \lbrace
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -1433,14 +1614,14 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.39 \begin{aligned}
+l.53 \begin{aligned}
                     
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 ! Misplaced alignment tab character &.
-l.40 &
+l.54 &
       \dot{X}(t) = \begin{pmatrix}
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
@@ -1450,8 +1631,8 @@ you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
 ! Misplaced alignment tab character &.
-l.41 -\frac{R}{L}	&
-                    	    0				&   -\frac{K_e}{L}	& 0\\
+l.55 -\frac{R}{L}^^I&
+                      ^^I    0^^I^^I^^I^^I&   -\frac{K_e}{L}^^I& 0\\
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
 simple: Just type `I\&' now. But if some right brace
@@ -1460,8 +1641,8 @@ you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
 ! Misplaced alignment tab character &.
-l.41 -\frac{R}{L}	& 	    0				&
-                                  -\frac{K_e}{L}	& 0\\
+l.55 -\frac{R}{L}^^I& ^^I    0^^I^^I^^I^^I&
+                                              -\frac{K_e}{L}^^I& 0\\
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
 simple: Just type `I\&' now. But if some right brace
@@ -1470,7 +1651,7 @@ you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
 ! Misplaced alignment tab character &.
-l.41 -\frac{R}{L}	& 	    0				&   -\frac{K_e}{L}	&
+l.55 ...^^I    0^^I^^I^^I^^I&   -\frac{K_e}{L}^^I&
                                                    0\\
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
@@ -1480,8 +1661,8 @@ you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
 ! Misplaced alignment tab character &.
-l.42       0			&
-                  -\frac{(R+R_{ch})}{L}	&	-\frac{K_e}{L}	& 0\\
+l.56       0^^I^^I^^I&
+                        -\frac{(R+R_{ch})}{L}^^I&^^I-\frac{K_e}{L}^^I& 0\\
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
 simple: Just type `I\&' now. But if some right brace
@@ -1490,8 +1671,8 @@ you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
 ! Misplaced alignment tab character &.
-l.42       0			&  -\frac{(R+R_{ch})}{L}	&
-                                         	-\frac{K_e}{L}	& 0\\
+l.56       0^^I^^I^^I&  -\frac{(R+R_{ch})}{L}^^I&
+                                                 ^^I-\frac{K_e}{L}^^I& 0\\
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
 simple: Just type `I\&' now. But if some right brace
@@ -1500,7 +1681,7 @@ you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
 ! Misplaced alignment tab character &.
-l.42 ...  -\frac{(R+R_{ch})}{L}	&	-\frac{K_e}{L}	&
+l.56 ...ac{(R+R_{ch})}{L}^^I&^^I-\frac{K_e}{L}^^I&
                                                    0\\
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
@@ -1510,8 +1691,8 @@ you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
 ! Misplaced alignment tab character &.
-l.43 \frac{K_c}{J_2}	&
-                      	\frac{K_c}{J_2}		&	\frac{\mu}{J_2}	&	0\\
+l.57 \frac{K_c}{J_2}^^I&
+                        ^^I\frac{K_c}{J_2}^^I^^I&^^I\frac{\mu}{J_2}^^I&^^I0\\
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
 simple: Just type `I\&' now. But if some right brace
@@ -1520,8 +1701,8 @@ you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
 ! Misplaced alignment tab character &.
-l.43 \frac{K_c}{J_2}	&	\frac{K_c}{J_2}		&
-                                         	\frac{\mu}{J_2}	&	0\\
+l.57 \frac{K_c}{J_2}^^I&^^I\frac{K_c}{J_2}^^I^^I&
+                                                 ^^I\frac{\mu}{J_2}^^I&^^I0\\
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
 simple: Just type `I\&' now. But if some right brace
@@ -1530,8 +1711,8 @@ you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
 ! Misplaced alignment tab character &.
-l.43 ..._2}	&	\frac{K_c}{J_2}		&	\frac{\mu}{J_2}	&
-                                                  	0\\
+l.57 ...rac{K_c}{J_2}^^I^^I&^^I\frac{\mu}{J_2}^^I&
+                                                  ^^I0\\
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
 simple: Just type `I\&' now. But if some right brace
@@ -1540,8 +1721,8 @@ you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
 ! Misplaced alignment tab character &.
-l.44 0&
-       	0&	1&	0
+l.58 0&
+       ^^I0&^^I1&^^I0
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
 simple: Just type `I\&' now. But if some right brace
@@ -1550,8 +1731,8 @@ you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
 ! Misplaced alignment tab character &.
-l.44 0&	0&
-          	1&	0
+l.58 0&^^I0&
+            ^^I1&^^I0
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
 simple: Just type `I\&' now. But if some right brace
@@ -1560,8 +1741,8 @@ you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
 ! Misplaced alignment tab character &.
-l.44 0&	0&	1&
-             	0
+l.58 0&^^I0&^^I1&
+                 ^^I0
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
 simple: Just type `I\&' now. But if some right brace
@@ -1572,7 +1753,7 @@ might try typing `S' now just to see what is salvageable.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -1581,7 +1762,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten \endgroup.
 <inserted text> }
                  
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -1592,7 +1773,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -1601,7 +1782,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten \endgroup.
 <inserted text> }
                  
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -1612,7 +1793,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -1621,7 +1802,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten \endgroup.
 <inserted text> }
                  
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -1632,7 +1813,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -1641,7 +1822,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten \endgroup.
 <inserted text> }
                  
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -1652,7 +1833,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -1661,7 +1842,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten \endgroup.
 <inserted text> }
                  
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -1672,7 +1853,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -1681,7 +1862,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten \endgroup.
 <inserted text> }
                  
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -1692,7 +1873,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -1701,7 +1882,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten \endgroup.
 <inserted text> }
                  
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -1712,7 +1893,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -1721,7 +1902,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten \endgroup.
 <inserted text> }
                  
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -1732,7 +1913,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -1741,7 +1922,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten \endgroup.
 <inserted text> }
                  
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -1752,7 +1933,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -1761,7 +1942,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten \endgroup.
 <inserted text> }
                  
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -1772,7 +1953,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -1781,7 +1962,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten \endgroup.
 <inserted text> }
                  
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -1792,7 +1973,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -1801,7 +1982,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten \endgroup.
 <inserted text> }
                  
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -1812,7 +1993,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -1821,7 +2002,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten \endgroup.
 <inserted text> }
                  
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -1832,7 +2013,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -1841,7 +2022,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten \endgroup.
 <inserted text> }
                  
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -1852,7 +2033,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -1861,7 +2042,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten \endgroup.
 <inserted text> }
                  
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -1872,7 +2053,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -1881,7 +2062,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten \endgroup.
 <inserted text> }
                  
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -1892,7 +2073,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -1901,7 +2082,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten \endgroup.
 <inserted text> }
                  
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -1912,7 +2093,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -1921,7 +2102,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten \endgroup.
 <inserted text> }
                  
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -1932,7 +2113,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -1941,7 +2122,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten \endgroup.
 <inserted text> }
                  
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -1952,7 +2133,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -1961,7 +2142,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten \endgroup.
 <inserted text> }
                  
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -1972,7 +2153,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -1981,7 +2162,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten \endgroup.
 <inserted text> }
                  
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -1992,7 +2173,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -2001,7 +2182,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten \endgroup.
 <inserted text> }
                  
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -2012,7 +2193,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -2021,7 +2202,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten \endgroup.
 <inserted text> }
                  
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -2032,7 +2213,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -2041,7 +2222,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten \endgroup.
 <inserted text> }
                  
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -2052,7 +2233,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -2061,7 +2242,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten \endgroup.
 <inserted text> }
                  
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -2072,7 +2253,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -2081,7 +2262,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten \endgroup.
 <inserted text> }
                  
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -2092,7 +2273,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -2101,7 +2282,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten \endgroup.
 <inserted text> }
                  
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -2112,7 +2293,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -2121,7 +2302,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten \endgroup.
 <inserted text> }
                  
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -2132,7 +2313,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -2141,7 +2322,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten \endgroup.
 <inserted text> }
                  
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -2152,7 +2333,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -2161,7 +2342,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten \endgroup.
 <inserted text> }
                  
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -2172,7 +2353,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -2181,7 +2362,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten \endgroup.
 <inserted text> }
                  
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -2192,7 +2373,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -2201,7 +2382,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten \endgroup.
 <inserted text> }
                  
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -2212,7 +2393,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -2221,7 +2402,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten \endgroup.
 <inserted text> }
                  
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -2232,7 +2413,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -2241,7 +2422,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten \endgroup.
 <inserted text> }
                  
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -2252,7 +2433,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -2261,7 +2442,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten \endgroup.
 <inserted text> }
                  
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -2272,7 +2453,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -2281,7 +2462,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten \endgroup.
 <inserted text> }
                  
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -2292,7 +2473,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -2301,7 +2482,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten \endgroup.
 <inserted text> }
                  
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -2312,7 +2493,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -2321,7 +2502,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten \endgroup.
 <inserted text> }
                  
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -2332,7 +2513,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -2341,7 +2522,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten \endgroup.
 <inserted text> }
                  
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -2352,7 +2533,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -2361,36 +2542,16 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten \endgroup.
 <inserted text> }
                  
-l.46 \frac
-          {1}{L}\\0\\0\\0
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
-! Missing } inserted.
-<inserted text> 
-                }
-l.46 \frac
-          {1}{L}\\0\\0\\0
-I've put in what seems to be necessary to fix
-the current column of the current alignment.
-Try to go on, since this might almost work.
-
-! Extra }, or forgotten \endgroup.
-<inserted text> }
-                 
-l.46 \frac
+l.60 \frac
           {1}{L}\\0\\0\\0
 (That makes 100 errors; please try again.) 
 Here is how much of TeX's memory you used:
- 30 strings out of 492990
- 490 string characters out of 6135004
- 56810 words of memory out of 5000000
- 3684 multiletter control sequences out of 15000+600000
- 3986 words of font info for 15 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 18i,12n,15p,667b,84s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 34 strings out of 428408
+ 374 string characters out of 3163213
+ 56104 words of memory out of 3000000
+ 3527 multiletter control sequences out of 15000+200000
+ 3986 words of font info for 15 fonts, out of 3000000 for 9000
+ 1328 hyphenation exceptions out of 8191
+ 18i,12n,15p,647b,84s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-!  ==> Fatal error occurred, no output PDF file produced!
+No pages of output.

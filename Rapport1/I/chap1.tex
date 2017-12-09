@@ -93,15 +93,24 @@ K_rK_s	&	0	\\
 \right.
 \end{align}
 
+\section{Commande du système EE2}
+\subsection{Rédaction du cahier des charges et démarche de réponse}
+Après l'étude que nous venons de réaliser sur notre système, nous allons ici exprimé les attentes que doit réaliser la commande que nous allons implémenter. Nous souhaitons avoir : \begin{itemize} 
+\item Erreur de position nulle.
+\end{itemize}
+Pour respecter, nous allons réaliser un placement de valeurs propres par retour d'état.
+\subsection{Observateur ordre plein sur EE2}
+Pour pouvoir réaliser notre commande par retour d'état, nous devons tous d'abord reconstruire l'ensemble des états du système dont nous n'avons pas accès. Dans notre cas, nous disposons d'une mesure de la vitesse $\Omega$ avec la tension de sortie $V_s$ mais aucune information sur la position $\Theta$, l'implémentation d'un observateur est donc nécessaire pour au minimum reconstruire cet état.\\
+Nous préférons reconstruire $\Omega$ et $\theta$ à partir de $V_s$ et de l'entrée de EE2 pour simplifier les calculs nécessaire à sa construction. Il est représenté par :
+\begin{align*}
+\left\lbrace
+\begin{aligned}
+\dot z (t)
+\end{aligned}
+\right.
+\end{align*}
 
-
-
-
-
-\section{Observateur ordre total sur EE2}
-Il reconstruit Omega et Theta a partir de Vs et de l'entrée de EE2.
-
-\section{Adaptation de l'etat de EE1}
+\section{Adaptation de l'état de EE1}
 On a réorganisé les états de EE1 de façon a ce que les état observable soient en haut et les non observable en bas.
 
 \noindent\textbullet\hspace{2mm} Etats observables : $\Omega_m$ et $ \Theta_m$.
