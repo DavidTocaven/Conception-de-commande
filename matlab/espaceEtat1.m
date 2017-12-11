@@ -29,6 +29,8 @@ EE0.ee= ss(EE0.a,EE0.b,EE0.c,EE0.d);
 % Valeurs propres
 EE0.vp = eig(EE0.ee);
 
+% gain statique
+EE0.gain = dcgain(EE0.ee(1));
 %% Modèle Niveau 1 - Ordre 3 - EE
 %%% Modele espace d'état LINEAIRE
 % etat    = [ i1 ; omega ; theta ]
@@ -46,6 +48,8 @@ EE1.ee= ss(EE1.a,EE1.b,EE1.c,EE1.d);
 % Valeurs propres
 EE1.vp = eig(EE1.ee);
 
+% gain statique
+EE1.gain = dcgain(EE1.ee(1));
 %% Modèle Niveau 2 - Ordre 2 - EE
 %%% Modele espace d'état LINEAIRE
 % etat    = [ theta ; omega ]
@@ -70,4 +74,6 @@ EE2.ee= ss(EE2.a,EE2.b,EE2.c,EE2.d);
 
 EE2.vp = eig(EE2.ee);
 
+% gain statique
+EE2.gain = dcgain(EE2.ee(1));
 
