@@ -75,6 +75,6 @@ err_gain_stat=EE2.gain - EE1_obsver.gain;
 % Etat EE2 : x = [ theta ; omega ]
 
 
-%step(EE1_c.ee)      
+step(EE1_c.ee)
 
 
