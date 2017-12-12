@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99996 (MiKTeX 2.9) (preloaded format=xelatex 2017.11.15)  12 DEC 2017 15:44
+This is XeTeX, Version 3.14159265-2.6-0.99996 (MiKTeX 2.9) (preloaded format=xelatex 2017.11.15)  12 DEC 2017 16:17
 entering extended mode
 **./main.tex
 (main.tex
@@ -636,7 +636,7 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
 [2
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 70--71
+Underfull \hbox (badness 10000) in paragraph at lines 72--73
 
  []
 
@@ -680,7 +680,7 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 148.
 Here is how much of TeX's memory you used:
  14096 strings out of 428408
  199072 string characters out of 3163213
- 323039 words of memory out of 3000000
+ 323040 words of memory out of 3000000
  17307 multiletter control sequences out of 15000+200000
  19963 words of font info for 41 fonts, out of 3000000 for 9000
  1328 hyphenation exceptions out of 8191
