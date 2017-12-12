@@ -61,8 +61,39 @@ EE1_obsver.gain = dcgain(EE1_obsver.ee(1));
 
 err_gain_stat=EE2.gain - EE1_obsver.gain;
 
+% Analyse pour EE0
+% Changement de base [theta, omega, i1, i2]
+P_0 = [0 0 1 0; 0 0 0 1; 1 0 0 0; 0 1 0 0];
+
+EE0_c.a = inv(P_0)*EE0.ee.a*P_0;
+EE0_c.b = inv(P_0)*EE0.ee.b;
+EE0_c.c = EE0.ee.c*P_0;
+
+EE0_c.ee = ss(EE0_c.a,EE0_c.b,EE0_c.c, EE0.d);
+% Partitionnement de l'EE
+EE0.A1 = EE0_c.ee.a(1:2,1:2);
+EE0.A2 = EE0_c.ee.a(1:2,3:4);
+EE0.A3 = EE0_c.ee.a(3:4,1:2);
+EE0.A4 = EE0_c.ee.a(3:4,3:4);
+
+EE0.B1 = EE0_c.ee.b(1:2);
+EE0.B2 = EE0_c.ee.b(3:4);
+
+EE0.C = [EE0_c.ee.c];
+
+
+% Construction des matrices
+EE0_obsver.A = [EE0.A1      EE0.A2     [0 0;0 0]   ;
+                EE0.A3      EE0.A4      [0 0;0 0 ] ;
+                [0 0;0 0]   -EE0.A2       obsver.F];
+EE0_obsver.B = [EE0.B1; EE0.B2; [0;0]];
+EE0_obsver.C = [EE0.C [0 0;0 0]];   % Pour afffiche de l'erreur 
+                                % de reconstrcution de la
+
+EE0_obsver.ee = ss(EE0_obsver.A, EE0_obsver.B, EE0_obsver.C, EE0_c.ee.d);
+
 % Analyse du trasfert de epsilon
-% EE1_obsver.vp = eig(EE1_obsver.ee);
+EE0_obsver.vp = eig(EE0_obsver.ee);
 % bodemag(EE1.ee(1), EE1_obsver.ee(1))
 
 %% 
