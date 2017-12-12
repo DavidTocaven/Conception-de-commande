@@ -3,7 +3,7 @@
 espaceEtat1
 
 %% Cahier des charges
-vp_desire = [-4; -5];
+vp_desire = [-8; -5];
 %% observateur
 obsver.H = EE2.ee.b;
 obsver.M = eye(size(EE2.ee.a));
@@ -17,6 +17,14 @@ obsver.ee = ss(obsver.F, [obsver.G obsver.H], obsver.M, 0);
 %% commande
 
 K = place(EE2.ee.a, EE2.ee.b, vp_desire);
+EE2_bf.a = [EE2.ee.a-EE2.ee.b*K     -EE2.ee.b*K;
+            [0 0; 0 0]              obsver.F];
+
+EE2_bf.b = [EE2.ee.b; 0;0];
+
+EE2_bf.c = [EE2.ee.c [0 0;0 0]];
+EE2_bf.ee = ss(EE2_bf.a, EE2_bf.b, EE2_bf.c, EE2.ee.d);
+
 
 %%  Analyse du retour d'état basé observateur 
 % Pour EE1 :
