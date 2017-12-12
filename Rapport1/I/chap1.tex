@@ -36,7 +36,8 @@ i_2(t)\\
 =
 X(t)
 \end{equation}
-\subsection{Modèle de niveau 0}
+\subsection{Modèles non linéaires, Variant et non déterministe}
+\subsection{Modèle de niveau 0, modèle EE0}
 Pour commencer l'étude avec un espace d'état, nous proposons de poser un premier modèle d'état d'ordre 4. Le vecteur d'état choisit est :
 \begin{equation}
 X(t)=\begin{bmatrix}
@@ -66,7 +67,8 @@ Le modèle d'ordre 4 vaut donc :
 \end{aligned}
 \right.
 \end{align}
-\subsection{Espace d'état d'ordre 2}
+\subsection{Espace d'état d'ordre 3, modèle EE1}
+\subsection{Espace d'état d'ordre 2, modèle EE2}
 Pour correspondre avec un modèle de comportement, nous allons a nouveau réduire la représentation d'état ~\eqref{EE0} pour obtenir un modèle d'ordre 2. Pour cela, nous allons annuler l'effet des dynamiques des courants $i_1$ et $i_2$ qui sont beaucoup plus grandes que les dynamiques de $\omega$ et $\theta$, qui sont celles que nous sommes capable de mesurer et que nous souhaitons asservir.\\
 
 \begin{align}
@@ -105,11 +107,19 @@ Nous préférons reconstruire $\Omega$ et $\theta$ à partir de $V_s$ et de l'en
 \begin{align*}
 \left\lbrace
 \begin{aligned}
-\dot z (t)
+&\dot z (t) = Fz(t) + Gy(t) + Hu(t)\\
+&\hat x = Mz(t) + Ny(t)\\
+&\epsilon = x-\hat{x}
 \end{aligned}
 \right.
-\end{align*}
-
+\end{align*} où $x$ représente l'état du système, $\hat{x}$ l'état du système reconstruit et $\epsilon$ l'erreur d'estimation à un temps $t$. Nous souhaitons contrôler la dynamique de ce paramètres pour pouvoir estimer correctement notre système. Pour cela, nous nous interressons à : \begin{align*}
+&\dot{\epsilon} = \dot{x} - \dot{\hat{x}}\\
+&\Leftrightarrow \dot{\epsilon} = Ax +Bu - F\hat{x} - Gy - Hu 
+\text{   en considérant }M=1 \text{ et } N = 0\\
+& \Leftrightarrow \dot{\epsilon} = Ax - F\hat{x} - GCx + u(B-H)\\
+& \dot{\epsilon} = (A-GC-F)x + F\epsilon + u(B-H)
+\end{align*} 
+Il vient alors $F = A-GC$ et $B=H$ pour obtenir $\dot{\epsilon} = F\epsilon$. Ainsi l'erreur d'estimation est autonome et ne dépend pas des entrées et sorties du système.
 \section{Adaptation de l'état de EE1}
 On a réorganisé les états de EE1 de façon a ce que les état observable soient en haut et les non observable en bas.
 
@@ -125,6 +135,7 @@ On a réorganisé les états de EE1 de façon a ce que les état observable soie
 i_1\\
 \end{bmatrix}
 \end{equation}
+
 
 Pour passer de $X$ à $\overline{X}$, il faut faire une matrice de passage $P_X$.
 
