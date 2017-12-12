@@ -105,10 +105,12 @@ Nous préférons reconstruire $\Omega$ et $\theta$ à partir de $V_s$ et de l'en
 \begin{align*}
 \left\lbrace
 \begin{aligned}
-\dot z (t)
+&\dot z (t) = Fz(t) + Gy(t) + Hu(t)\\
+&\hat x = Mz(t) + Ny(t)\\
+&\epsilon = x-\hat{x}
 \end{aligned}
 \right.
-\end{align*}
+\end{align*} où $x$ représente l'état du système et $\hat{x}$ l'état du système reconstruit.
 
 \section{Adaptation de l'état de EE1}
 On a réorganisé les états de EE1 de façon a ce que les état observable soient en haut et les non observable en bas.
