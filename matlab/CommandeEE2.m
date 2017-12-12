@@ -105,7 +105,25 @@ EE0_obsver.vp = eig(EE0_obsver.ee);
 % Etat EE1 : x = [ i1    ; theta ; omega ]
 % Etat EE2 : x = [ theta ; omega ]
 
+% EE1
 
-step(EE1_c.ee)
+EE1_bf.a = [EE1.A1-EE1.B1*K      EE1.A2     -EE1.B1*K   ;
+            EE1.A3-EE1.B2*K      EE1.A4     -EE1.B2*K;
+                [0 0;0 0]       -EE1.A2       obsver.F];
+EE1_bf.b = EE1_obsver.B;
+EE1_bf.c = EE1_obsver.C;
+
+EE1_bf.ee = ss(EE1_bf.a, EE1_bf.b, EE1_bf.c, EE1_obsver.ee.d);
+EE1_bf.vp = eig(EE1_bf.ee);
+
+% EE0 
 
 
+EE0_bf.a = [EE0.A1-EE0.B1*K      EE0.A2     -EE0.B1*K   ;
+            EE0.A3-EE0.B2*K      EE0.A4     -EE0.B2*K;
+                [0 0;0 0]       -EE0.A2       obsver.F];
+EE0_bf.b = EE0_obsver.B;
+EE0_bf.c = EE0_obsver.C;
+
+EE0_bf.ee = ss(EE0_bf.a, EE0_bf.b, EE0_bf.c, EE0_obsver.ee.d);
+EE0_bf.vp = eig(EE0_bf.ee);
