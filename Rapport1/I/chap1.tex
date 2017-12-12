@@ -110,8 +110,14 @@ Nous préférons reconstruire $\Omega$ et $\theta$ à partir de $V_s$ et de l'en
 &\epsilon = x-\hat{x}
 \end{aligned}
 \right.
-\end{align*} où $x$ représente l'état du système et $\hat{x}$ l'état du système reconstruit.
-
+\end{align*} où $x$ représente l'état du système, $\hat{x}$ l'état du système reconstruit et $\epsilon$ l'erreur d'estimation à un temps $t$. Nous souhaitons contrôler la dynamique de ce paramètres pour pouvoir estimer correctement notre système. Pour cela, nous nous interressons à : \begin{align*}
+&\dot{\epsilon} = \dot{x} - \dot{\hat{x}}\\
+&\Leftrightarrow \dot{\epsilon} = Ax +Bu - F\hat{x} - Gy - Hu 
+\text{   en considérant }M=1 \text{ et } N = 0\\
+& \Leftrightarrow \dot{\epsilon} = Ax - F\hat{x} - GCx + u(B-H)\\
+& \dot{\epsilon} = (A-GC-F)x + F\epsilon + u(B-H)
+\end{align*} 
+Il vient alors $F = A-GC$ et $B=H$ pour obtenir $\dot{\epsilon} = F\epsilon$. Ainsi l'erreur d'estimation est autonome et ne dépend pas des entrées et sorties du système.
 \section{Adaptation de l'état de EE1}
 On a réorganisé les états de EE1 de façon a ce que les état observable soient en haut et les non observable en bas.
 
