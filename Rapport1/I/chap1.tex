@@ -31,14 +31,15 @@ e_2(t) 						&=& 	(R+R_{CH}) i_2(t) + L \frac{d i_2(t)}{d t}
 
 \noindent\hspace{3mm}\textbullet  \hspace{1mm} Équations banc :
 \begin{eqnarray}
-J_2 \frac{d \omega(t)}{dt} 	&=&		C_m(t) + C_f(t)		\\
- \frac{d \theta_s(t)}{dt} 	&=&		\omega(t) \\
+J_2 \frac{d \omega(t)}{dt}   &=&    C_m(t) + C_f(t)    \\
+ \frac{d \theta_s(t)}{dt}   &=&    \omega(t) \\
  e_1(t) &=& K_e \omega(t)\\
  e_2(t) &=& K_e \omega(t)\\
  C_m(t) &=& K_c i_1(t)-K_c i_2(t)\\
- C_f(t) &=& - \mu \omega(t)-C_0\\
- R_{CH}(t) &=& R_{CHn} + rR_{CH} \Delta_1\\
- V_s(t)	&=& K_r K_s \theta_s(t)\\
+ C_f(t) &=& - \mu \omega(t)-C_0(t)\\
+ R_{CH}(t) &=& R_{CHn} + rR_{CH}(t) \Delta_1\\
+ C_0(t) &=& -sign(C_m(t)C\\
+ V_s(t)  &=& K_r K_s \theta_s(t)\\
  V_g(t) &=& K_g \omega(t)
 \end{eqnarray}
 O\`u :
@@ -48,17 +49,24 @@ O\`u :
 \item[$i_1(t),i_2(t)$] Respectivement le courant dans les moteurs 1 et 2.
 \item[$e_1(t),e_2(t)$] Respectivement la force électromotrice des moteurs 1 et 2.
 \item[$R_{CH}(t)$] Résistance de charge.
-\item[$\J_2$] Intertie totale (somme des inerties du rotor, du reducteur et de la charge).
+\item[ $J_2$ ] Inertie totale (somme des inerties du rotor, du réducteur et de la charge).
 \item[$\omega_s(t)$] Position radiale de l'arbre.
 \item[$\theta_s$] Vitesse de rotation de l'arbre.
 \item[$C_m(t)$] Couple de l'arbre.
-\item[$C_f(t)$] Couple de frottement.
+\item[$C_f(t)$]  Couple de frottement.
 \item[$K_e$] Constante de force électromagnétique.
 \item[$K_c$] Constante de couple.
 \item[$\mu$] Coefficient de frottement visqueux.
-\item[$C_0$] Couple de frottement sec si rotation.
-\item[$ $] 
-\item[$ $] 
+\item[$C_0(t)$] Couple de frottement sec si rotation.
+\item[$R_{CHn}$] Résistance de charge nominale.
+\item[$rR_{CH}$] Rayon de l'incertitude de la résistance de charge.
+\item[$\Delta_1$] Perturbation bornée en $[-1 ; 1]$.
+\item[$K_r$] Facteur de réduction.
+\item[$K_s$] Constante du potentiomètre.
+\item[$K_g$] Constante de la génératrice tachymétrique.
+\item[$V_g(t)$] Tension reflétant la vitesse de rotation de l'arbre. Sortie de performance non mesurée. 
+\item[$C$] Couple de frottement sec si $\omega(t)$ assez grande.%
+%\item[$ $] 
 \end{description}
 
 
