@@ -5,7 +5,33 @@
 Après l'étude que nous venons de réaliser sur notre système, nous allons ici exprimé les attentes que doit réaliser la commande que nous allons implémenter. Nous souhaitons avoir : \begin{itemize} 
 \item Erreur de position nulle.
 \end{itemize}
-Pour respecter, nous allons réaliser un placement de valeurs propres par retour d'état.
+La commande de notre système doit permettre d'asservir le système en vitesse, par rapport à une consigne. Pour respecter, nous allons réaliser un placement de valeurs propres par retour d'état.
+
+
+
+\subsection{Calcul du retour d'état}
+\label{sub:Calcul du retour etat}
+Pour garantir les performances dynamiques souhaitées, nous allons appliquer un placement de pôles par retour d'état. Ce réajustement des valeurs propres de la matrice dynamique du système nous permettra de répondre aux attentes du cahier de charges si le choix de celles-ci est correct. De même, nous devons choisir des valeurs propres qui ne sont pas être trop éloignées de celles du procédé, pour ne pas être trop exigeant avec la commande et le système. Nous avons avec ces spécifications choisi les valeur propres suivantes :
+\begin{equation}
+\label{equation:valeurPropres}
+\lambda = \begin{pmatrix}
+-8 &-5
+\end{pmatrix}
+\end{equation}
+La commande par retour d'état est une technique d'asservissement qui permet de modifier le signal d'entrée du système en fonction de la sortie mesuré et une référence. Cette nouvelle loi de commande s'écrit : 
+\begin{equation}
+u(t) = Ny_{ref}-Ky(t)
+\end{equation} avec $N$ un gain de pré-compensation, $y_{ref}$ la vitesse de référence, $y(t)$ la sortie mesuré du système et $K$ le gain de retour. Si l'on applique cette loi à notre système en espace d'état, on obtient : 
+\begin{align*}
+\left\lbrace
+\begin{aligned}
+&\dot{X}(t) = (A-BK)X(t) + BNy_{ref}\\
+&Y = CX(t)
+\end{aligned}
+\right.
+\end{align*}
+Ainsi la nouvelle dynamique du système est donnée par la matrice $A' = (A-BK)$ et doit admettre les valeurs propres que nous désirons appliquer à notre système. $A$ et $B$ étant des paramètres du système, nous allons utiliser le gain $K$ pour répondre à ce problème. Avec la fonction $place$ de MATLAB, nous sommes capable de concevoir ce vecteur $K$. 
+
 \subsection{Observateur ordre plein sur EE2}
 Pour pouvoir réaliser notre commande par retour d'état, nous devons tous d'abord reconstruire l'ensemble des états du système dont nous n'avons pas accès. Dans notre cas, nous disposons d'une mesure de la vitesse $\Omega$ avec la tension de sortie $V_s$ mais aucune information sur la position $\Theta$, l'implémentation d'un observateur est donc nécessaire pour au minimum reconstruire cet état.\\
 Nous préférons reconstruire $\Omega$ et $\theta$ à partir de $V_s$ et de l'entrée de EE2 pour simplifier les calculs nécessaire à sa construction. Il est représenté par :
@@ -24,10 +50,51 @@ Nous préférons reconstruire $\Omega$ et $\theta$ à partir de $V_s$ et de l'en
 & \Leftrightarrow \dot{\epsilon} = Ax - F\hat{x} - GCx + u(B-H)\\
 & \dot{\epsilon} = (A-GC-F)x + F\epsilon + u(B-H)
 \end{align*} 
-Il vient alors $F = A-GC$ et $B=H$ pour obtenir $\dot{\epsilon} = F\epsilon$. Ainsi l'erreur d'estimation est autonome et ne dépend pas des entrées et sorties du système.
+Il vient alors $F = A-GC$ et $B=H$ pour obtenir $\dot{\epsilon} = F\epsilon$. Ainsi l'erreur d'estimation est autonome et ne dépend pas des entrées et sorties du système, et il vient $\epsilon(t) = e^{Ft}\epsilon(0)$. Les valeurs propres de $F$ vont ainsi déterminer la dynamique de l'erreur d'estimation, nous choisissons de les faire dépendre des valeurs propres désirées dans la partie \ref{sub:Calcul du retour etat} en les multipliant par 3, pour une convergence encore plus rapide. 
 
+\subsection{Construction de l'asservissement}
+Maintenant que l'observateur et le gain du retour d'état sont construits, nous allons les assembler ensemble pour commander notre système. Pour ce modèle du système bouclé, nous prenons comme vecteur d'état $X=\begin{pmatrix}
+X&\epsilon
+\end{pmatrix}^T$ et nous obtenons par construction :
+\begin{align*}
+\label{eqn:systemeEE2_bf}
+\left\lbrace
+\begin{aligned}
+& \dot{X} = \begin{pmatrix}
+(A-BK) & -BK\\
+0& F
+\end{pmatrix}X+\begin{pmatrix}
+B\\0
+\end{pmatrix}y_{ref} \\
+& y(t) = \begin{pmatrix}
+C & 0
+\end{pmatrix}X
+\end{aligned}
+\right.
+\end{align*} 
+Cependant, nous souhaitons asservir le système avec la vitesse $\omega$, et la description de ce système bouclé va asservir le système en position à cause du changement de dynamiques de la position $\theta$. Pour prévenir à cette mauvaise commande, nous avons annulé le retour de la mesure de position dans le système bouclé. 
 
-\section{Adaptation de l'état de EE1}
+Le gain de pré-compensation $N$ peut maintenant être calculé à partir gain statique du transfert entre $Vg$ et $y_{ref}$ noté $G_{Vg/y_{ref}}$ : 
+\begin{equation}
+N = \frac{1}{G_{Vg/y_{ref}}}
+\end{equation}
+A partir de ce modèle, nous allons être capable d'éprouver la commande obtenu de manière théorique et avec une simulation SIMULINK.
+
+\section{Validation de la commande}
+\subsection{Validation théorique}
+Pour commencer, nous allons identifier les valeurs propres de notre système \ref{eqn:systemeEE2_bf} afin de de connaitre les effets de l'observateur sur le retour d'état, même si a priori celui ci est autonome. Nous obtenons les $\lambda_i$ valeurs propres suivantes : $-5$, $-8$, $-15$ et $-24$. Nous remarquons que les $\lambda_i$ n'ont pas été modifiées : nous avons les valeurs propres désirées par la commande et nous avons celles désirées pour l'erreur d'estimation de l'observateur. 
+
+\subsection{Simulation SIMULINK}
+Pour compléter la validation de la commande, nous avons crée un prototype avec SIMULINK pour pouvoir simuler une réponse temporelle de la commande de notre système. La description du fichier se trouve en annexe \ref{Annex:SIMULINK_RE}. Nous observons sur les figures suivantes la réponse temporelle à une référence $y_{ref} = 1$ : 
+
+PHOTO !!!
+
+La réponse du système $Vs$ simulé correspond aux changement de dynamique que nous avons espéré. De plus, après une observation de la commande $u(t)$ appliquée sur le système, nous voyons que la tension maximale envoyée est borné dans l'ordre de grandeur des valeurs admises par le système physique. 
+
+Nous commande respecte le cahier des charges, nous validons ainsi la commande pour notre modèle d'ordre 2. Nous allons maintenant valider cette même commande sur des modèles supérieur et plus complexes pour compléter sa validation. En effet, notre modèle a été très simplifié pour permettre la création du commande facilement. Si nous arrivons a prouvé que cette commande marche sur des systèmes plus complexes, alors nous aurons prouvé que les dynamiques que nous avons simplifiés ne vont pas perturbé notre commande.
+
+\section{Validation sur les modèles d'ordre supérieur}
+\subsection{Adaptation de EE1}
 On a réorganisé les états de EE1 de façon a ce que les état observable soient en haut et les non observable en bas.
 
 \noindent\textbullet\hspace{2mm} Etats observables : $\Omega_m$ et $ \Theta_m$.
