@@ -12,7 +12,7 @@ Nous avons choisis de faire une modélisation espace d'état pour différentes r
 
 
 \section{Maquette et équations physiques}
-
+\subsection{Maquette :}
 Voici, figure \ref{fig:schema0}, un schéma électrique et physique du banc qui fait office de procédé dans notre asservissement.
 \begin{figure}[!ht]
 \centering
@@ -21,7 +21,7 @@ Voici, figure \ref{fig:schema0}, un schéma électrique et physique du banc qui 
 \end{figure}
 Le circuit électrique de gauche correspond au Moteur à Courant Continue 1 (MCC) qui délivre la puissance mécanique à partir d'une tension d'entrée $V_M$. Celle-ci est l'entrée de notre procédé. Le schéma électrique de droite représente le MCC 2, générateur de puissance électrique qui fait office de charge en alimentant une résistance $R_{CH}$. Entre ces deux schémas électriques, se trouve une représentation de l'arbre, des forces qu'il subit, du réducteur et du tachymètre qui délivre une tension proportionnelle à la position du moteur, c'est le signal $V_s$ que nous étudions en tant que sortie. 
 
-
+\subsection{Équations physique}
 Voici les différentes équations décrivant notre procédé:\\
 \noindent\hspace{3mm}\textbullet  \hspace{1mm} Équations des moteurs :
 \begin{eqnarray}
@@ -37,8 +37,8 @@ J_2 \frac{d \omega(t)}{dt}   &=&    C_m(t) + C_f(t)    \\
  e_2(t) &=& K_e \omega(t)\\
  C_m(t) &=& K_c i_1(t)-K_c i_2(t)\\
  C_f(t) &=& - \mu \omega(t)-C_0(t)\\
- R_{CH}(t) &=& R_{CHn} + rR_{CH}(t) \Delta_1\\
- C_0(t) &=& -sign(C_m(t)C\\
+\label{eq:Rch} R_{CH}(t) &=& R_{CHn} + rR_{CH}(t) \Delta_1\\
+\label{eq:nlC0} C_0(t) &=& -sign(C_m(t)C\\
  V_s(t)	&=& K_r K_s \theta_s(t)\\
  V_g(t) &=& K_g \omega(t)
 \end{eqnarray}
@@ -50,8 +50,8 @@ O\`u :
 \item[$e_1(t),e_2(t)$] Respectivement la force électromotrice des moteurs 1 et 2.
 \item[$R_{CH}(t)$] Résistance de charge.
 \item[ $J_2$ ] Inertie totale (somme des inerties du rotor, du réducteur et de la charge).
-\item[$\omega_s(t)$] Position radiale de l'arbre.
-\item[$\theta_s$] Vitesse de rotation de l'arbre.
+\item[$\omega_s(t)$] Vitesse radiale de l'arbre.
+\item[$\theta_s$] Position de rotation de l'arbre.
 \item[$C_m(t)$] Couple de l'arbre.
 \item[$C_f(t)$]  Couple de frottement.
 \item[$K_e$] Constante de force électromagnétique.
@@ -60,7 +60,7 @@ O\`u :
 \item[$C_0(t)$] Couple de frottement sec si rotation.
 \item[$R_{CHn}$] Résistance de charge nominale.
 \item[$rR_{CH}$] Rayon de l'incertitude de la résistance de charge.
-\item[$\Delta_1$] Perturbation bornée en $[-1 ; 1]$.
+\item[$\Delta_1$] Perturbation de la résistance de charge bornée en $[-1 ; 1]$.
 \item[$K_r$] Facteur de réduction.
 \item[$K_s$] Constante du potentiomètre.
 \item[$K_g$] Constante de la génératrice tachymétrique.
@@ -69,58 +69,108 @@ O\`u :
 %\item[$ $] 
 \end{description}
 
-
-
-\section{Modèle variant et non linéaire}
-
-
+\subsection{Linéarisation}
+Les équations ci-dessous permettent de former un modèle du procédé. Néanmoins, l'équation \ref{eq:nlC0} exprime une non linéarité sur les frottements secs du banc moteur. Afin d'avoir un modèle linéaire du moteur, nous avons transformé cette non linéarité en incertitude.
+Ainsi nous exprimons : 
+\begin{eqnarray}
+\label{eq:C0} C_0(t) &=& C_{0n} + rC_0 \Delta_2
+\end{eqnarray}
+O\`u : 
+\begin{description}
+\item[$C_{0n}$] Couple de frottement sec nominal.
+\item[$rR_{CH}$] Rayon d'incertitude du Couple de frottement sec.
+\item[$\Delta_1$] Perturbation du couple de frottement sec bornée en $[-1 ; 1]$.
+\end{description}
+Nous avons maintenant des équations linéaires mais deux d'entrées présentent des incertitudes dues aux perturbations $\Delta_1$ et $ \Delta_2$ respectivement liés à la température de la résistance de charge et à la non linéarité du couple de frottement sec.
+\subsection{Invariance}
+Nous souhaitons exprimer le modèle du procédé sous la forme d'un espace d'état linéaire et invariant, donc il faut rendre invariant nos équations. Pour cela, nous allons considérer que la résistance de charge $R_{CH}(t)$, exprimée dans l'équation \ref{eq:Rch} et $C_0(t)$, dans l'équation \ref{eq:C0} valent leurs valeurs nominales. 
+\begin{eqnarray}
+R_{CH}(t) &=& R_{CHn} \\
+C_0(t)    &=& C_{0n}
+\end{eqnarray}
+Nous pouvons maintenant former un modèle linéaire et invariant.
 \section{Modèle de niveau 0, modèle EE0}
-\hspace{5mm} \textbullet \hspace{5mm} Variables d'état :
-\begin{equation}
-\begin{pmatrix}
-\theta_s(t)\\
-\omega(t)\\
-i_1(t)\\
-i_2(t)\\
-\end{pmatrix}
-=
-X(t)
-\end{equation}
+Notre modèle présente 4 dynamiques, nous avons donc 4 états dans notre vecteur d'état.\\
 
-
-Pour commencer l'étude avec un espace d'état, nous proposons de poser un premier modèle d'état d'ordre 4. Le vecteur d'état choisit est :
+Le vecteur d'état choisit est :
 \begin{equation}
-X(t)=\begin{bmatrix}
+x(t)=\begin{bmatrix}
 i_1\\
 i_2\\
 \Omega_m\\
 \Theta_m\\
 \end{bmatrix}
 \end{equation} 
-Le modèle d'ordre 4 vaut donc :
+L'entrée $u(t)$ du modèle est $u(t)=V_m(t)$.\\
+
+\noindent Les sorties sont $y(t)= \begin{bmatrix}
+V_g(t)\\
+V_s(t)
+\end{bmatrix}$.\\
+
+\noindent Le modèle d'ordre 4 vaut donc :
 \begin{align}
 \label{EE0}
 \left\lbrace
 \begin{aligned}
-&\dot{X}(t) = \begin{pmatrix}
--\frac{R}{L}	& 	    0				&   -\frac{K_e}{L}	& 0\\
-      0			&  -\frac{(R+R_{ch})}{L}	&	-\frac{K_e}{L}	& 0\\
-\frac{K_c}{J_2}	&	\frac{K_c}{J_2}		&	\frac{\mu}{J_2}	&	0\\
-0&	0&	1&	0
-\end{pmatrix}X(t)+\begin{pmatrix}
+&\dot{x}(t) = \begin{pmatrix}
+-\frac{R}{L}	& 	    0				& 0 &   -\frac{K_e}{L}	\\
+      0			&  -\frac{(R+R_{ch})}{L}&0	&	-\frac{K_e}{L}	\\
+0&	0&	0 & 1\\
+\frac{K_c}{J_2}	&	\frac{K_c}{J_2}		&0&	\frac{\mu}{J_2}
+\end{pmatrix}x(t)+\begin{pmatrix}
 \frac{1}{L}\\0\\0\\0
-\end{pmatrix}V_m(t)\\
-&Y(t) = \begin{pmatrix}
-0&	0&	K_g	&	0\\
-0&	0&	0	&	K_rK_s\\
-\end{pmatrix}X(t)
+\end{pmatrix}u(t)\\
+&y(t) = \begin{pmatrix}
+0&	0&	0 & K_g	\\
+0&	0&	K_rK_s	&	0\\
+\end{pmatrix}x(t)
 \end{aligned}
 \right.
 \end{align}
 \section{Espace d'état d'ordre 3, modèle EE1}
+Afin de facilité la création d'une commande, nous avons retiré l'état $i_2(t)$ de l'état de la modélisation. Il permettra une validation intermédiaire. \\
+
+\noindent L'état vaut maintenant \begin{equation}
+x(t)=\begin{bmatrix}
+i_1\\
+\Omega_m\\
+\Theta_m\\
+\end{bmatrix}
+\end{equation} 
+\noindent L'entrée et les sorties n'ont pas changées. \\
+
+\noindent L'espace d'état, d'ordre 3, vaut : 
+\begin{align}
+\label{EE0}
+\left\lbrace
+\begin{aligned}
+&\dot{x}(t) = \begin{pmatrix}
+-\frac{R}{L}	& 	     0 &   -\frac{K_e}{L}	\\
+0&	0 & 1\\
+\frac{K_c}{J_2}	&	0&	\frac{\mu}{J_2}
+\end{pmatrix}x(t)+\begin{pmatrix}
+\frac{1}{L}\\0\\0
+\end{pmatrix}u(t)\\
+&y(t) = \begin{pmatrix}
+0&		0 & K_g	\\
+0&		K_rK_s	&	0\\
+\end{pmatrix}x(t)
+\end{aligned}
+\right.
+\end{align}
 \section{Espace d'état d'ordre 2, modèle EE2}
-Pour correspondre avec un modèle de comportement, nous allons a nouveau réduire la représentation d'état ~\eqref{EE0} pour obtenir un modèle d'ordre 2. Pour cela, nous allons annuler l'effet des dynamiques des courants $i_1$ et $i_2$ qui sont beaucoup plus grandes que les dynamiques de $\omega$ et $\theta$, qui sont celles que nous sommes capable de mesurer et que nous souhaitons asservir.\\
-INVERSER BBBBBBBBBBBBBB !!  
+Pour correspondre avec un modèle de comportement, nous allons a nouveau réduire la représentation d'état ~\eqref{EE0} pour obtenir un modèle d'ordre 2. Pour cela, nous allons annuler l'effet des dynamiques des courants $i_1$ et $i_2$ qui sont beaucoup plus grandes que les dynamiques de $\omega$ et $\theta$, qui sont celles que nous sommes capable de mesurer et que nous souhaitons asservir. Ainsi nous avons un espace d'état o\`u il sera plus facile de concevoir un retour d'état. Le système d'ordre 3 servira donc de modèle permettant une validation intermédiaire entre celui d'ordre 2 et celui d'ordre 4.\\
+
+\noindent Le vecteur d'état vaut maintenant : \begin{equation}
+x(t)=\begin{bmatrix}
+\Omega_m\\
+\Theta_m\\
+\end{bmatrix}
+\end{equation}
+
+\noindent Le modèle espace d'état d'ordre 2 vaut :\\
+
 \begin{align}
 \label{EE2}
 \left\lbrace
