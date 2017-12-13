@@ -50,8 +50,20 @@ Nous préférons reconstruire $\Omega$ et $\theta$ à partir de $V_s$ et de l'en
 & \Leftrightarrow \dot{\epsilon} = Ax - F\hat{x} - GCx + u(B-H)\\
 & \dot{\epsilon} = (A-GC-F)x + F\epsilon + u(B-H)
 \end{align*} 
-Il vient alors $F = A-GC$ et $B=H$ pour obtenir $\dot{\epsilon} = F\epsilon$. Ainsi l'erreur d'estimation est autonome et ne dépend pas des entrées et sorties du système, et il vient $\epsilon(t) = e^{Ft}\epsilon(0)$. Les valeurs propres de $F$ vont ainsi déterminer la dynamique de l'erreur d'estimation, nous choisissons de les faire dépendre des valeurs propres désirées dans la partie \ref{sub:Calcul du retour etat}
+Il vient alors $F = A-GC$ et $B=H$ pour obtenir $\dot{\epsilon} = F\epsilon$. Ainsi l'erreur d'estimation est autonome et ne dépend pas des entrées et sorties du système, et il vient $\epsilon(t) = e^{Ft}\epsilon(0)$. Les valeurs propres de $F$ vont ainsi déterminer la dynamique de l'erreur d'estimation, nous choisissons de les faire dépendre des valeurs propres désirées dans la partie \ref{sub:Calcul du retour etat} en les multipliant par 3, pour une convergence encore plus rapide. 
 
+\subsection{Construction de l'asservissement}
+Maintenant que l'observateur et le gain du retour d'état sont construits, nous allons les assembler ensemble pour commander notre système. Pour ce modèle, nous obtenons 
+
+\begin{align*}
+\left\lbrace
+\begin{aligned}
+\dot{X} = \begin{pmatrix}
+1&1
+\end{pmatrix}
+\end{aligned}
+\right.
+\end{align*}
 
 
 \section{Adaptation de l'état de EE1}
