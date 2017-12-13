@@ -1,7 +1,54 @@
 \chapter{Analyse}
 \label{chap:analyse}
+Dans ce chapitre, nous allons dans une première partie, étudier la stabilité de nos différentes modélisations (espace d'état d'ordre 4, 3 et 2), puis leurs commandabilités et observabilités. Dans une seconde partie, nous étudierons les performances dynamiques des différents modèles à travers une analyse temporelles et fréquentielle. Dans l'ensemble du chapitre sera abordé l'impact des simplifications effectués sur les modèles espace d'état d'ordre 3 et 2.
+Comme nous souhaitons asservir le procédé en vitesse et non en position, nous étudierons la sortie de performance $V_g(t)$ des modèles  et non $V_s(t)$. 
 
-\section{Analyse fréquentielles}.Attention, calcul des fonctions de transferts de la vitesse.
+\section{Analyse des modèles}
+\subsection{Stabilité}
+Nous avons décidé d'étudier la stabilité asymptotique afin de savoir si l'ensemble des états de nos modèles sont stables et non uniquement ceux qui sont observables comme en stabilité BIBO. \\
+
+\noindent Les valeurs propres de notre système d'ordre 4 sont : (calculé à l'aide de matlab)\\
+\begin{equation}
+{0 ; -132749,8861 ; -4,0655 ; -7748,0483 }
+\end{equation}
+Nous remarquons que les valeurs propres sont toutes à partie réelle négatives, le système d'ordre 4 est donc asymptotiquement stable.
+
+\noindent Les valeurs propres de notre système d'ordre 3 sont : (calculé à l'aide de matlab)\\
+\begin{equation}
+{ 0 ; -7748,0484 ; -3,9516 }
+\end{equation}
+Nous remarquons que les valeurs propres sont toutes à parties réelles négatives, le système d'ordre 3 est donc asymptotiquement stable.\\
+
+Cela était prévisible car le modèle d'ordre 3 est une simplification du modèle d'ordre 4, qui est stable. Nous remarquons aussi que la troisième valeur propre du système d'ordre 3, qui normalement doit être similaire à la troisième valeur propre du système d'ordre 4 a légèrement variée. Cette différence est une première conséquence de la perte d'une dynamique engendrée par la simplification.
+
+\noindent Les valeurs propres de notre système d'ordre 2 sont : (calculé à l'aide de matlab)\\
+\begin{equation}
+{0 ; -3,9506 }
+\end{equation}
+Nous remarquons que les valeurs propres sont toutes à parties réelles négatives, le système d'ordre 2 est donc asymptotiquement stable.\\
+Comme précédemment, cette conclusion était prévisible, néanmoins on remarque une autre conséquence de la simplification sur la seconde valeur propre qui est légèrement différente de celle du modèle d'ordre 3.
+
+\subsection{Commandabilité}
+L'étude de la commandabilité d'un système nous permettra de savoir quels états sont commandables, c'est à dire qu'il sera possible de modifier la dynamique qu'ils représentent par un asservissement. Cette étude se fera uniquement sur l'espace d'état d'ordre 4 car les deux autres modèles découlent de celui-ci. Un système (sous forme d'espace d'état) est commandable, d'après le critère de Kalman, si 
+la matrice de commandabilité $\mathcal{C}_m$ est de rang plein donc égale à la dimension de A.\\
+
+Où, $ \mathcal{C}_m = \begin{bmatrix} B  & AB & \dots & A^{n−1}B\end{bmatrix}$
+Nous avons étudié la commandabilité sur matlab et le résultat est que :
+$$rang(\mathcal{C}_m) = n = 4 $$
+Donc le système est commandable. Cela nous permet de mettre en place un retour d'état. 
+
+\subsection{Observabilité}
+L'étude de l'observabilité d'un système nous permettra de savoir quels états sont observables, c'est à dire s'il est possible de déterminer la valeur des états à partir de mesures de la sortie. Cette étude se fera uniquement sur l'espace d'état d'ordre 4 car les deux autres modèles découlent de celui-ci. Un système (sous forme d'espace d'état) est observable, d'après le critère de Kalman, si 
+la matrice d'observabilité  $\mathcal{O}$ est de rang plein donc égale à la dimension de A.\\
+
+Où, $ \mathcal{O} = \begin{bmatrix} C \\ CA \\ \vdots \\ CA^{n−1} \end{bmatrix}$
+Nous avons étudié l'observabilité sur matlab et le résultat est que :
+$$rang(\mathcal{O}) = dim(A)=4 $$
+Donc le système est observable, néanmoins intuitivement ce résultat semble faux.
+
+\section{Analyse temporelle et fréquentielle}
+Nous avons étudié les performances de notre système 
+
 \subsection{Modèle d'ordre 4, EE0}
 
 Gain statique : $K_0 = 1.465$
@@ -25,7 +72,6 @@ Zéros : Aucun
 Poles en $-7748$ bye bye, il faudrait expliquer que la commande doit faire attention a ne pas l'exiter, il est très dangereux.
 Marge de gain (figure)
  
-\section{Analyse temporelles}
 Proposition : analyse des réponses de Vg et Vs, pas de transfert ici(sauf sur MATLAB) 
 \subsection{Modèle d'ordre 4,EE0}
 
