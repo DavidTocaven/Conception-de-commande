@@ -1,2 +1,33 @@
 \chapter{Analyse}
 \label{chap:analyse}
+
+\section{Analyse fréquentielles}.Attention, calcul des fonctions de transferts de la vitesse.
+\subsection{Modèle d'ordre 4, EE0}
+
+Gain statique : $K_0 = 1.465$
+Pôles :  $-1.327\times 10^5$, $-7748$ et $-4.066$
+Zéros : $-1.327\times  10^5$
+Compensation pôle/zéro --> transfert d'ordre 2
+Marge de gain (figure)
+
+
+\subsection{Modèle d'ordre 3, EE1}
+Gain statique : $K_0 = 1.508$
+Pôles :  $-7748$ et $-3.952$
+Zéros : Aucun
+Pôle en $10^5$ bye bye mais c'est pas grave, il n'était pas observable.
+Marge de gain (figure)
+
+\subsection{Modèle d'ordre 2, EE2}
+Gain statique : $K_0 = 1.508$
+Pôles : $-3.951$
+Zéros : Aucun
+Poles en $-7748$ bye bye, il faudrait expliquer que la commande doit faire attention a ne pas l'exiter, il est très dangereux.
+Marge de gain (figure)
+ 
+\section{Analyse temporelles}
+Proposition : analyse des réponses de Vg et Vs, pas de transfert ici(sauf sur MATLAB) 
+\subsection{Modèle d'ordre 4,EE0}
+
+\subsection{Modèle d'ordre 3, EE1}
+\subsection{Modèle d'ordre 2,EE2}
