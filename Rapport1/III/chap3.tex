@@ -5,7 +5,33 @@
 Après l'étude que nous venons de réaliser sur notre système, nous allons ici exprimé les attentes que doit réaliser la commande que nous allons implémenter. Nous souhaitons avoir : \begin{itemize} 
 \item Erreur de position nulle.
 \end{itemize}
-Pour respecter, nous allons réaliser un placement de valeurs propres par retour d'état.
+La commande de notre système doit permettre d'asservir le système en vitesse, par rapport à une consigne. Pour respecter, nous allons réaliser un placement de valeurs propres par retour d'état.
+
+
+
+\subsection{Calcul du retour d'état}
+\label{sub:Calcul du retour etat}
+Pour garantir les performances dynamiques souhaitées, nous allons appliquer un placement de pôles par retour d'état. Ce réajustement des valeurs propres de la matrice dynamique du système nous permettra de répondre aux attentes du cahier de charges si le choix de celles-ci est correct. De même, nous devons choisir des valeurs propres qui ne sont pas être trop éloignées de celles du procédé, pour ne pas être trop exigeant avec la commande et le système. Nous avons avec ces spécifications choisi les valeur propres suivantes :
+\begin{equation}
+\label{equation:valeurPropres}
+\lambda = \begin{pmatrix}
+-4 &-5
+\end{pmatrix}
+\end{equation}
+La commande par retour d'état est une technique d'asservissement qui permet de modifier le signal d'entrée du système en fonction de la sortie mesuré et une référence. Cette nouvelle loi de commande s'écrit : 
+\begin{equation}
+u(t) = Ny_{ref}-Ky(t)
+\end{equation} avec $N$ un gain de pré-compensation, $y_{ref}$ la vitesse de référence, $y(t)$ la sortie mesuré du système et $K$ le gain de retour. Si l'on applique cette loi à notre système, on obtient : 
+\begin{align*}
+\left\lbrace
+\begin{aligned}
+&\dot{X}(t) = (A-BK)X(t) + BNy_{ref}\\
+&Y = CX(t)
+\end{aligned}
+\right.
+\end{align*}
+Ainsi la nouvelle dynamique du système est donnée par la matrice $A' = (A-BK)$ et doit admettre les valeurs propres que nous désirons appliquer à notre système. $A$ et $B$ étant des paramètres du système, nous allons utiliser le gain $K$ pour répondre à ce problème. Avec la fonction $place$ de MATLAB, nous sommes capable de concevoir ce vecteur $K$. 
+
 \subsection{Observateur ordre plein sur EE2}
 Pour pouvoir réaliser notre commande par retour d'état, nous devons tous d'abord reconstruire l'ensemble des états du système dont nous n'avons pas accès. Dans notre cas, nous disposons d'une mesure de la vitesse $\Omega$ avec la tension de sortie $V_s$ mais aucune information sur la position $\Theta$, l'implémentation d'un observateur est donc nécessaire pour au minimum reconstruire cet état.\\
 Nous préférons reconstruire $\Omega$ et $\theta$ à partir de $V_s$ et de l'entrée de EE2 pour simplifier les calculs nécessaire à sa construction. Il est représenté par :
@@ -24,7 +50,8 @@ Nous préférons reconstruire $\Omega$ et $\theta$ à partir de $V_s$ et de l'en
 & \Leftrightarrow \dot{\epsilon} = Ax - F\hat{x} - GCx + u(B-H)\\
 & \dot{\epsilon} = (A-GC-F)x + F\epsilon + u(B-H)
 \end{align*} 
-Il vient alors $F = A-GC$ et $B=H$ pour obtenir $\dot{\epsilon} = F\epsilon$. Ainsi l'erreur d'estimation est autonome et ne dépend pas des entrées et sorties du système.
+Il vient alors $F = A-GC$ et $B=H$ pour obtenir $\dot{\epsilon} = F\epsilon$. Ainsi l'erreur d'estimation est autonome et ne dépend pas des entrées et sorties du système, et il vient $\epsilon(t) = e^{Ft}\epsilon(0)$. Les valeurs propres de $F$ vont ainsi déterminer la dynamique de l'erreur d'estimation, nous choisissons de les faire dépendre des valeurs propres désirées dans la partie \ref{sub:Calcul du retour etat}
+
 
 
 \section{Adaptation de l'état de EE1}
