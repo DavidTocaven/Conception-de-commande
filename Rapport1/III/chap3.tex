@@ -1,1 +1,68 @@
-\chapter{}
+\chapter{Synthèse de commande}
+\label{chap:commande}
+\section{Commande du système EE2}
+\subsection{Rédaction du cahier des charges et démarche de réponse}
+Après l'étude que nous venons de réaliser sur notre système, nous allons ici exprimé les attentes que doit réaliser la commande que nous allons implémenter. Nous souhaitons avoir : \begin{itemize} 
+\item Erreur de position nulle.
+\end{itemize}
+Pour respecter, nous allons réaliser un placement de valeurs propres par retour d'état.
+\subsection{Observateur ordre plein sur EE2}
+Pour pouvoir réaliser notre commande par retour d'état, nous devons tous d'abord reconstruire l'ensemble des états du système dont nous n'avons pas accès. Dans notre cas, nous disposons d'une mesure de la vitesse $\Omega$ avec la tension de sortie $V_s$ mais aucune information sur la position $\Theta$, l'implémentation d'un observateur est donc nécessaire pour au minimum reconstruire cet état.\\
+Nous préférons reconstruire $\Omega$ et $\theta$ à partir de $V_s$ et de l'entrée de EE2 pour simplifier les calculs nécessaire à sa construction. Il est représenté par :
+\begin{align*}
+\left\lbrace
+\begin{aligned}
+&\dot z (t) = Fz(t) + Gy(t) + Hu(t)\\
+&\hat x = Mz(t) + Ny(t)\\
+&\epsilon = x-\hat{x}
+\end{aligned}
+\right.
+\end{align*} où $x$ représente l'état du système, $\hat{x}$ l'état du système reconstruit et $\epsilon$ l'erreur d'estimation à un temps $t$. Nous souhaitons contrôler la dynamique de ce paramètres pour pouvoir estimer correctement notre système. Pour cela, nous nous interressons à : \begin{align*}
+&\dot{\epsilon} = \dot{x} - \dot{\hat{x}}\\
+&\Leftrightarrow \dot{\epsilon} = Ax +Bu - F\hat{x} - Gy - Hu 
+\text{   en considérant }M=1 \text{ et } N = 0\\
+& \Leftrightarrow \dot{\epsilon} = Ax - F\hat{x} - GCx + u(B-H)\\
+& \dot{\epsilon} = (A-GC-F)x + F\epsilon + u(B-H)
+\end{align*} 
+Il vient alors $F = A-GC$ et $B=H$ pour obtenir $\dot{\epsilon} = F\epsilon$. Ainsi l'erreur d'estimation est autonome et ne dépend pas des entrées et sorties du système.
+
+
+\section{Adaptation de l'état de EE1}
+On a réorganisé les états de EE1 de façon a ce que les état observable soient en haut et les non observable en bas.
+
+\noindent\textbullet\hspace{2mm} Etats observables : $\Omega_m$ et $ \Theta_m$.
+
+\noindent\textbullet\hspace{2mm} Etat non observable : $i_1$
+
+\noindent\textbullet\hspace{2mm} L'espace d'état est donc : 
+\begin{equation}
+\overline{X} = \begin{bmatrix}
+\Omega_m\\
+\Theta_m\\
+i_1\\
+\end{bmatrix}
+\end{equation}
+
+
+Pour passer de $X$ à $\overline{X}$, il faut faire une matrice de passage $P_X$.
+
+ \begin{eqnarray}
+ P_X &/&  \overline{X} =P_X \cdot X \\
+ P_X &=&\begin{bmatrix}
+ 0 & 0 & 1 \\
+ 1 & 0 & 0 \\
+ 0 & 1 & 0 \\
+\end{bmatrix}  \\
+ \end{eqnarray}
+
+Maintenant, nous devons calculer $\overline{A}$, $\overline{B}$, $\overline{C}$, $\overline{D}$ pour le nouvel espace d'état lié à $\overline{X}$.
+
+\begin{equation}%
+	\left\lbrace%
+	\begin{matrix}
+		\overline{A} &=& P^{-1} A P \\%
+		\overline{B} &=& P^{-1} B \\%
+		\overline{C} &=& C P%	
+	\end{matrix}
+\right.%
+\end{equation}

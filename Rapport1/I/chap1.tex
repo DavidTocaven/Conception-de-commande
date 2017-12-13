@@ -1,30 +1,72 @@
 \chapter{Modélisation}
-\section{Mise sous forme d'espace d'état}
+\label{chap:modelisation}
+
+\section{Choix du formalisme et de la modélisation}
 \textit{Écriture des modèles sous forme d'espace d'état}
 
 Notre modélisation sera basée sur les modèles physiques qui décrivent les différents constituants de notre système de procédé : deux moteurs couplés l'un à l'autre par un arbre simple. L'un étant générateur de force mécanique et l'autre générateur de courant afin de faire office de charge (il dissipe son énergie sur une résistance). Il y a aussi un tachymètre couplé à l'arbre principal par un réducteur.
-Notre modélisation est donc un modèle de connaissance.
+Nos modèles seront donc des modèles de connaissances.
 
-Nous avons choisit de faire une modélisation espace d'état pour différentes raisons. La première est que cette représentation permet de d'étudier facilement la valeur des différents états de façon plus fine (permettant d'étudier la stabilité asymptotique par exemple). Le choix d'un modèle de connaissance améliore aussi l'analyse de l'influence des différents paramètres du modèle. Elle permet de garder les états non observables et non commandables dans le modèle, qu'une modélisation fonction de transfert ne met pas en évidence. Elle permet aussi, pour la suite, de faire un retour d'état aisément, ainsi qu'un observateur. \\ \\
-
-%Notre modèle de connaissance fait apparaitre les 
+Nous avons choisis de faire une modélisation espace d'état pour différentes raisons. La première est que cette représentation permet de d'étudier facilement la valeur des différents états (l'étude de la stabilité asymptotique, par exemple, est simplifiée en dans un modèle espace d'état). Elle permet aussi de garder les états non observables et non commandables dans le modèle, une modélisation par fonctions de transferts ne le permet pas. Ce choix nous permet aussi, pour la suite, de concevoir un asservissement par retour d'état basé observateur, qui est l'asservissement que nous avons choisi. Le choix d'un modèle de connaissance améliore aussi l'analyse de l'influence des différents paramètres du modèle, ce qui nous permettra d'affiner notre modèle lors des tests sur le système réel. 
 
 
+
+\section{Maquette et équations physiques}
+
+Voici, figure \ref{fig:schema0}, un schéma électrique et physique du banc qui fait office de procédé dans notre asservissement.
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=.8\textwidth]{./I/images/schema0.png}
-\caption{Schéma électrique/physique du banc moteur}
-\label{fig:schema0}
+\caption{\label{fig:schema0}Schéma électrique/physique du banc moteur}
 \end{figure}
+Le circuit électrique de gauche correspond au Moteur à Courant Continue 1 (MCC) qui délivre la puissance mécanique à partir d'une tension d'entrée $V_M$. Celle-ci est l'entrée de notre procédé. Le schéma électrique de droite représente le MCC 2, générateur de puissance électrique qui fait office de charge en alimentant une résistance $R_{CH}$. Entre ces deux schémas électriques, se trouve une représentation de l'arbre, des forces qu'il subit, du réducteur et du tachymètre qui délivre une tension proportionnelle à la position du moteur, c'est le signal $V_s$ que nous étudions en tant que sortie. 
 
-\hspace{5mm} \textbullet \hspace{5mm} Voici les différentes équations décrivant notre procédé:
+
+Voici les différentes équations décrivant notre procédé:\\
+\noindent\hspace{3mm}\textbullet  \hspace{1mm} Équations des moteurs :
 \begin{eqnarray}
-V_m(t)  					&=& 	R i_1(t) + L \frac{D i_1(t)}{d t} + e_1(t) \\
-e_2(t) 						&=& 	(R+R_{CH}) i_2(t) + L \frac{d i_2(t)}{d t} \\
-J \frac{d \omega(t)}{dt} 	&=&		C_m(t) + C_f(t)		\\
- \frac{d \theta_s(t)}{dt} 	&=&		\frac{1}{R}\omega(t) \\
+V_m(t)  					&=& 	R i_1(t) + L \frac{d   i_1(t)}{d t} + e_1(t) \\
+e_2(t) 						&=& 	(R+R_{CH}) i_2(t) + L \frac{d i_2(t)}{d t}
 \end{eqnarray}
 
+\noindent\hspace{3mm}\textbullet  \hspace{1mm} Équations banc :
+\begin{eqnarray}
+J_2 \frac{d \omega(t)}{dt} 	&=&		C_m(t) + C_f(t)		\\
+ \frac{d \theta_s(t)}{dt} 	&=&		\omega(t) \\
+ e_1(t) &=& K_e \omega(t)\\
+ e_2(t) &=& K_e \omega(t)\\
+ C_m(t) &=& K_c i_1(t)-K_c i_2(t)\\
+ C_f(t) &=& - \mu \omega(t)-C_0\\
+ R_{CH}(t) &=& R_{CHn} + rR_{CH} \Delta_1\\
+ V_s(t)	&=& K_r K_s \theta_s(t)\\
+ V_g(t) &=& K_g \omega(t)
+\end{eqnarray}
+O\`u :
+\begin{description}
+\item[$R$] La résistance de l'induit aux moteurs.
+\item[$L$] L'inductance de l'induite des moteurs.
+\item[$i_1(t),i_2(t)$] Respectivement le courant dans les moteurs 1 et 2.
+\item[$e_1(t),e_2(t)$] Respectivement la force électromotrice des moteurs 1 et 2.
+\item[$R_{CH}(t)$] Résistance de charge.
+\item[$\J_2$] Intertie totale (somme des inerties du rotor, du reducteur et de la charge).
+\item[$\omega_s(t)$] Position radiale de l'arbre.
+\item[$\theta_s$] Vitesse de rotation de l'arbre.
+\item[$C_m(t)$] Couple de l'arbre.
+\item[$C_f(t)$] Couple de frottement.
+\item[$K_e$] Constante de force électromagnétique.
+\item[$K_c$] Constante de couple.
+\item[$\mu$] Coefficient de frottement visqueux.
+\item[$C_0$] Couple de frottement sec si rotation.
+\item[$ $] 
+\item[$ $] 
+\end{description}
+
+
+
+\section{Modèle variant et non linéaire}
+
+
+\section{Modèle de niveau 0, modèle EE0}
 \hspace{5mm} \textbullet \hspace{5mm} Variables d'état :
 \begin{equation}
 \begin{pmatrix}
@@ -36,7 +78,8 @@ i_2(t)\\
 =
 X(t)
 \end{equation}
-\subsection{Modèle de niveau 0}
+
+
 Pour commencer l'étude avec un espace d'état, nous proposons de poser un premier modèle d'état d'ordre 4. Le vecteur d'état choisit est :
 \begin{equation}
 X(t)=\begin{bmatrix}
@@ -66,9 +109,10 @@ Le modèle d'ordre 4 vaut donc :
 \end{aligned}
 \right.
 \end{align}
-\subsection{Espace d'état d'ordre 2}
+\section{Espace d'état d'ordre 3, modèle EE1}
+\section{Espace d'état d'ordre 2, modèle EE2}
 Pour correspondre avec un modèle de comportement, nous allons a nouveau réduire la représentation d'état ~\eqref{EE0} pour obtenir un modèle d'ordre 2. Pour cela, nous allons annuler l'effet des dynamiques des courants $i_1$ et $i_2$ qui sont beaucoup plus grandes que les dynamiques de $\omega$ et $\theta$, qui sont celles que nous sommes capable de mesurer et que nous souhaitons asservir.\\
-
+INVERSER BBBBBBBBBBBBBB !!  
 \begin{align}
 \label{EE2}
 \left\lbrace
@@ -77,11 +121,11 @@ Pour correspondre avec un modèle de comportement, nous allons a nouveau réduir
 =
  \begin{pmatrix}
 0 &	1 \\
-0	&	-\frac{(K_cK_e)}{J_2R}-\frac{\mu}{J_2}\\
+0	&	-\frac{(K_c K_e)}{J_2 R}-\frac{\mu}{J_2}\\
 \end{pmatrix}X(t)
 +
 \begin{pmatrix}
-\frac{K_c}{J_2R}\\
+\frac{K_c}{J_2 R}\\
 0
 \end{pmatrix} 
 V_m(t)\\
@@ -93,58 +137,3 @@ K_rK_s	&	0	\\
 \right.
 \end{align}
 
-\section{Commande du système EE2}
-\subsection{Rédaction du cahier des charges et démarche de réponse}
-Après l'étude que nous venons de réaliser sur notre système, nous allons ici exprimé les attentes que doit réaliser la commande que nous allons implémenter. Nous souhaitons avoir : \begin{itemize} 
-\item Erreur de position nulle.
-\end{itemize}
-Pour respecter, nous allons réaliser un placement de valeurs propres par retour d'état.
-\subsection{Observateur ordre plein sur EE2}
-Pour pouvoir réaliser notre commande par retour d'état, nous devons tous d'abord reconstruire l'ensemble des états du système dont nous n'avons pas accès. Dans notre cas, nous disposons d'une mesure de la vitesse $\Omega$ avec la tension de sortie $V_s$ mais aucune information sur la position $\Theta$, l'implémentation d'un observateur est donc nécessaire pour au minimum reconstruire cet état.\\
-Nous préférons reconstruire $\Omega$ et $\theta$ à partir de $V_s$ et de l'entrée de EE2 pour simplifier les calculs nécessaire à sa construction. Il est représenté par :
-\begin{align*}
-\left\lbrace
-\begin{aligned}
-\dot z (t)
-\end{aligned}
-\right.
-\end{align*}
-
-\section{Adaptation de l'état de EE1}
-On a réorganisé les états de EE1 de façon a ce que les état observable soient en haut et les non observable en bas.
-
-\noindent\textbullet\hspace{2mm} Etats observables : $\Omega_m$ et $ \Theta_m$.
-
-\noindent\textbullet\hspace{2mm} Etat non observable : $i_1$
-
-\noindent\textbullet\hspace{2mm} L'espace d'état est donc : 
-\begin{equation}
-\overline{X} = \begin{bmatrix}
-\Omega_m\\
-\Theta_m\\
-i_1\\
-\end{bmatrix}
-\end{equation}
-
-Pour passer de $X$ à $\overline{X}$, il faut faire une matrice de passage $P_X$.
-
- \begin{eqnarray}
- P_X &/&  \overline{X} =P_X \cdot X \\
- P_X &=&\begin{bmatrix}
- 0 & 0 & 1 \\
- 1 & 0 & 0 \\
- 0 & 1 & 0 \\
-\end{bmatrix}  \\
- \end{eqnarray}
-
-Maintenant, nous devons calculer $\overline{A}$, $\overline{B}$, $\overline{C}$, $\overline{D}$ pour le nouvel espace d'état lié à $\overline{X}$.
-
-\begin{equation}%
-	\left\lbrace%
-	\begin{matrix}
-		\overline{A} &=& P^{-1} A P \\%
-		\overline{B} &=& P^{-1} B \\%
-		\overline{C} &=& C P%	
-	\end{matrix}
-\right.%
-\end{equation}
