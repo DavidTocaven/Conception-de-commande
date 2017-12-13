@@ -17,6 +17,7 @@ obsver.ee = ss(obsver.F, [obsver.G obsver.H], obsver.M, 0);
 %% commande
 
 K = place(EE2.ee.a, EE2.ee.b, vp_desire);
+K = [0 K(2)];
 EE2_bf.a = [EE2.ee.a-EE2.ee.b*K     -EE2.ee.b*K;
             [0 0; 0 0]              obsver.F];
 
@@ -25,7 +26,7 @@ EE2_bf.b = [EE2.ee.b; 0;0];
 EE2_bf.c = [EE2.ee.c [0 0;0 0]];
 EE2_bf.ee = ss(EE2_bf.a, EE2_bf.b, EE2_bf.c, EE2.ee.d);
 
-
+EE2_bf.gain = dcgain(EE2_bf.ee(1));
 %%  Analyse du retour d'état basé observateur 
 % Pour EE1 :
 %Changement de base de EE1
