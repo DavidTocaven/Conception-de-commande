@@ -1,7 +1,49 @@
 \chapter*{Introduction}
 \addcontentsline{toc}{chapter}{Introduction}
 \label{chap:Intro}
+\begin{LARGE}
+Le rapport final inclura une hiérarchisation des émulations et des validations expérimentales, des justifications pour les choix matériels et logiciels, la prise en compte des informations à traiter sur une chaîne d'acquisition, un raisonnement construit pour les protocoles expérimentaux, un bilan sur le projet.\\
+A RÉÉCRIRE.
+\end{LARGE}
+Plan \\
+intro a refaire\\
+Les 2 chapitres de théories\\
+1. Validation de la commande TC sur modèle NL \\
+	1.1. Protocoles MIL/SIL\\
+		1.1.1. MIL\\
+		1.1.2. SIL\\	
+	1.2. Commande temps continue\\
+		1.2.1 Simulation \\
+			1.2.1.1. Adaptation modèle (avec nl)\\
+			1.2.1.2. Simulation et étude de perf\\
+			1.2.1.3. Conclusion et Validation\\
+		1.2.1 Sur moteur Réel (proto rapide)\\
+			1.2.1.1. Adaptation modèle (avec nl)\\
+			1.2.1.2. test et étude de perf\\
+			1.2.1.3. Conclusion et Validation\\
+2. Commande temps discret \\
+	2.1. Contraintes hardware \\
+		2.1.1. CAN / CNA (protocole correction, temps conversion, échantillonnage bits )\\
+		2.1.2. C167 (ordo,taches,validation TR,temps calcul, fréquence fonctionnement)\\
+		2.2.3. Conclusion  (contraintes tempo, squelette code correcteur)\\
+	2.2. Transformation commande en TD\\
+		2.1.1. Fonctions de transferts (observateur + retour état = 2 ft)\\
+		2.1.2. Transformée en z\\		
+%	2.3. I et étude de perf\\
+%		2.3.1. Création commande TD matlab\\
+%		2.3.2. Simulation et étude de perf\\
+%		1.3.3. Conclusion et Validation\\
+3. Implémentation \\
+	3.1. Correction CAN/CNA\\
+		3.1.1. Implémentation prog récupération lu/écrite\\
+		3.1.2. Correction \\
+		3.1.3. Validation \\
+	3.2. Implémentation \\
+		3.2.1. Description taches\\
+		3.2.2. implémentation\\
+	3.3. Validation et correction 
 
+4. Bilan 
 Dans cet UE, nous devons réaliser la commande d’un système temps réel du prototypage à l'implémentation sur un microcontrôleur : nous devons asservir un banc de moteurs à courant continu à l'aide d'un micro-contrôleur C167. 
 
 Ce premier rapport contient toute la partie théorique. Celle-ci est décomposée dans les trois premiers chapitres et un dernier chapitre qui détaille la suite des étapes à réaliser.
