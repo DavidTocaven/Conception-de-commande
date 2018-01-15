@@ -2,3 +2,15 @@
 *.asv
 
 *.autosave
+
+*.aux
+
+*.log
+
+*.out
+
+*.gz
+
+*.toc
+
+*.original

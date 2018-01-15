@@ -1,16 +1,45 @@
 \BOOKMARK [0][-]{chapter*.2}{Introduction}{}% 1
-\BOOKMARK [0][-]{chapter.1}{Modélisation}{}% 2
-\BOOKMARK [1][-]{section.1.1}{Mise sous forme d'espace d'état}{chapter.1}% 3
-\BOOKMARK [2][-]{subsection.1.1.1}{Modèle de niveau 0}{section.1.1}% 4
-\BOOKMARK [2][-]{subsection.1.1.2}{Espace d'état d'ordre 2}{section.1.1}% 5
-\BOOKMARK [1][-]{section.1.2}{Commande du système EE2}{chapter.1}% 6
-\BOOKMARK [2][-]{subsection.1.2.1}{Rédaction du cahier des charges et démarche de réponse}{section.1.2}% 7
-\BOOKMARK [2][-]{subsection.1.2.2}{Observateur\040ordre\040plein\040sur\040EE2}{section.1.2}% 8
-\BOOKMARK [1][-]{section.1.3}{Adaptation de l'état de EE1}{chapter.1}% 9
-\BOOKMARK [0][-]{chapter.2}{}{}% 10
-\BOOKMARK [0][-]{chapter.3}{}{}% 11
-\BOOKMARK [0][-]{chapter.4}{Conclusion}{}% 12
-\BOOKMARK [-1][-]{part*.4}{Annexes}{}% 13
-\BOOKMARK [0][-]{chapter*.5}{TITRE}{part*.4}% 14
-\BOOKMARK [1][-]{section*.6}{TITRE}{chapter*.5}% 15
-\BOOKMARK [0][-]{chapter*.7}{Annexe\0402\040-\040TITRE}{part*.4}% 16
+\BOOKMARK [0][-]{chapter.1}{Mod\351lisation}{}% 2
+\BOOKMARK [1][-]{section.1.1}{Choix du formalisme et de la mod\351lisation}{chapter.1}% 3
+\BOOKMARK [1][-]{section.1.2}{Maquette et \351quations physiques}{chapter.1}% 4
+\BOOKMARK [2][-]{subsection.1.2.1}{Maquette :}{section.1.2}% 5
+\BOOKMARK [2][-]{subsection.1.2.2}{\311quations physique}{section.1.2}% 6
+\BOOKMARK [2][-]{subsection.1.2.3}{Lin\351arisation}{section.1.2}% 7
+\BOOKMARK [2][-]{subsection.1.2.4}{Invariance}{section.1.2}% 8
+\BOOKMARK [1][-]{section.1.3}{Mod\350le de niveau 0, mod\350le EE0}{chapter.1}% 9
+\BOOKMARK [1][-]{section.1.4}{Espace d'\351tat d'ordre 3, mod\350le EE1}{chapter.1}% 10
+\BOOKMARK [1][-]{section.1.5}{Espace d'\351tat d'ordre 2, mod\350le EE2}{chapter.1}% 11
+\BOOKMARK [0][-]{chapter.2}{Analyse}{}% 12
+\BOOKMARK [1][-]{section.2.1}{Analyse des mod\350les}{chapter.2}% 13
+\BOOKMARK [2][-]{subsection.2.1.1}{Stabilit\351}{section.2.1}% 14
+\BOOKMARK [2][-]{subsection.2.1.2}{Commandabilit\351}{section.2.1}% 15
+\BOOKMARK [2][-]{subsection.2.1.3}{Observabilit\351}{section.2.1}% 16
+\BOOKMARK [1][-]{section.2.2}{Analyse temporelle et fr\351quentielle}{chapter.2}% 17
+\BOOKMARK [2][-]{subsection.2.2.1}{Performances Statiques}{section.2.2}% 18
+\BOOKMARK [2][-]{subsection.2.2.2}{Performances dynamiques}{section.2.2}% 19
+\BOOKMARK [2][-]{subsection.2.2.3}{Analyse fr\351quentielle}{section.2.2}% 20
+\BOOKMARK [0][-]{chapter.3}{Synth\350se de commande}{}% 21
+\BOOKMARK [1][-]{section.3.1}{Commande du syst\350me d'ordre 2}{chapter.3}% 22
+\BOOKMARK [2][-]{subsection.3.1.1}{R\351daction du cahier des charges et d\351marche de r\351ponse}{section.3.1}% 23
+\BOOKMARK [2][-]{subsection.3.1.2}{Calcul du retour d'\351tat}{section.3.1}% 24
+\BOOKMARK [2][-]{subsection.3.1.3}{Observateur ordre plein sur mod\350le d'ordre 2}{section.3.1}% 25
+\BOOKMARK [2][-]{subsection.3.1.4}{Construction de l'asservissement}{section.3.1}% 26
+\BOOKMARK [1][-]{section.3.2}{Validation de la commande}{chapter.3}% 27
+\BOOKMARK [2][-]{subsection.3.2.1}{Validation th\351orique}{section.3.2}% 28
+\BOOKMARK [2][-]{subsection.3.2.2}{Simulation SIMULINK}{section.3.2}% 29
+\BOOKMARK [2][-]{subsection.3.2.3}{Analyse boucle ferm\351 du mod\350le d'ordre 3}{section.3.2}% 30
+\BOOKMARK [1][-]{section.3.3}{Validation sur les mod\350les d'ordre sup\351rieur}{chapter.3}% 31
+\BOOKMARK [2][-]{subsection.3.3.1}{Changement de base du mod\350le d'ordre 4 et int\351gration de la commande}{section.3.3}% 32
+\BOOKMARK [2][-]{subsection.3.3.2}{Simulation SIMULINK}{section.3.3}% 33
+\BOOKMARK [0][-]{chapter.4}{Planification de la suite de l'asservissement}{}% 34
+\BOOKMARK [1][-]{section.4.1}{Validation de commande}{chapter.4}% 35
+\BOOKMARK [1][-]{section.4.2}{Impl\351mentation sur micro-contr\364leur}{chapter.4}% 36
+\BOOKMARK [1][-]{section.4.3}{Validation finale}{chapter.4}% 37
+\BOOKMARK [-1][-]{part*.7}{Annexes}{}% 38
+\BOOKMARK [0][-]{chapter*.8}{Codes Matlab}{part*.7}% 39
+\BOOKMARK [1][-]{section*.9}{Mod\350les et analyses}{chapter*.8}% 40
+\BOOKMARK [1][-]{section*.10}{Observateur et Asservissement}{chapter*.8}% 41
+\BOOKMARK [0][-]{chapter*.11}{Mod\350les SIMULINK}{part*.7}% 42
+\BOOKMARK [1][-]{section*.12}{Mod\350le Global}{chapter*.11}% 43
+\BOOKMARK [1][-]{section*.13}{Sous-syst\350me de commande}{chapter*.11}% 44
+\BOOKMARK [1][-]{section*.14}{Sous-syst\350me d'observateur}{chapter*.11}% 45

@@ -1,2 +1,31 @@
-\chapter{}
+\chapter{Planification de la suite de l'asservissement}
+\label{chap:suite}
+Dans ce chapitre, nous allons décrire les étapes suivantes à cette étude théorique. Dans un premier temps sera présenté la validation de notre commande par tests puis il sera abordé les étapes nécessaires à l'implémentation sur micro-contrôleur et la validation finale.
+\section{Validation de commande}
+Dans un premier temps, nous testerons notre asservissement sur un modèle plus riche (non linéaire, variant, plus de dynamique, ...) en simulation afin de voir si notre commande respecte toujours le cahier des charges. Le modèle sera fournie en seconde séance de TP. Ensuite, nous testerons le moteur dans différentes configurations en fonction des résultats et de notre vitesse d'avancement : 
+\begin{itemize}
+\item Émulation sur le même ordinateur (test du temps concret).
+\item Test de la commande et du procédé sur un même ordinateur en sortant le signal de commande par les cartes d'entrées/sorties du prototypage rapide.
+\item Test de la commande simulée sur un ordinateur et le procédé simulé sur un second ordinateur afin de tester deux vitesses de fonctionnement de simulation (synchronisations) et les cartes entrées/sorties (communications).
+\item Test de la commande simulée et le procédé simulé sur un micro-contrôleur.
+\item Test de la commande simulée sur procédé réel : on éprouve ici la robustesse de la commande face aux imprécisions de modélisation.
+\end{itemize}
+Nous effectuerons aussi une estimation du modèle de comportement du moteur que nous asservirons afin d'avoir un modèle plus proche du comportement réel.
+\section{Implémentation sur micro-contrôleur}
+% CAN CNA
+% Fech et F micro c
+% MODELE Z 
+% PROG
+% ORDO
+% IMPLE
 
+Dans cette partie, nous appréhenderons les problématiques de conversions de signaux numériques/analogiques et analogiques/numériques et essaierons de les corriger afin d'avoir des conversions les plus linéaires possibles. Nous calculerons les fréquences maximales et minimales des entrées et sorties du procédé, cela nous permettra de choisir des fréquences de conversions adaptées et la fréquence de fonctionnement du micro-contrôleur. Nous transformerons aussi notre modèle de commande en un modèle à temps discret afin de pouvoir l'implémenter. Une fois le modèle temps discret obtenu, nous programmerons les différentes fonctions nécessaires à l'asservissement (lecture des entrées, calcul des sorties, écriture des sorties). Nous aborderons aussi les problématiques d'ordonnancement afin que notre programme puisse s'exécuter dans le temps impartie afin de respecter les contraintes temps réels. Enfin, nous implémenterons notre programme sur le micro-contrôleur C167.
+\section{Validation finale}
+Une fois la commande implémentée, nous effectuerons les tests suivants : 
+\begin{itemize}
+\item Test de la commande implémentée sur le procédé simulé sur ordinateur.
+\item Test de la commande implémentée sur le procédé simulé sur micro-contrôleur.
+\item Test de la commande implémentée sur la maquette du procédé réel.
+\end{itemize}
+
+Nous vérifierons le respect des spécifications du cahier des charges dans l'ensemble de ces tests afin de voir si notre asservissement est correct.
