@@ -1,5 +1,5 @@
 %% Creation de notre observateur
-% reconstruction de tous les ï¿½tats :
+% reconstruction de tous les états :
 espaceEtat1
 
 %% Cahier des charges
@@ -27,7 +27,6 @@ EE2_bf.c = [EE2.ee.c [0 0;0 0]];
 EE2_bf.ee = ss(EE2_bf.a, EE2_bf.b, EE2_bf.c, EE2.ee.d);
 
 EE2_bf.gain = dcgain(EE2_bf.ee(1));
-N = 1/EE2_bf.gain;
 %%  Analyse du retour d'etat base observateur 
 % Pour EE1 :
 %Changement de base de EE1
@@ -137,18 +136,3 @@ EE0_bf.c = EE0_obsver.C;
 
 EE0_bf.ee = ss(EE0_bf.a, EE0_bf.b, EE0_bf.c, EE0_obsver.ee.d);
 EE0_bf.vp = eig(EE0_bf.ee);
-
-
-%% Bloc de commande
-Te = 1e-3;
-
-com.a = [obsver.F-EE2.ee.b*K];
-com.b = [EE2.ee.b*N obsver.G];
-com.c = [-K];
-com.d = [N 0];
-com.ee = ss(com.a, com.b, com.c, com.d);
-com.zz = c2d(com.ee, Te, 'tustin');
-com.ft=tf(com.zz);
-
-
-
