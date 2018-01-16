@@ -1,6 +1,10 @@
-\chapter{Validation de la commande en temps continue sur le modèle non linéaire}
+\chapter{Validation de la commande en temps continue sur le modèle non linéaire}\label{ValidationCommande}
 \section{Protocoles MIL/SIL}
 	\subsection{MIL}
+	Pour faire une validation MIL, nous allons utiliser le modèle non linéaire pour simuler la correction de celui ci avec notre correcteur. Toutes cette opération sera effectué sous MATLAB. Pour valider la commande du correcteur, celle ci devra être ré-étudié pour l'améliorer. Nous devons alors fixer une marge d'erreur par rapport au cahier des charges défini en \ref{chap:commande} : 
+	\begin{align}\label{eqn_margeErreur}
+		\epsilon < 1\%
+	\end{align}
 	\subsection{SIL}
 \section{Commande à temps continue}
 	\subsection{Simulation}
