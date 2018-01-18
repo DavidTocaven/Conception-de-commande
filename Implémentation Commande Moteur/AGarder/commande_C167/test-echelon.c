@@ -27,7 +27,7 @@ int T=0;
 
 // AJOUTS ETUDIANTS
 /* Coefficients constants de la commande  */
-
+/*
 static float ny1 =  1.506;
 static float ny2 =  -3.0001;
 static float ny3 =  1.4933;
@@ -38,6 +38,19 @@ static float nu3 =  2,0607832e-06;
 
 static float d1  =  -1.9860;
 static float d2  =  0.9860;
+*/
+static float ny1 =  1.474124;
+static float ny2 =  -2.818532;
+static float ny3 =  1.347227;
+
+static float d1 =  1.000000;
+static float d2 =  -1.864621
+
+static float nu1 =  -0.000019;
+static float nu2 =  0.000000;
+static float nu3 =  0.000019;
+
+
 
 /* Variables d'état */
 float s0 ; // sortie k

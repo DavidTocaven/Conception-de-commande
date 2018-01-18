@@ -19,8 +19,8 @@ EE0.b   =[1/L;
           0;
           0];
       
-EE0.c   =[0, 0, 0,      Kg;
-          0, 0, Kr*Ks,  0 ];
+EE0.c   =[0, 0, 0,      Kg; % Vg
+          0, 0, Kr*Ks,  0 ];% Vs
       
 EE0.d   =[0;
           0];
@@ -77,3 +77,16 @@ EE2.vp = eig(EE2.ee);
 % gain statique
 EE2.gain = dcgain(EE2.ee(1));
 
+% Commandabilitee
+Controlabilite = ctrb(EE0.a,EE0.b);
+disp('Controlable ?')
+disp(rank(Controlabilite) == size(EE0.a,1))
+
+% Observabilite
+
+[ABAR,BBAR,CBAR,T,K] = obsvf(EE0.a,EE0.b,EE0.c);
+
+% etude de performance temporelle
+EE0.stepChar = stepinfo(EE0.ee(1),'SettingTime',0.05);
+EE1.stepChar = stepinfo(EE1.ee(1),'SettingTime',0.05);
+EE2.stepChar = stepinfo(EE2.ee(1),'SettingTime',0.05);
