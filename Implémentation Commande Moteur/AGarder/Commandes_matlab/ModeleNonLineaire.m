@@ -67,11 +67,15 @@ classdef ModeleNonLineaire < matlab.System
             obj.xC = zeros(4,1);
         end
 
-        function y = stepImpl(obj,u)%u=Vm
+        function [Vs,Vg,xo1,xo2,xo3,xo4] = stepImpl(obj,Vm,xi1,xi2,xi3,xi4)%u=Vm
+                obj.xC(1)=xi1;
+                obj.xC(2)=xi2;
+                obj.xC(3)=xi3;
+                obj.xC(4)=xi4;
             %f
             % Implement algorithm. Calculate y as a function of
             % input u and discrete states.
-            obj.dx(1) = -obj.R/obj.L*obj.xC(1) - obj.Ke/obj.L*obj.xC(3) + 1/obj.L*u;
+            obj.dx(1) = -obj.R/obj.L*obj.xC(1) - obj.Ke/obj.L*obj.xC(3) + 1/obj.L*Vm(1);
             obj.dx(2) = -(obj.R+(obj.Rchn+obj.rRch*obj.Delta2))/obj.L*obj.xC(2) - obj.Ke/obj.L*obj.xC(3);
 
             if(abs(obj.xC(3))>obj.Znmrt)
@@ -86,17 +90,18 @@ classdef ModeleNonLineaire < matlab.System
             end
             obj.dx(4) = obj.xC(3);
             % g
-            y = zeros(2,1);
-            y(1)= obj.Kr*obj.Ks*obj.xC(4)-10*floor((obj.Kr*obj.Ks*obj.xC(4)+5)/10);%Vs
-            y(2)= obj.Kg*obj.xC(3);%Vg
-            
+            Vs= obj.Kr*obj.Ks*obj.xC(4)-10*floor((obj.Kr*obj.Ks*obj.xC(4)+5)/10);%Vs
+            Vg= obj.Kg*obj.xC(3);%Vg
+            xo1=obj.xC(1);
+            xo2=obj.xC(2);
+            xo3=obj.xC(3);
+            xo4=obj.xC(4);
             %m
             for i = 1:3
                 obj.dx(i)=obj.dx(i+1);
-                obj.xC(i)=obj.xC(i+1);
             end
         end
-
+% https://fr.mathworks.com/help/matlab/matlab_prog/change-number-of-step-method-inputs-or-outputs-1.html#d119e79033
         function resetImpl(obj)
             % Initialize discrete-state properties.
             obj.Delta1 = 2*rand(1)-1;
