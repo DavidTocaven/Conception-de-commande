@@ -25,7 +25,7 @@
   *  -------------------------------------------------------------------------
   * | See matlabroot/simulink/src/sfuntmpl_doc.c for a more detailed template |
   *  ------------------------------------------------------------------------- 
-* Created: Tue Jan 16 16:27:44 2018
+* Created: Wed Jan 17 17:29:34 2018
 */
 #define S_FUNCTION_LEVEL 2
 #define S_FUNCTION_NAME ModeleDemonstrateurMoteur
