@@ -106,6 +106,10 @@ void echelon_dac() {
     V_out0 = V_cna0/4095*5 -5 ; /* tension recalculee */
     etat=1;
     SET_SFRBIT(P3.3);
+    
+    printf_entier_console("CAN = %d ", V_can0);
+    printf_entier_console("CNA = %d\n", V_cna0);
+    consigne = (-1)*consigne;
   }
   else
   {
@@ -113,10 +117,14 @@ void echelon_dac() {
     V_out0 = 0; /* tension recalculee */
     etat=0;
     CLR_SFRBIT(P3.3);
+    
+    printf_entier_console("CAN = %d ", V_can0);
+    printf_entier_console("CNA = %d\n", V_cna0);
+    consigne = (-1)*consigne;
   }
   
-  /* ecriture sur le DAC */
-  dac0_output(V_cna0);
+  /* ecriture sur le DAC  ---Commentaire étudiant*/
+  //dac0_output(V_cna0);
 }
 
 /* ******* Init de la commande ******/
@@ -156,12 +164,17 @@ void acquisition_adc() {
   
   // commande 
   
-  ref0 = V_out0;
-  mes0 = (V_can0 *(10/1023))  -5;
-  s0 = - d1*s1 - d2*s2 /* valeur des sorties précédentes */
-       + my0*mes0 + my1*mes1 + my2*mes2 /* entrée de y mesure  */
-       + mu0*ref0 + mu1*ref1 + mu2*ref2 ; /* entrée de consigne  */
+  ref0 = consigne;
   
+  /*Adapation CAN [0;1023] vers [0;5]*/
+  mes0 = (V_can0 *(5/1023));
+  
+  /* Adapatation mesure [0;5] vers [-5;5]*/
+  mes0 = (mes0*2) -5;
+  //s0 = - d1*s1 - d2*s2 /* valeur des sorties précédentes */
+     //  + my0*mes0 + my1*mes1 + my2*mes2 /* entrée de y mesure  */
+     //  + mu0*ref0 + mu1*ref1 + mu2*ref2 ; /* entrée de consigne  */
+  s0 = ref0;
   // actualisation temporelle 
   // sorties
   s2 = s1;
@@ -173,12 +186,21 @@ void acquisition_adc() {
   ref2 = ref1;
   ref1 = ref0;
   
+  
+  /* Adaptation Sortie [-5;5] vers [0;5]*/
+  s0 = (s0/2) + 2.5;
+  
+  /* Adaptation de la sortie [0;5] vers CNA [2048;4095] */
+  V_cna0 = s0*(2047/5)+2048;
+  
+  
   /* envoie du temps et de la valeur du CAN sur la ligne série */
   /* pour stockage et tracé avec GnuPlot depuis le PC */
-  printf_entier_console("%d ", T);
-  printf_entier_console("%d\n", V_can0);
+  printf_entier_console("T = %d ", T);
+  printf_entier_console("CAN = %d ", V_can0);
+  printf_entier_console("CNA = %d\n", V_cna0);
   
-  V_cna0 = s0*204.7+3072;
+  
   dac0_output(V_cna0);
 }
 
