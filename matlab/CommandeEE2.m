@@ -3,7 +3,7 @@
 espaceEtat1
 
 %% Cahier des charges
-vp_desire = [-4; - 5];
+vp_desire = [-4 ; - 5];
 %% observateur
 obsver.H = EE2.ee.b;
 obsver.M = eye(size(EE2.ee.a));
@@ -141,8 +141,8 @@ EE0_bf.gain = dcgain(EE0_bf.ee(1));
 
 N = 1/(EE2_bf.gain);
 %% Bloc de commande
-Te = 1/100;
-
+Te = 0.052;
+%% input : 
 CommTD.a = [obsver.F-EE2.ee.b*K];
 CommTD.b = [EE2.ee.b*N obsver.G];
 CommTD.c = [-K];
@@ -150,6 +150,11 @@ CommTD.d = [N 0];
 CommTD.ee = ss(CommTD.a, CommTD.b, CommTD.c, CommTD.d);
 CommTD.zz = c2d(CommTD.ee, Te, 'tustin');
 CommTD.ft=tf(CommTD.zz);
+ftRef=CommTD.ft(1);
+ftVs=CommTD.ft(2);
+%%
+ftTD=CommTD.ft(1)+CommTD.ft(2);
+%% test 
 
 %% save in file
 numY =CommTD.ft(1,1).num{1,1};
@@ -167,8 +172,8 @@ fprintf(File,'static float my2 =  %f;\n\n',numY(3));
 fprintf(File,'static float d1 =  %f;\n',denumY(1));
 fprintf(File,'static float d2 =  %f;\n\n',denumY(2));
 % nu 1 2 3
-fprintf(File,'static float mu0 =  %f;\n',numU(1));
-fprintf(File,'static float mu1 =  %f;\n',numU(2));
-fprintf(File,'static float mu2 =  %f;\n\n',numU(3));
+fprintf(File,'static float mref0 =  %f;\n',numU(1));
+fprintf(File,'static float mref1 =  %f;\n',numU(2));
+fprintf(File,'static float mref2 =  %f;\n\n',numU(3));
 
 fclose(File);
