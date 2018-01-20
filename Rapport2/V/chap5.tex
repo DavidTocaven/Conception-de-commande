@@ -1,13 +1,21 @@
 \chapter{Commande temps discret}
+Afin d'implémenter la commande, nous avons dans un premier temps évaluer les contraintes lié au support d'implémentation et dans un second temps nous allons adapté la commande de façon à ce qu'elle soit implémentable sur le micro-contrôleur et évaluer cette transformation.
 
 \section{Contraintes hardware} 
-	Nous allons dans cette partie nous consacrer à une étude des contraintes matérielles. Ces contraintes seront à prendre en compte lorsque que nous passerons à la mise en œuvre.  
-	\subsection{CAN / CNA}
-		(protocole correction, temps conversion, échantillonnage bits )				
+Nous allons, dans cette partie, nous consacrer à une étude des contraintes matérielles. Dans un premier temps nous verrons quels sont les spécificités du micro-contrôleur. Puis, nous verrons les convertisseurs analogique/numérique et numérique/analogique et nous conclurons sur le choix du micro-contrôleur. 
 	\subsection{Micro contrôleur C167}
-		(ordo,taches,validation TR,temps calcul, fréquence fonctionnement)
+		%(ordo,taches,validation TR,temps calcul, fréquence fonctionnement)
+Pour ce projet, nous disposons d'un micro-contrôleur \emph{C167} fabriqué par Siemens. Il est lié à un carte \emph{microsys167-Eth} qui ajoute des interfaces, des fonctionnalités et de la mémoire au \emph{C167}. La carte cadence le micro-contrôleur à $20\text{ }MHz$, ajoute un $1\text{ }Mo$ de RAM et $512\text{ } Ko$ de Flash-EPROM. Nous disposons aussi d'adaptateurs de tension ($\left[-5;5\right]$ Volt vers $\left[0;5\right]$ Volt). Le \emph{C167} offre différentes fonctionnalités, dont les interruptions matérielles, les taches, les timers périodiques et un débogueur. Nous avons également des outils de développement permettant depuis un ordinateur, de créer un programme en \emph{C}, le compiler pour le \emph{C167}, l'envoyer sur celui-ci et si besoin de le déboguer et récupérer des valeurs sur un terminal.   Le micro-contrôleur est 
+	\subsection{CAN / CNA}
+%		(protocole correction, temps conversion, échantillonnage bits )				
+
+
 	\subsection{Conclusion}
 	  	(contraintes tempo, squelette code correcteur)
+	  	
+	  	
+	  	
+
 \section{Discrétisation de la commande}
 	\subsection{Fonctions de transferts}
 		 (observateur + retour état = 2 ft)
