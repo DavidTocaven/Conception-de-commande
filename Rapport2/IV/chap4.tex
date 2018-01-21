@@ -1,24 +1,42 @@
-\chapter{Validation de la commande en temps continue sur le modèle non linéaire}\label{ValidationCommande}
-Maintenant que les étapes de démonstration et d'émulation de la commande sont terminés, nous allons étudier notre premier prototype, que nous nommerons prototype 0, et qui correspondra  notre solution 0. Nous allons d'abord effectuer ce que nous appelons un \emph{Model in the loop} qui va chercher à améliorer ce premier prototype en utilisant uniquement des simulations. Par la suite, nous améliorerons le prototype en utilisation une technique d'émulation dite \emph{Software in the loop}.
-\section{Protocoles MIL/SIL}
-	\subsection{(MIL)}
-	Pour faire une validation MIL, nous allons utiliser le modèle non linéaire pour simuler la correction. Toute cette opération sera effectué sous MATLAB à l'aide d'un bloc de calcul qui simule le modèle non linéaire. Pour valider le prototype de commande du correcteur, celui-ci devra respecter la ou les condition que nous lui imposerons. S'il ce n'est pas le cas, une amélioration de ce prototype sera nécessaire et elle nous permettra de créer un prototype N (pour N itérations de cette boucle). 
+\chapter{Validation de la commande en temps continue sur le modèle non linéaire}
+\label{ValidationCommande}
+%% Chemin d'accès au répertoire : Conception-de-commande\Implémentation Commande Moteur\AGarder\Commandes_matlab
+Maintenant que les étapes de démonstration et d'émulation de la commande sont terminés, nous allons étudier notre premier prototype, que nous nommerons prototype 0, et qui correspondra  notre solution 0. Nous allons d'abord effectuer ce que nous appelons un \emph{Model in the loop} où nous allons chercher à améliorer ce premier prototype en utilisant uniquement des simulations. Par la suite, nous améliorerons le prototype en utilisation une technique d'émulation dite \emph{Software in the loop}.
+\section{Protocoles MIL/SIL}\label{sec:prtocoleMIL_SIL}
+Dans cette partie, nous allons expliquer les démarches que nous utiliserons pour valider nos prototypes. 
+	\subsection{Model in the loop (MIL)}
+	Pour faire une validation MIL, nous allons utiliser le modèle non linéaire pour simuler la correction. Toute cette opération sera effectué sous MATLAB à l'aide d'un bloc \emph{SIMULINK} qui simule le modèle non linéaire. Pour valider le prototype de commande du correcteur, celui-ci devra respecter la ou les condition que nous lui imposerons. S'il ce n'est pas le cas, une amélioration de ce prototype sera nécessaire et elle nous permettra de créer un prototype N (pour N itérations de cette boucle). 
 	Nous devons d'abord fixer une marge d'erreur par rapport au cahier des charges défini en \ref{chap:commande} : 
 	\begin{align}\label{eqn_margeErreur}
 		M_\epsilon < 1\%
 	\end{align}
 	Tant que notre prototype ne sera pas en dessous de cette marge, nous devrons le modifier et refaire le test.
 	\subsection{SIL}
-\section{Commande à temps continue}
-	\subsection{Simulation}
-		Nous disposons de la démarche que nous allons utiliser pour valider notre simulation. Pour cette partie, nous utiliserons un bloc SIMULINK qui nous permettra de simuler un modèle du Banc moteur très riche. Ce modèle n'a pas reçu les simplifications que posent les hypothèses faites en \ref{sub:linearisation} et en \ref{sub:invariance}.
+\section{Test des prototypes des commande à temps continue}
+	%	Test des commandes TC sur MNL et Moteur
+	% 	Utilisation protocoles MIL  (ne le ré-explique pas)  
+	%			The PLAN
+	A présent, nous pouvons commencer à tester les prototypes de commandes du moteur sur des modèles plus complexe : nous disposons pour cela d'un modèle non linéaire ainsi que d'un banc moteur. Nous suivront les consignes que nous venons de présenter en \ref{sec:prtocoleMIL_SIL}, en commençant par présenter le moyen utilisé pour adapter la simulation. 
+	Comme il est évoqué dans le titre de cette section, nous sommes ici en temps continu. Les hypothèses pour la discrétisation ne sont pas traités dans cette partie, nous avons choisi de construire le prototype de commande à temps discret quand nous aurons d'abord validé complètement la commande en temps continu, et que nous auront présenté toutes les contraintes que la discrétisation devra surmonter. %% TODO - ref vers parti discrétisation.
+	\subsection{Simulation sur Modèle Non linéaire}
+		
+		Nous disposons de la démarche que nous allons utiliser pour valider notre simulation. Pour cette partie, nous utiliserons un bloc \emph{SIMULINK} qui nous permettra de simuler un modèle très proche du banc moteur. Ce modèle n'a pas reçu les simplifications que posent les hypothèses faites en \ref{sub:linearisation} et en \ref{sub:invariance}. Un bloc \emph{SIMULINK} est disponible à cet effet, sous forme de \emph{S-Function}. Il utilise la modélisation et les paramètres utilisés en \ref{sub:equationPhysique} pour créer un système Entrées/Sorties beaucoup plus proche que le modèle linéaire d'ordre 4. 
 		% Image et mesure
 		\subsubsection{Adaptation modèle}
 		% Encapsulation de la commande ?
+		Pour permettre l'utilisation de ce modèle, nous devons d'abord lancer une compilation de la \emph{S-function}. Cette opération est nécessaire car la \emph{S-function} est un code en langage C qui s'adapte à la simulation \emph{SIMULINK}, et êrmet ainsi d'obtenir des performances en temps de calcul plus élevé qu'en bloc de simulation classique.
+		Nous avons choisi d'en-capsuler tout le bloc de commande (Gain du retour d'état et reconstruction d'état) dans un bloc \emph{sub-system} que nous détaillons en annexe \ref{annex:modl_NL_SIMULINK}. Ce sous bloc prend en entrée 2 signaux : la consigne de référence $y_ref$ et la sortie mesuré du système $y_m = V_s$ (Position du moteur, cf chapitre \ref{chap:modelisation}), et calcule la commande qu'il émet sur le connecteur nommé $u$.\begin{figure}[ht]
+		\centering
+		\includegraphics[width = \textwidth]{./IV/images/NL_RE_BlocEntier.pdf}
+		\caption{Schéma \emph{SIMULINK} complet de l'asservissement du modèle du moteur Non linéaire}\label{fig:SIMULINK_NL_schema}
+		\end{figure}
+		
+		Nous avons placé des points de mesure au sur le signal de référence ainsi qu'en sortie du système. Nous obtenons ainsi une réponse temporelle que nous pouvons étudier, en figure ... %TODO 
 		\subsubsection{Simulation et étude de performances}
+		
 		\subsubsection{Conclusion et Validation}
-	\subsection{Sur moteur Réel}
-		Nous souhaitons maintenant améliorer notre prototype avec le banc moteur directement. En utilisant la fonction de prototypage rapide de MATLAB, nous sommes capables de généré un émulation du micro contrôleur. Celui ci va s'occuper de récupérer les sorties mesurées du banc moteur, calculer la commande correspondantes et la générer sur l'entrée de commande du moteur. 
+	\subsection{Simulation sur moteur Réel}
+		Nous souhaitons maintenant améliorer notre prototype avec le banc moteur directement. En utilisant la fonction de prototypage rapide de MATLAB, nous sommes capables de générer une émulation du micro contrôleur. Celui ci va s'occuper de récupérer les sorties mesurées du banc moteur, calculer la commande correspondantes et la générer sur l'entrée de commande du moteur. 
 		\subsubsection{Adaptation du modèle}
 		\subsubsection{Test et étude de performances}
 		\subsubsection{Conclusion et Validation}
