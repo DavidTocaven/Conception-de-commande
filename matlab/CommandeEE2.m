@@ -143,9 +143,9 @@ N = 1/(EE2_bf.gain);
 %% Bloc de commande
 Te = 0.052;
 %% input : 
-CommTD.a = [obsver.F-EE2.ee.b*K];
+CommTD.a = obsver.F-EE2.ee.b*K;
 CommTD.b = [EE2.ee.b*N obsver.G];
-CommTD.c = [-K];
+CommTD.c = -K;
 CommTD.d = [N 0];
 CommTD.ee = ss(CommTD.a, CommTD.b, CommTD.c, CommTD.d);
 CommTD.zz = c2d(CommTD.ee, Te, 'tustin');

@@ -8,8 +8,8 @@ can.in.val_util = linspace(0,5,can.resol);
 % output
 can.out.type ='Bits';
 can.out.unite = 'entier';
-can.out.val_pos = int16((can.resol/5)*can.in.val_pos);
-can.out.val_util = int16((can.resol/5)*can.in.val_util);
+can.out.val_pos = int16(((can.resol-1)/5)*can.in.val_pos);
+can.out.val_util = int16(((can.resol-1)/5)*can.in.val_util);
 
 %%affichage
 figure(1)
