@@ -38,13 +38,13 @@ Dans cette partie, nous allons expliquer les démarches que nous utiliserons pou
 		% Changement des valeurs propres.
 			
 		% Nouvelle simulation.
-		Une nouvelle simulation faite sur ce nouveau prototype nous donne les résultats montré dans la figure \ref{fig:SimuNL_ref_sortieVS_VM}. Nous pouvons voir une erreur sur le régime permanent qui subsiste toujours. Ce léger décalage devrait pouvoir être corrigé sur un modèle linéaire avec un ajout d'un gain pur compenser ce manque. Or, nous sommes sur un modèle non linéaire et cette méthode ne peut pas fonctionner.
-		\begin{figure}[ht]
-		\centering
-		\includegraphics[width= \textwidth]{./IV/images/NL_Position--ref_sortie_RE.PNG}
-		\caption{\label{fig:SimuNL_ref_sortieVS_VM} Simulation des signaux $V_s$ (Bloc du haut), de $y_{ref}$(Bloc du bas/courbe violet) et de $V_m$(Bloc du bas/courbe jaune)  }		
-		\end{figure}
-		Un zoom sur l'erreur du régime permanent, disponoble en annexe , nous indique que pour une consigne $y_{ref} = 3$, nous obtenons $V_m(t_f)\approx 2.85$. Nous avons donc une erreur en régime statique \begin{align*}
+		Une nouvelle simulation faite sur ce nouveau prototype nous donne les résultats montré dans la figure \ref{fig:SimuNL_ref_sortieVS_VM}. Nous pouvons voir une erreur sur le régime permanent qui subsiste toujours. Ce léger décalage devrait pouvoir être corrigé sur un modèle linéaire avec un ajout d'un gain pur compenser ce manque. Or, nous sommes sur un modèle non linéaire et cette méthode ne peut pas fonctionner. 
+		\begin{center}
+		\includegraphics[width= .8\textwidth]{./IV/images/NL_Position--ref_sortie_RE.PNG}
+		\captionof{figure}{Simulation des signaux $V_s$ (Bloc du haut), de $y_{ref}$(Bloc du bas/courbe violet) et de $V_m$(Bloc du bas/courbe jaune)\label{fig:SimuNL_ref_sortieVS_VM} }
+		\end{center}		
+		
+		Un zoom sur l'erreur du régime permanent, disponoble en annexe \ref{annex:modl_NL_SIMULINK} - figures \ref{fig:SIMULINK_NL_erreur_reponse} et \ref{fig:SIMULINK_NL_erreur_reponse_zoom}, nous indique que pour une consigne $y_{ref} = 3$, nous obtenons $V_m(t_f)\approx 2.85$. Nous avons donc une erreur en régime statique \begin{align*}
 		\epsilon = \frac{y_{ref}}{V_m(t_f)} = 5\%
 		\end{align*}
 		\subsubsection{Conclusion et Validation}
