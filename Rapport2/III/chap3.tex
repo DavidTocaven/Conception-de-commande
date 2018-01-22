@@ -139,7 +139,7 @@ Maintenant, nous devons calculer $\overline{A}$, $\overline{B}$, $\overline{C}$,
 \right.%
 \end{equation}
 
-Avec les résultats obtenus pendant les séances de TD et de cours, nous avons \begin{equation}
+Avec les résultats obtenus pendant les séances de TD et de cours, nous avons \begin{equation}\label{eqn:erreurRecompoOrdreSup}
 \dot{\epsilon} = F\epsilon - A_2x_2
 \end{equation}
 avec $A_2$ la partie qui lie les états $x_1$ et $x_2$ dans la nouvelle base. Cet élément modifie les résultats que nous avons obtenu pour le modèle d'ordre 2. Nous allons étudier les nouvelles valeurs propres du système bouclé pour vérifier si celles si correspondent toujours au cahier des charges, en modélisant un espace d'état qui admet comme vecteur d'état $x=\begin{pmatrix}
@@ -159,7 +159,7 @@ Pour terminer l'analyse de la boucle fermé, nous allons étudier le transfert d
 
 Le résultat que nous obtenons confirmes la stabilité asymptotique établie précédemment, cependant les différences notables avec le transfert du modèle d'ordre 2 en basse fréquence explique pourquoi nous n'avons pas pu respecter exactement le cahier des charges. 
 
-\subsection{Changement de base du modèle d'ordre 4 et intégration de la commande}
+\subsection{Changement de base du modèle d'ordre 4 et intégration de la commande\label{sub:observateurSurModelO4}}
 De la même manière que pour le modèle d'ordre 3, nous effectuons un changement de base avec la matrice de passage : \begin{equation}
 P = \begin{pmatrix}
 0 &0& 1& 0\\ 0& 0& 0& 1\\1& 0& 0& 0\\ 0& 1& 0& 0

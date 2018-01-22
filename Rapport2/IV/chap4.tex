@@ -33,8 +33,22 @@ Dans cette partie, nous allons expliquer les démarches que nous utiliserons pou
 		
 		Nous avons placé des points de mesure au sur le signal de référence ainsi qu'en sortie du système. Nous obtenons ainsi une réponse temporelle que nous allons étudier dans la sous section suivante.
 		\subsubsection{Simulation et étude de performances}
-		Utilisons maintenant la simulation précédente pour étudier les performances de notre commande. Nous avons dans un premier temps observer la reconstruction d'état du système et nous avons pu noter un problème. %TODO 
+		Utilisons maintenant la simulation précédente pour étudier les performances de notre commande. Nous avons dans un premier temps observer la reconstruction d'état du système et nous avons pu noter un problème. Ce problème apparait sur la reconstruction des états, nous avons un nouveau paramètre que nous n'avons pas modélisé dans les parties \ref{chap:modelisation} et \ref{chap:analyse}. 
 		
+		Cette nouvelle dynamique correspond à la mesure de la position du moteur : elle se retrouve être borné entre $[-5V; +5V]$ qui correspond aux limites des tensions générés par le banc moteur. Si elle dépasse un seuil, elle est immédiatement retranscrit sur le seuil opposé. Nous pouvons représenter ce phénomène avec le système d'équation suivant :
+		\begin{align*}
+		V_s(t) = \left\lbrace \begin{aligned}
+		&K_rK_s\theta_s \text{ si } \theta_s \in \left[\frac{-5}{K_rK_s}; \frac{+5}{K_rK_s}\right]\\
+		&-5 \text{ si } \theta_s < \frac{-5}{K_rK_s}\\
+		&+5 \text{ si } \theta_s < \frac{+5}{K_rK_s}
+		\end{aligned}
+		\right.		
+		\end{align*}
+		La non linéarité de cette dynamique a été enlevé lors de la modélisation du système en modèle linéaire. Cela pose un problème pour la reconstruction de la vitesse par rapport à la position : nous avions remarqué en \ref{sub:observateurSurModelO4} et en \ref{eqn:erreurRecompoOrdreSup}. Dans ce paragraphes, nous mettions en avant que l'observateur implémenté sur des modèle d'ordre supérieur, il ajoutait une dynamique supplémentaire à la reconstruction de l'état du système. 
+		% Convergence rrapide 
+		% Le décalge à cause 
+		
+				
 		% Changement des valeurs propres.
 			
 		% Nouvelle simulation.

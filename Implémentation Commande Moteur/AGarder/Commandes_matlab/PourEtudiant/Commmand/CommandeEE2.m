@@ -7,7 +7,7 @@ vp_desire = [-4; -5];
 %% observateur
 obsver.H = EE2.ee.b;
 obsver.M = eye(size(EE2.ee.a));
-obsver.vp = vp_desire; %*3
+obsver.vp = 10*vp_desire; %*3
 obsver.G = place(EE2.ee.a', EE2.ee.c(2,:)', obsver.vp)'; % Ne pas utiliser acker
 
 obsver.F = EE2.ee.a - obsver.G*EE2.ee.c(2,:);
@@ -136,3 +136,15 @@ EE0_bf.c = EE0_obsver.C;
 
 EE0_bf.ee = ss(EE0_bf.a, EE0_bf.b, EE0_bf.c, EE0_obsver.ee.d);
 EE0_bf.vp = eig(EE0_bf.ee);
+
+
+%% Retour integral
+EEIntegral.a = [EE2.ee.a [0 ; 0];EE2.ee.c(2,:) 0];
+EEIntegral.b = [EE2.ee.b ; 0];
+EEIntegral.c = [EE2.ee.c [0;0]];
+EEIntegral.d = EE2.ee.d;
+
+EEIntegral.ee = ss(EEIntegral.a, EEIntegral.b, EEIntegral.c, EEIntegral.d);
+EEIntegral.K = place(EEIntegral.a, EEIntegral.b, [3*vp_desire ;-10]);
+EEIntegral.eebf = ss(EEIntegral.a - EEIntegral.b*EEIntegral.K, EEIntegral.b, EEIntegral.c, EEIntegral.d);
+N = 1/dcgain(EEIntegral.eebf(2))
