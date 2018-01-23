@@ -1,3 +1,4 @@
+
 %% Creation de notre observateur
 % reconstruction de tous les ï¿½tats :
 espaceEtat1
@@ -195,9 +196,9 @@ fclose(File);
 % Etat = [x_reconstruit ; xi]
 % Sortie = u_commande
 % Entrée = [y_ref ; y]
-CommTD_integral.a = [obsver.F-EE2.ee.b*EEIntegral.K(1:2) EE2.ee.b*EEIntegral.K(3); [0 0 0]];
+CommTD_integral.a = [obsver.F-EE2.ee.b*[0 EEIntegral.K(2)] EE2.ee.b*EEIntegral.K(3); [0 0 0]];
 CommTD_integral.b = [[0;0] obsver.G ; 1 -1];
-CommTD_integral.c = [-EEIntegral.K(1:2) EEIntegral.K(3)];
+CommTD_integral.c = [-[0 EEIntegral.K(2)] EEIntegral.K(3)];
 CommTD_integral.d = [0 0];
 CommTD_integral.ee = ss(CommTD_integral.a, CommTD_integral.b, CommTD_integral.c, CommTD_integral.d);
 
