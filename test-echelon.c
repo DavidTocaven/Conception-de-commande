@@ -238,7 +238,7 @@ void timer_T3_init() {
 /* initialisation Timer 3 pour génération échelon */
 void timer_T2_init() {
   /* T2 en timer sans rechargement car periode pleine */
-  T2CON=0x1; // timer - resolution 1.6 us, comptage, periode 104ms
+  T2CON=0x1; // timer - resolution 1.6 us, comptage, periode 104ms /* 26ms si T2CON = 0x00 - Ousmane*/
   T2=0; //valeur initiale du timer
   T2IC=0x8; // IT Niveau 2 groupe 0
   
