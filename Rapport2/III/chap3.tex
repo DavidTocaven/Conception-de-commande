@@ -88,11 +88,12 @@ Pour commencer, nous allons identifier les valeurs propres de notre système \re
 
 \subsection{Simulation SIMULINK}
 Pour compléter la validation de la commande, nous avons crée un prototype avec SIMULINK pour pouvoir simuler une réponse temporelle de la commande de notre système. La description du fichier se trouve en annexe \ref{Annex:SIMULINK_RE}. Nous observons sur les figures suivantes la réponse temporelle à une référence $y_{ref} = 1$ : 
-
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width = \textwidth]{./III/figure/stepEE2bf.png}
-\captionof{figure}{Réponse du système asservi}
+\caption{Réponse du système asservi}
 \end{center}
+\end{figure}
 La réponse du système $Vs$ simulé correspond aux changement de dynamique que nous avons espéré. De plus, après une observation de la commande $u(t)$ appliquée sur le système, nous voyons que la tension maximale envoyée est borné dans l'ordre de grandeur des valeurs admises par le système physique. 
 
 \subsection{Analyse boucle fermé du modèle d'ordre 3}
@@ -154,9 +155,11 @@ Les réponses temporelles du système en boucle fermé ont les caractéristiques
 
 
 Pour terminer l'analyse de la boucle fermé, nous allons étudier le transfert de $\overline{X}$ avec la consigne et le comparer avec celui du modèle d'ordre 2. Cette analyse fréquentielle ne va pas utiliser le système bouclé utilisé pour calculer les valeurs propres dans le paragraphe précédent car nous allons ici prendre en compte que nous commandons le système en vitesse et non en position. Nous obtenons le diagramme de Bode suivant :
+\begin{figure}[!ht]
+\centering
 \includegraphics[scale=1]{./III/figure/bode_Tpert_EE1.png}
-\captionof{figure}{Transfert des boucles fermées}
-
+\caption{Transfert des boucles fermées}
+\end{figure}
 Le résultat que nous obtenons confirmes la stabilité asymptotique établie précédemment, cependant les différences notables avec le transfert du modèle d'ordre 2 en basse fréquence explique pourquoi nous n'avons pas pu respecter exactement le cahier des charges. 
 
 \subsection{Changement de base du modèle d'ordre 4 et intégration de la commande\label{sub:observateurSurModelO4}}
@@ -169,16 +172,22 @@ P = \begin{pmatrix}
 Les performances du système bouclé ont les mêmes problèmes que pour le modèle d'ordre supérieur. Avec le même résultat pour l'erreur d'estimation que pour le modèle d'ordre 3, ces résultats était prévisible.
 
 De plus, les approximations de modélisation ont montré dans l'analyse des modèles une erreur statique que nous ne pouvons pas corriger avec une commande construite sur le modèle d'ordre 2. Nous avons toutefois voulu analyser le transfert entre $Vg$ et la consigne et obtenons :
+\begin{figure}[!ht]
+\centering
 \includegraphics[scale=1]{./III/figure/bode_Tpert_EE0.png}
-\captionof{figure}{Transfert des boucles fermées}
+\caption{Transfert des boucles fermées}
+\end{figure}
 Nous avons de plus amples écart en basse fréquence avec un dépassement encore plus grand que pour le modèle d'ordre 3. Ce dépassement joue beaucoup sur les oscillations du système en boucle fermé. Le cahier des charges n'est encore une fois pas respecté pour ce modèle mais admet un temps de réponse proche de celui du modèle d'ordre 2.
 
 En sachant ceci, nous savons que les dynamiques qui ont été simplifiés ne sont pas l'origine des écarts que nous venons d'exposer, il s'agit de la dynamique de l'observateur qui n'est pas très optimale. 
 
 \subsection{Simulation SIMULINK}
 Nous avons réutilisé la commande simulé précédemment pour l'implanter dans les modèles d'ordre 3 et 4. Ce prototypage rapide a eu les résultats suivant :
+\begin{figure}[!ht]
+\centering
 \includegraphics[scale=.3]{./III/figure/res_SIMULINK.png}
-\captionof{figure}{Réponses temporelles des boucles fermées sous SIMULINK}
+\caption{Réponses temporelles des boucles fermées sous SIMULINK}
+\end{figure}
 Ces résultats nous permettent de regarder une simulation des signaux de $Vg(t)$. D'après ces résultats, la commande que nous souhaitons appliquer respecte beaucoup mieux le cahier des charges que d'après l'analyse précédente. Cependant, nous ne pouvons en tirer aucune conclusion , il reste encore d'autres modèles plus complexes sur lequel notre commande doit être tester.
 
 

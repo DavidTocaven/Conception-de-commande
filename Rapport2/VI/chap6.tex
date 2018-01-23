@@ -1,21 +1,13 @@
 \chapter{Implémentation}
 \section{Transformation CAN/CNA}
-Afin de réalisé notre commande, nous avons dût transformer la valeur entière lue pour $V_S$ par le CAN en un équivalent de la tension de type nombre à virgule flottante. Nous avons réalisé cette transformation avec l'équation \ref{equ:CAN}. Figure \ref{fig:CAN_p}, nous pouvons observer les valeurs que peut convertir le CAN et les valeurs dont nous avons besoins. Ici, la plage de conversion est à moitié entièrement utilisée. 
-\begin{LARGE}
-Refaire l'eq. err !! 
-\end{LARGE}
-\begin{equation}
-\label{equ:CAN}
-V_{volt} = 
-\left\lfloor 
-\frac{2^{11}-1}{5}V_{CAN} +2^{11}
-\right\rfloor
-= 
-\left\lfloor 
-819*V_{CAN} + 2048
-\right\rfloor
-\end{equation}
-En pratique, nous ferrons un et logique avec 
+%can
+Afin de réalisé notre commande, nous avons dût transformer la valeur entière lue pour $V_S$ par le CAN en un équivalent de la tension de type nombre à virgule flottante.  Figure \ref{fig:CAN_p}, nous pouvons observer les valeurs que peut convertir le CAN et les valeurs dont nous avons besoins. Nous n'utilisons ici que la moitié de la valeur lue par le convertisseur car nous n'avons besoin de convertir que des valeurs comprises entre $0$ et $5$ Volt. Ici, la plage de conversion est donc à moitié utilisée. 
+Dans un premier temps, nous avons décaler la valeur lue (avec un et bit a bit) afin d'avoir la valeur sur $\left[ 0 , 1023\right]$ (équation \ref{equ:CAN1}) puis  nous avons réalisé la conversion en tension avec l'équation \ref{equ:CAN}.
+\begin{eqnarray}
+\label{equ:CAN1}V_{CANr} &=& V_{CAN} \&_{bàb} 1023\\
+\label{equ:CAN}V_{volt} &=& \frac{5}{2^{10}-1}V_{CANr}
+\end{eqnarray}
+%%cna
 La génération de la sortie $V_M$ nécessite aussi une conversion du CNA depuis la tension calculée par la commande (nombre à virgule flottante) vers un entier compris entre $-5$ et $5$ Volts. Néanmoins, la commande calcule une valeur comprise entre $-5$ et $5$ Volts, mais la carte de puissance branchée sur la sortie du CNA nécessite en entrée une tension comprise entre $0$ et $5$ Volt. Il faut donc, dans un premier temps, redresser la valeur calculée $V_{com}$ par la sortie sur une intervalle $\left[0;5\right]$ $V_{redr}$, puis le convertir en entier $V_{CNA}$. Pour cela nous utilisons les équations suivantes :
 \begin{equation}
 \begin{array}{lcl}
@@ -23,7 +15,7 @@ V_{red}	&=&	\frac{1}{2}V_{com}+2,5\\
 V_{CNA} &=& \frac{10}{2^{12}-1}V_{red}-5\\
 V_{CNA} &=& \frac{V_{com}}{819} - \frac{4090}{819}
 \end{array}
-\end{equation}
+\end{equation}	
 \begin{figure}[!ht]%
 \begin{minipage}{.5\textwidth}%
 \centering
@@ -37,12 +29,9 @@ V_{CNA} &=& \frac{V_{com}}{819} - \frac{4090}{819}
 \caption{\label{fig:CNA_p}Valeurs possibles et possibles du CNA}
 \end{minipage}%
 \end{figure}
-\begin{LARGE}
-Erreur sur le nombre de bit CAN, vérifié le chap précédent aussi.
-\end{LARGE}
+
 %	\subsection{Implémentation d'un programme de test des convertisseurs}
 %	\subsection{Correction}
-	\subsection{Validation}
 \section{Implémentation}
 		\subsection{Description des taches}
 		\subsection{implémentation}

@@ -25,7 +25,8 @@ Dans cette partie, nous allons expliquer les démarches que nous utiliserons pou
 		\subsubsection{Adaptation modèle}
 		% Encapsulation de la commande ?
 		Pour permettre l'utilisation de ce modèle, nous devons d'abord lancer une compilation de la \emph{S-function}. Cette opération est nécessaire car la \emph{S-function} est un code en langage C qui s'adapte à la simulation \emph{SIMULINK}, et êrmet ainsi d'obtenir des performances en temps de calcul plus élevé qu'en bloc de simulation classique.
-		Nous avons choisi d'en-capsuler tout le bloc de commande (Gain du retour d'état et reconstruction d'état) dans un bloc \emph{sub-system} que nous détaillons en annexe \ref{annex:modl_NL_SIMULINK}. Ce sous bloc prend en entrée 2 signaux : la consigne de référence $y_ref$ et la sortie mesuré du système $y_m = V_s$ (Position du moteur, cf chapitre \ref{chap:modelisation}), et calcule la commande qu'il émet sur le connecteur nommé $u$.\begin{figure}[ht]
+		Nous avons choisi d'en-capsuler tout le bloc de commande (Gain du retour d'état et reconstruction d'état) dans un bloc \emph{sub-system} que nous détaillons en annexe \ref{annex:modl_NL_SIMULINK}. Ce sous bloc prend en entrée 2 signaux : la consigne de référence $y_ref$ et la sortie mesuré du système $y_m = V_s$ (Position du moteur, cf chapitre \ref{chap:modelisation}), et calcule la commande qu'il émet sur le connecteur nommé $u$.
+		\begin{figure}[ht]
 		\centering
 		\includegraphics[width = \textwidth]{./IV/images/NL_RE_BlocEntier.pdf}
 		\caption{Schéma \emph{SIMULINK} complet de l'asservissement du modèle du moteur Non linéaire}\label{fig:SIMULINK_NL_schema}
@@ -53,10 +54,11 @@ Dans cette partie, nous allons expliquer les démarches que nous utiliserons pou
 			
 		% Nouvelle simulation.
 		Une nouvelle simulation faite sur ce nouveau prototype nous donne les résultats montré dans la figure \ref{fig:SimuNL_ref_sortieVS_VM}. Nous pouvons voir une erreur sur le régime permanent qui subsiste toujours. Ce léger décalage devrait pouvoir être corrigé sur un modèle linéaire avec un ajout d'un gain pur compenser ce manque. Or, nous sommes sur un modèle non linéaire et cette méthode ne peut pas fonctionner. 
-		\begin{center}
+		\begin{figure}
+		\centering
 		\includegraphics[width= .8\textwidth]{./IV/images/NL_Position--ref_sortie_RE.PNG}
-		\captionof{figure}{Simulation des signaux $V_s$ (Bloc du haut), de $y_{ref}$(Bloc du bas/courbe violet) et de $V_m$(Bloc du bas/courbe jaune)\label{fig:SimuNL_ref_sortieVS_VM} }
-		\end{center}		
+		\caption{Simulation des signaux $V_s$ (Bloc du haut), de $y_{ref}$(Bloc du bas/courbe violet) et de $V_m$(Bloc du bas/courbe jaune)\label{fig:SimuNL_ref_sortieVS_VM} }
+		\end{figure}
 		
 		Un zoom sur l'erreur du régime permanent, disponoble en annexe \ref{annex:modl_NL_SIMULINK} - figures \ref{fig:SIMULINK_NL_erreur_reponse} et \ref{fig:SIMULINK_NL_erreur_reponse_zoom}, nous indique que pour une consigne $y_{ref} = 3$, nous obtenons $V_m(t_f)\approx 2.85$. Nous avons donc une erreur en régime statique \begin{align*}
 		\epsilon = \frac{y_{ref}}{V_m(t_f)} = 5\%
