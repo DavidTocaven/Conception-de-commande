@@ -2,25 +2,33 @@
 % input
 can.in.type ='Tension';
 can.in.unite = 'Volt';
-can.resol =2^10;
-can.in.val_pos= linspace(0,5,can.resol);
-can.in.val_util = linspace(0,5,can.resol);
+can.in.min=-5;
+can.in.max=5;
+
+can.resol =2^11;
+can.in.val_pos= linspace(can.in.min,can.in.max,can.resol);
+can.in.val_util = linspace(0,can.in.max,can.resol);
 % output
 can.out.type ='Bits';
 can.out.unite = 'entier';
-can.out.val_pos = int16(((can.resol-1)/5)*can.in.val_pos);
-can.out.val_util = int16(((can.resol-1)/5)*can.in.val_util);
+can.out.val_pos     = int16(((can.resol-1)/(can.in.max-can.in.min))*can.in.val_pos+can.resol/2);
+can.out.val_util    = int16(((can.resol-1)/(can.in.max-can.in.min))*can.in.val_util+can.resol /2);
 
 %%affichage
 figure(1)
-    plot(0,0,'^b',5,can.resol-1,'vb',can.in.val_pos,can.out.val_pos,'-b',0,0,'>r',5,can.resol-1,'<r',can.in.val_util,can.out.val_util,'-.r');
+    plot(can.in.min,0,'^b',...
+         can.in.max,can.resol-1,'vb',...
+         can.in.val_pos,can.out.val_pos,'-b',...
+         0,can.resol/2 ,'>r',...
+         can.in.max,can.resol-1,'<r',...
+         can.in.val_util,can.out.val_util,'-.r');
     %p(2).LineWidth = 2;
     %p(1).LineWidth = 2,
         title('Convertion Analogique Numérique')
         xlabel(sprintf('%s (%s)',can.in.type,can.in.unite));
         ylabel(sprintf('%s (%s)',can.out.type,can.out.unite));
         legend('min pos','max pos','Valeurs possibles','min ut','max ut','Valeurs utiles','Location','SouthEast');
-        axis([-.5 5.5 -10 1050])
+        %axis([-5.5 5.5 -10 2050])
         grid on
 
 %% A Finir        
