@@ -201,5 +201,29 @@ CommTD_integral.b = [[0;0] obsver.G ; 1 0];
 CommTD_integral.c = [-[0 EEIntegral.K(2)] EEIntegral.K(3)];
 CommTD_integral.d = [0 0];
 CommTD_integral.ee = ss(CommTD_integral.a, CommTD_integral.b, CommTD_integral.c, CommTD_integral.d);
+CommTD_integral.td = c2d(CommTD_integral.ee, 0.052);
+step(CommTD_integral.ee);
+%% save in file
+CommTD_integral.ft=tf(CommTD_integral.td);
+ftRef=CommTD_integral.ft(1);
+ftVs=CommTD_integral.ft(2);
+numY =CommTD_integral.ft(1,1).num{1,1};
+numU =CommTD_integral.ft(1,2).num{1,1};
+denumY = CommTD_integral.ft(1,1).den{1,1};
 
-step(CommTD_integral.ee)
+File        = fopen('Parametres_Commande_TD.txt','w+');
+
+fprintf(File,'\t Paramètres de la commande en temps discret \n\n');
+%ny 1 2 3
+fprintf(File,'static float my0 =  %f;\n',numY(1));
+fprintf(File,'static float my1 =  %f;\n',numY(2));
+fprintf(File,'static float my2 =  %f;\n\n',numY(3));
+%d 1 2
+fprintf(File,'static float d1 =  %f;\n',denumY(1));
+fprintf(File,'static float d2 =  %f;\n\n',denumY(2));
+% nu 1 2 3
+fprintf(File,'static float mref0 =  %f;\n',numU(1));
+fprintf(File,'static float mref1 =  %f;\n',numU(2));
+fprintf(File,'static float mref2 =  %f;\n\n',numU(3));
+
+fclose(File);
