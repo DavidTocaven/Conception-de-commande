@@ -7,7 +7,7 @@ vp_desire = [-4; -5];
 %% observateur
 obsver.H = EE2.ee.b;
 obsver.M = eye(size(EE2.ee.a));
-obsver.vp = 10*vp_desire; %*3
+obsver.vp = 3*vp_desire; %*3
 obsver.G = place(EE2.ee.a', EE2.ee.c(2,:)', obsver.vp)'; % Ne pas utiliser acker
 
 obsver.F = EE2.ee.a - obsver.G*EE2.ee.c(2,:);
@@ -23,8 +23,9 @@ EE2_bf.a = [EE2.ee.a-EE2.ee.b*K     -EE2.ee.b*K;
 
 EE2_bf.b = [EE2.ee.b; 0;0];
 
-EE2_bf.c = [EE2.ee.c [0 0;0 0]];
-EE2_bf.ee = ss(EE2_bf.a, EE2_bf.b, EE2_bf.c, EE2.ee.d);
+EE2_bf.c = [EE2.ee.c [0 0;0 0];
+            [0 0 0 1]];
+EE2_bf.ee = ss(EE2_bf.a, EE2_bf.b, EE2_bf.c,[0;0;0]);
 
 EE2_bf.gain = dcgain(EE2_bf.ee(1));
 %%  Analyse du retour d'etat base observateur 
@@ -56,12 +57,11 @@ EE1_obsver.A = [EE1.A1      EE1.A2     [0 0;0 0]   ;
                 EE1.A3      EE1.A4      [0 0 ] ;
                 [0 0;0 0]   -EE1.A2       obsver.F];
 EE1_obsver.B = [EE1.B1; EE1.B2; [0;0]];
-EE1_obsver.C = [EE1.C [0 0;0 0]; 
-                    [0 0 0 0 1]];   % Pour afffiche de l'erreur 
+EE1_obsver.C = [EE1.C [0 0;0 0]];    % Pour afffiche de l'erreur 
                                 % de reconstrcution de la
 
 % Espace d'etat
-EE1_obsver.ee = ss(EE1_obsver.A ,EE1_obsver.B, EE1_obsver.C, [0;0;0]);
+EE1_obsver.ee = ss(EE1_obsver.A ,EE1_obsver.B, EE1_obsver.C, EE1.d);
 
 
 % gain statique
@@ -120,9 +120,10 @@ EE1_bf.a = [EE1.A1-EE1.B1*K      EE1.A2     -EE1.B1*K   ;
             EE1.A3-EE1.B2*K      EE1.A4     -EE1.B2*K;
                 [0 0;0 0]       -EE1.A2       obsver.F];
 EE1_bf.b = EE1_obsver.B;
-EE1_bf.c = EE1_obsver.C;
+EE1_bf.c = [EE1_obsver.C;
+            [0 0 0 0 1]];
 
-EE1_bf.ee = ss(EE1_bf.a, EE1_bf.b, EE1_bf.c, EE1_obsver.ee.d);
+EE1_bf.ee = ss(EE1_bf.a, EE1_bf.b, EE1_bf.c, [EE1_obsver.ee.d;0]);
 EE1_bf.vp = eig(EE1_bf.ee);
 
 % EE0 
@@ -132,11 +133,20 @@ EE0_bf.a = [EE0.A1-EE0.B1*K      EE0.A2     -EE0.B1*K   ;
             EE0.A3-EE0.B2*K      EE0.A4     -EE0.B2*K;
                 [0 0;0 0]       -EE0.A2       obsver.F];
 EE0_bf.b = EE0_obsver.B;
-EE0_bf.c = EE0_obsver.C;
+EE0_bf.c = [EE0_obsver.C
+            [0 0 0 0 0 1]] ;
 
-EE0_bf.ee = ss(EE0_bf.a, EE0_bf.b, EE0_bf.c, EE0_obsver.ee.d);
+EE0_bf.ee = ss(EE0_bf.a, EE0_bf.b, EE0_bf.c, [EE0_obsver.ee.d;0]);
 EE0_bf.vp = eig(EE0_bf.ee);
 
+%% réponse erreur /commande
+if(1)
+    figure(1)
+    step(EE0_bf.ee(3),EE1_bf.ee(3),EE2_bf.ee(3))
+    legend('\epsilon de EE0', '\epsilon de EE1', '\epsilon de EE2')
+    title('Réponses temporelle de erreur en fonction de u(t)')
+
+end
 
 %% Retour integral
 EEIntegral.a = [EE2.ee.a [0 ; 0];EE2.ee.c(2,:) 0];

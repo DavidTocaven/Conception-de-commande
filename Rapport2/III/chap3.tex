@@ -112,7 +112,7 @@ La réponse du système $Vs$ simulé correspond aux changement de dynamique que 
 Notre commande respecte le cahier des charges, nous validons ainsi la commande pour notre modèle d'ordre 2. Nous allons maintenant valider cette même commande sur des modèles supérieur et plus complexes pour compléter sa validation. En effet, notre modèle a été très simplifié pour permettre la création du commande facilement. Si nous arrivons a prouvé que cette commande marche sur des systèmes plus complexes, alors nous aurons prouvé que les dynamiques que nous avons simplifiés ne vont pas perturbé notre commande.
 
 \section{Validation sur les modèles d'ordre supérieur}
-\subsection{Changement de base}
+\subsection{Changement de base du modèle d'ordre 3}
 Dans un premier temps, nous regarderons les effets de l'implantation de l'observateur d'ordre 2 sur les modèles d'ordre supérieur et plus précisément l'erreur d'estimation et le placement des valeurs propres, puis nous simulerons la commande obtenu pour observé les modifications des réponses.
 
 Pour intégrer l'observateur dans un espace d'état d'ordre supérieur, nous avons du réorganiser les états du modèle, ici le modèle d'ordre 3, de façon à ce que les états reconstruits avec l'observateur soient en haut, $x_1$, et les non reconstruits en bas $x_2$.
@@ -153,7 +153,7 @@ Maintenant, nous devons calculer $\overline{A}$, $\overline{B}$, $\overline{C}$,
 \right.%
 \end{equation}
 
-\subsection{Analyse des résultats}
+\subsection{Analyse du changement de base et de l'erreur de reconstruction}
 Maintenant que nous avons replacé le modèle d'état, nous pouvons commencer l'analyse de celui ci. Avec les résultats obtenus pendant les séances de TD et de cours, nous avons obtenu une relation de la dynamique de l'erreur \begin{equation}\label{eqn:erreurRecompoOrdreSup}
 \dot{\epsilon} = F\epsilon - A_2x_2
 \end{equation}
@@ -171,10 +171,11 @@ Pour continuer l'analyse de cette commande, nous obtenons à partir de tracé \e
 \end{itemize} 
 
 
-Pour finir l'analyse de la boucle fermé, nous allons étudier le transfert de $\overline{X}$ avec la consigne et le comparer avec celui du modèle d'ordre 2. Cette analyse fréquentielle ne va pas utiliser le système bouclé utilisé pour calculer les valeurs propres dans le paragraphe précédent car nous allons ici prendre en compte que nous commandons le système en vitesse et non en position. Nous obtenons le diagramme de Bode suivant :
+Pour finir l'analyse de la boucle fermé, nous allons étudier le transfert de $V_g(t)$ avec la consigne et le comparer avec celui du modèle d'ordre 2. Nous obtenons le diagramme de Bode en figure \ref{fig:transfertX/consigne}.
 \begin{figure}[!ht]
-\includegraphics[scale=1]{./III/figure/bode_Tpert_EE1.png}
-\caption{Transfert des boucles fermées\label{fig:transfertX/consigne}}
+\centering
+\includegraphics[width = .5\textwidth]{./III/figure/bode_Tpert_EE1.png}
+\caption{Transfert de la boucle fermé, modèle linéaire d'ordre 3\label{fig:transfertX/consigne}}
 \end{figure}
 
 
@@ -190,29 +191,40 @@ Nous obtenons ainsi comme dans la section précédente, un modèle d'ordre 4 qui
 \begin{equation}
 \overline{X} = \begin{pmatrix}
 \theta & \omega & i_1& i_2
-\end{pmatrix}
+\end{pmatrix}^T
 \end{equation}
 
 Les performances du système bouclé ont les mêmes problèmes que pour le modèle d'ordre 3. Les reconstructions des états ne convergent pas vers 0, comme nous l'avions vu précédemment, ce qui perturbe l'asservissement en vitesse.
 
 De plus, les approximations de modélisation ont montré dans l'analyse des modèles une erreur statique que nous ne pouvons pas corriger avec une commande construite sur le modèle d'ordre 2. Nous avons toutefois voulu analyser le transfert entre $Vg$ et la consigne et obtenons :
-\begin{figure}[!ht]
+\begin{figure}[ht]
 \centering
-\includegraphics[scale=1]{./III/figure/bode_Tpert_EE0.png}
-\caption{Transfert des boucles fermées}
+\includegraphics[width = .5\textwidth]{./III/figure/bode_Tpert_EE0.png}
+\caption{Transfert de la boucle fermé, modèle linéaire d'ordre 4}
 \end{figure}
 Nous avons de plus amples écart en basse fréquence avec un dépassement encore plus grand que pour le modèle d'ordre 3. Ce dépassement joue beaucoup sur les oscillations du système en boucle fermé. Le cahier des charges n'est encore une fois pas respecté pour ce modèle mais admet un temps de réponse proche de celui du modèle d'ordre 2.
 
 En sachant ceci, nous savons que les dynamiques qui ont été simplifiés ne sont pas l'origine des écarts que nous venons d'exposer, il s'agit de la dynamique de l'observateur qui n'est pas optimale. 
 
-\subsection{Simulation SIMULINK}
-Nous avons réutilisé la commande simulé précédemment pour l'implanter dans les modèles d'ordre 3 et 4. Ce prototypage rapide a eu les résultats suivant :
+\subsection{Étude de la réponse entre l'erreur de reconstruction par rapport à une commande}\label{sub:etudeTransfertErreurCommande}
+Avec les changements de base calculé précédemment, nous avons souhaité analysé les transferts entre l'erreur de reconstruction $\epsilon$ et la commande $u$. Pour cela, nous avons utilisé une réponse temporelle affichée en figure \ref{fig:repTemporelle_erreurReconstruction}.  
+\begin{figure}[!ht]
+\centering
+\includegraphics[width= .9\textwidth]{./III/figure/reponses_temp-erreurDeReconstruction.pdf}
+\caption{\label{fig:repTemporelle_erreurReconstruction}Réponses de l'erreur de reconstruction de l'état $\omega$(vitesse) des modèle d'ordre 2 à 4}
+\end{figure}Dans cette figure, nous voyons que l'erreur pour le modèle $EE2$ d'ordre 2, l'erreur converge très rapidement vers 0. Pour les autres modèles, l'erreur converge aussi, mais pas vers 0. Ce décalage du régime statique de $\epsilon$ ne nous permettra pas de reconstruire parfaitement l'état de la vitesse du moteur, mais uniquement de nous en approcher. 
+
+
+\section{Simulation $SIMULINK$ des modèles linéaires}
+Maintenant que l'observateur est prêt à être implémenter sur les modèles d'ordre 3 et 4, nous allons pouvoir commencer à exécuter des simulations des commandes de ces deux modèles. Deux choix s'offrent à nous, nous pouvons utilisé le changement de base et donc un système en espace d'état de notre système bouclé. Dans ce cas là, nous aurions accès à la vitesse asservis en fonction d'une référence. Le deuxième choix et celui qui nous semble le plus judicieux, consiste à brancher chaque élément sur un schéma $SIMULINK$. Nous avons ainsi accès à tous les échanges de signaux entre les blocs. Les schémas blocs que nous avons simulés sont disponibles en annexe \ref{Annex:SIMULINK_RE}. La réponse temporelle de $V_g(t)$ se trouve, pour les modèles linéaires d'ordre 2 à 3, dans la figure \ref{fig:reponseModelesLineairesSIMULINK}, ainsi que la commande qui est associé à cette réponse, en figure \ref{fig:reponseModelesLineairesSIMULINK}.
 \begin{figure}[!ht]
 \centering
 \includegraphics[scale=.3]{./III/figure/res_SIMULINK.png}
-\caption{Réponses temporelles des boucles fermées sous SIMULINK}
+\caption{Réponses temporelles des boucles fermées sous $SIMULINK$\label{fig:reponseModelesLineairesSIMULINK}}
+\includegraphics[scale=.4]{./III/figure/commande-u-ML_ordre2-3-4.pdf}
+\caption{Commandes $u(t)$ associées aux résultats de la figure \ref{fig:reponseModelesLineairesSIMULINK}\label{fig:commandesML-1V}}
 \end{figure}
 
-Ces résultats nous permettent de regarder une simulation des signaux de $Vg(t)$. D'après ces résultats, la commande que nous souhaitons appliquer respecte beaucoup mieux le cahier des charges que d'après l'analyse précédente. Cependant, nous ne pouvons en tirer aucune conclusion , il reste encore d'autres modèles plus complexes sur lequel notre commande doit être tester.
+Ces résultats nous permettent de regarder une simulation des signaux de $Vg(t)$. D'après ces résultats, la commande que nous souhaitons appliquer respecte le cahier des charges en termes d'oscillations de la réponse et de temps de réponse mais pas pour le gain statique. Cependant, nous ne pouvons en tirer aucune conclusion , il reste encore d'autres modèles plus complexes sur lequel notre commande doit être tester.
 
 
