@@ -4,8 +4,8 @@ static float my0 =  1.349911;
 static float my1 =  -2.134892;
 static float my2 =  0.843500;
 
-static float d1 =  1.000000;
-static float d2 =  -1.388563;
+static float d1 =  -1.388563;
+static float d2 =  0.476685;
 
 static float mref0 =  -0.000077;
 static float mref1 =  -0.000000;

@@ -169,8 +169,8 @@ fprintf(File,'static float my0 =  %f;\n',numY(1));
 fprintf(File,'static float my1 =  %f;\n',numY(2));
 fprintf(File,'static float my2 =  %f;\n\n',numY(3));
 %d 1 2
-fprintf(File,'static float d1 =  %f;\n',denumY(1));
-fprintf(File,'static float d2 =  %f;\n\n',denumY(2));
+fprintf(File,'static float d1 =  %f;\n',denumY(2));
+fprintf(File,'static float d2 =  %f;\n\n',denumY(3));
 % nu 1 2 3
 fprintf(File,'static float mref0 =  %f;\n',numU(1));
 fprintf(File,'static float mref1 =  %f;\n',numU(2));
