@@ -2,7 +2,7 @@
 \label{chap:commande}
 \section{Commande du système d'ordre 2}
 \subsection{Rédaction du cahier des charges et démarche de réponse}
-Après l'étude que nous venons de réaliser sur notre système, nous allons ici exprimé les attentes que doit réaliser la commande que nous allons implémenter. Nous souhaitons avoir : \begin{itemize} 
+Après l'étude que nous venons de réaliser sur notre système, nous allons ici exprimer les attentes que doit réaliser la commande que nous allons implémenter. Nous souhaitons avoir : \begin{itemize} 
 \item Erreur de position nulle.
 \item Pas d'oscillations
 \item Temps de réponse inférieur à 1 seconde.
@@ -13,17 +13,17 @@ La commande de notre système doit permettre d'asservir le système en vitesse, 
 
 \subsection{Calcul du retour d'état}
 \label{sub:Calcul du retour etat}
-Pour garantir les performances dynamiques souhaitées, nous allons appliquer un placement de pôles par retour d'état. Ce réajustement des valeurs propres de la matrice dynamique du système nous permettra de répondre aux attentes du cahier de charges si le choix de celles-ci est correct. De même, nous devons choisir des valeurs propres qui ne sont pas être trop éloignées de celles du procédé, pour ne pas être trop exigeant avec la commande et le système. Nous avons avec ces spécifications choisi les valeur propres suivantes :
+Pour garantir les performances dynamiques souhaitées, nous allons appliquer un placement de pôles par retour d'état. Ce réajustement des valeurs propres de la matrice dynamique du système nous permettra de répondre aux attentes du cahier des charges si le choix de celles-ci est correct. De même, nous devons choisir des valeurs propres qui ne sont pas être trop éloignées de celles du procédé, pour ne pas être trop exigeant avec la commande et le système. Nous avons avec ces spécifications choisi les valeur propres suivantes :
 \begin{equation}
 \label{equation:valeurPropres}
 \lambda = \begin{pmatrix}
 -4 &-5
 \end{pmatrix}
 \end{equation}
-La commande par retour d'état est une technique d'asservissement qui permet de modifier le signal d'entrée du système en fonction de la sortie mesuré et une référence. Cette nouvelle loi de commande s'écrit : 
+La commande par retour d'état est une méthode d'asservissement qui permet d'effectuer un placement de pôles. Cette correction se réalise grâce à un gain $K$ qui va corriger l'état $x$ d'un système. Cette loi de commande s'écrit : 
 \begin{equation}
-u(t) = Ny_{ref}-Ky(t)
-\end{equation} avec $N$ un gain de pré-compensation, $y_{ref}$ la vitesse de référence, $y(t)$ la sortie mesuré du système et $K$ le gain de retour. Si l'on applique cette loi à notre système en espace d'état, on obtient : 
+u(t) = Ny_{ref}-Kx(t)
+\end{equation} avec $N$ un gain de pré-compensation, $y_{ref}$ la vitesse de référence, $x(t)$ la sortie mesuré du système et $K$ le gain de retour. Si l'on applique cette loi à notre système en espace d'état, on obtient : 
 \begin{align*}
 \left\lbrace
 \begin{aligned}
@@ -35,8 +35,10 @@ u(t) = Ny_{ref}-Ky(t)
 Ainsi la nouvelle dynamique du système est donnée par la matrice $A' = (A-BK)$ et doit admettre les valeurs propres que nous désirons appliquer à notre système. $A$ et $B$ étant des paramètres du système, nous allons utiliser le gain $K$ pour répondre à ce problème. Avec la fonction $place$ de MATLAB, nous sommes capable de concevoir ce vecteur $K$. 
 
 \subsection{Observateur ordre plein sur modèle d'ordre 2\label{sub:constructionObeservateur}}
-Pour pouvoir réaliser notre commande par retour d'état, nous devons tous d'abord reconstruire l'ensemble des états du système dont nous n'avons pas accès. Dans notre cas, nous disposons d'une mesure de la vitesse $\Omega$ avec la tension de sortie $V_s$ mais aucune information sur la position $\Theta$, l'implémentation d'un observateur est donc nécessaire pour au minimum reconstruire cet état.\\
-Nous préférons reconstruire $\Omega$ et $\theta$ à partir de $V_s$ et de l'entrée du modèle d'ordre 2 pour simplifier les calculs nécessaire à sa construction. Il est représenté par :
+Pour pouvoir réaliser notre commande par retour d'état, nous devons tous d'abord reconstruire l'ensemble des états du système dont nous n'avons pas accès. Dans notre cas, nous disposons d'une mesure de la position du moteur $\theta$ avec $V_s$ mais aucune mesure nécessaire pour au minimum reconstruire cet état.
+
+
+Nous préférons reconstruire les deux états $\Omega$ et $\theta$ à partir de $V_s$ et de l'entrée du modèle d'ordre 2 pour simplifier les calculs nécessaire à sa construction. Les équations de l'observateur sont présentées par :
 \begin{align*}
 \left\lbrace
 \begin{aligned}
@@ -52,10 +54,13 @@ Nous préférons reconstruire $\Omega$ et $\theta$ à partir de $V_s$ et de l'en
 & \Leftrightarrow \dot{\epsilon} = Ax - F\hat{x} - GCx + (B-H)u\\
 & \dot{\epsilon} = (A-GC-F)x + F\epsilon + (B-H)u
 \end{align*} 
-Il vient alors $F = A-GC$ et $B=H$ pour obtenir $\dot{\epsilon} = F\epsilon$. Ainsi l'erreur d'estimation est autonome et ne dépend pas des entrées et sorties du système, et il vient $\epsilon(t) = e^{Ft}\epsilon(0)$. Les valeurs propres de $F$ vont ainsi déterminer la dynamique de l'erreur d'estimation, nous choisissons de les faire dépendre des valeurs propres désirées dans la partie \ref{sub:Calcul du retour etat} en les multipliant par 3, pour une convergence encore plus rapide. 
+En imposant que $F = A-GC$ et $B=H$ nous obtenons $\dot{\epsilon} = F\epsilon$. Ainsi l'erreur d'estimation est autonome et ne dépend pas des entrées et sorties du système, et il vient $\epsilon(t) = e^{Ft}\epsilon(0)$. Les valeurs propres de $F$ vont ainsi déterminer la dynamique de l'erreur d'estimation, nous choisissons de les faire dépendre des valeurs propres désirées dans la partie \ref{sub:Calcul du retour etat} en les multipliant par 3, pour une convergence encore plus rapide. 
+\begin{equation}\label{eqn:vpObservateur}
+v_{p_{obs}} = 3\times \lambda
+\end{equation}
 
 \subsection{Construction de l'asservissement}
-Maintenant que l'observateur et le gain du retour d'état sont construits, nous allons les assembler ensemble pour commander notre système. Pour ce modèle du système bouclé, nous prenons comme vecteur d'état $X=\begin{pmatrix}
+Maintenant que l'observateur et le gain du retour d'état sont construits, nous allons les réunir pour former un unique modèle de commande. Pour ce modèle du système bouclé, nous prenons comme vecteur d'état $X=\begin{pmatrix}
 X&\epsilon
 \end{pmatrix}^T$ et nous obtenons par construction :
 \begin{align*}
@@ -66,7 +71,7 @@ X&\epsilon
 (A-BK) & -BK\\
 0& F
 \end{pmatrix}X+\begin{pmatrix}
-B\\0
+BN\\0
 \end{pmatrix}y_{ref} \\
 & y(t) = \begin{pmatrix}
 C & 0
@@ -74,12 +79,16 @@ C & 0
 \end{aligned}
 \right.
 \end{align*} 
-Cependant, nous souhaitons asservir le système avec la vitesse $\omega$, et la description de ce système bouclé va asservir le système en position à cause du changement de dynamiques de la position $\theta$. Pour prévenir à cette mauvaise commande, nous avons annulé le retour de la mesure de position dans le système bouclé. 
 
-Le gain de pré-compensation $N$ peut maintenant être calculé à partir gain statique du transfert entre $Vg$ et $y_{ref}$ noté $G_{Vg/y_{ref}}$ : 
+Le gain de pré-compensation $N$ est à partir gain statique du transfert entre $Vg$ et $y_{ref}$ noté $G_{Vg/y_{ref}}$ pour permettre une erreur de position nulle. Il est : 
 \begin{equation}
 N = \frac{1}{G_{Vg/y_{ref}}}
 \end{equation}
+
+
+Cependant, pour permettre un asservissement du système en vitesse $\omega$, nous devons modifier légèrement le résultat obtenu. La description telle qu'elle est donnée de ce système bouclé va asservir le système en position, à cause du changement de dynamiques de la position $\theta$ avec le retour d'état. Pour prévenir à cette mauvaise commande, nous avons annulé le retour de la mesure de position dans le système bouclé. 
+
+
 A partir de ce modèle, nous allons être capable d'éprouver la commande obtenu de manière théorique et avec une simulation SIMULINK.
 
 \section{Validation de la commande}
@@ -93,21 +102,22 @@ Pour compléter la validation de la commande, nous avons crée un prototype avec
 \includegraphics[width = \textwidth]{./III/figure/stepEE2bf.png}
 \captionof{figure}{Réponse du système asservi}
 \end{center}
-La réponse du système $Vs$ simulé correspond aux changement de dynamique que nous avons espéré. De plus, après une observation de la commande $u(t)$ appliquée sur le système, nous voyons que la tension maximale envoyée est borné dans l'ordre de grandeur des valeurs admises par le système physique. 
+La réponse du système $V_s$ simulé correspond aux changement de dynamique que nous avons espéré. De plus, après une observation de la commande $u(t)$ appliquée sur le système, nous voyons que la tension maximale envoyée est borné dans l'ordre de grandeur des valeurs admises par le système physique. 
 
 \subsection{Analyse boucle fermé du modèle d'ordre 3}
-Nous commande respecte le cahier des charges, nous validons ainsi la commande pour notre modèle d'ordre 2. Nous allons maintenant valider cette même commande sur des modèles supérieur et plus complexes pour compléter sa validation. En effet, notre modèle a été très simplifié pour permettre la création du commande facilement. Si nous arrivons a prouvé que cette commande marche sur des systèmes plus complexes, alors nous aurons prouvé que les dynamiques que nous avons simplifiés ne vont pas perturbé notre commande.
+Notre commande respecte le cahier des charges, nous validons ainsi la commande pour notre modèle d'ordre 2. Nous allons maintenant valider cette même commande sur des modèles supérieur et plus complexes pour compléter sa validation. En effet, notre modèle a été très simplifié pour permettre la création du commande facilement. Si nous arrivons a prouvé que cette commande marche sur des systèmes plus complexes, alors nous aurons prouvé que les dynamiques que nous avons simplifiés ne vont pas perturbé notre commande.
 
 \section{Validation sur les modèles d'ordre supérieur}
+\subsection{Changement de base}
 Dans un premier temps, nous regarderons les effets de l'implantation de l'observateur d'ordre 2 sur les modèles d'ordre supérieur et plus précisément l'erreur d'estimation et le placement des valeurs propres, puis nous simulerons la commande obtenu pour observé les modifications des réponses.
 
-Pour intégrer l'observateur dans un espace d'état d'ordre supérieur, nous avons du réorganiser les états du modèle, ici le modèle d'ordre 1, de façon à ce que les états reconstruits avec l'observateur soient en haut, $x_1$, et les non observable en bas $x_2$.
+Pour intégrer l'observateur dans un espace d'état d'ordre supérieur, nous avons du réorganiser les états du modèle, ici le modèle d'ordre 3, de façon à ce que les états reconstruits avec l'observateur soient en haut, $x_1$, et les non reconstruits en bas $x_2$.
 
-\noindent\textbullet\hspace{2mm} Etats observables : $\Omega_m$ et $ \Theta_m$.
+\noindent\textbullet\hspace{2mm} États reconstruits : $\Omega_m$ et $ \Theta_m$.
 
-\noindent\textbullet\hspace{2mm} Etat non observable : $i_1$
+\noindent\textbullet\hspace{2mm} États non reconstruits : $i_1$
 
-\noindent\textbullet\hspace{2mm} L'espace d'état est donc : 
+On obtient le vecteur d'état suivant : 
 \begin{equation}
 \overline{X} = \begin{bmatrix}
 \theta\\
@@ -139,23 +149,28 @@ Maintenant, nous devons calculer $\overline{A}$, $\overline{B}$, $\overline{C}$,
 \right.%
 \end{equation}
 
-Avec les résultats obtenus pendant les séances de TD et de cours, nous avons \begin{equation}\label{eqn:erreurRecompoOrdreSup}
+\subsection{Analyse des résultats}
+Maintenant que nous avons replacé le modèle d'état, nous pouvons commencer l'analyse de celui ci. Avec les résultats obtenus pendant les séances de TD et de cours, nous avons obtenu une relation de la dynamique de l'erreur \begin{equation}\label{eqn:erreurRecompoOrdreSup}
 \dot{\epsilon} = F\epsilon - A_2x_2
 \end{equation}
-avec $A_2$ la partie qui lie les états $x_1$ et $x_2$ dans la nouvelle base. Cet élément modifie les résultats que nous avons obtenu pour le modèle d'ordre 2. Nous allons étudier les nouvelles valeurs propres du système bouclé pour vérifier si celles si correspondent toujours au cahier des charges, en modélisant un espace d'état qui admet comme vecteur d'état $x=\begin{pmatrix}
-\overline{X}&\epsilon \end{pmatrix}^T$. Nous obtenons : $-7748$, $-20.61$, $ -3.832 \pm 6.931$ et $-2.784$, la stabilité asymptotique en boucle fermé est respectée.
+avec $A_2$ la partie de la matrice $A$ qui lie l'état $\dot{x_1}$ à $x_2$ dans la nouvelle base. Cet élément modifie les résultats que nous avons obtenu pour le modèle d'ordre 2 en indiquant que l'évolution de l'erreur de reconstruction des états n'est plus en fonction uniquement d'elle même, mais aussi des états qui n'ont pas été reconstruits. Cette nouvelle donné va perturbé la convergence de la reconstruction de l'erreur, nous n'arriverons pas à reconstruire l'ensemble des états. 
 
 
-Les réponses temporelles du système en boucle fermé ont les caractéristiques suivantes : \begin{itemize}
-\item Le gain statique n'est plus respecté
-\item Le systèmes oscille à cause des valeurs propres complexes
-\item le temps de réponse reste dans la clause du cahier des charges
-\end{itemize}
+Nous allons étudier les nouvelles valeurs propres du système bouclé pour vérifier si celles si correspondent toujours au cahier des charges, en modélisant un espace d'état qui admet comme vecteur d'état $x=\begin{pmatrix}
+\overline{X}&\epsilon \end{pmatrix}^T$. Nous obtenons : $-7748$, $-20.61$, $ -3.832 \pm 6.931$ et $-2.784$, la stabilité asymptotique en boucle fermé est toujours respectée.
 
 
-Pour terminer l'analyse de la boucle fermé, nous allons étudier le transfert de $\overline{X}$ avec la consigne et le comparer avec celui du modèle d'ordre 2. Cette analyse fréquentielle ne va pas utiliser le système bouclé utilisé pour calculer les valeurs propres dans le paragraphe précédent car nous allons ici prendre en compte que nous commandons le système en vitesse et non en position. Nous obtenons le diagramme de Bode suivant :
+Pour continuer l'analyse de cette commande, nous obtenons à partir de tracé \emph{MATLAB} les réponses temporelles du système en boucle fermé avec les caractéristiques suivantes : \begin{itemize}
+\item Le gain statique n'est plus respecté. Nous commençons à voir apparaitre une erreur de position en régime statique. Cette erreur est due à l'erreur de reconstruction de 
+\item le temps de réponse reste dans la clause du cahier des charges et pas d'oscillations
+\end{itemize} 
+
+
+Pour finir l'analyse de la boucle fermé, nous allons étudier le transfert de $\overline{X}$ avec la consigne et le comparer avec celui du modèle d'ordre 2. Cette analyse fréquentielle ne va pas utiliser le système bouclé utilisé pour calculer les valeurs propres dans le paragraphe précédent car nous allons ici prendre en compte que nous commandons le système en vitesse et non en position. Nous obtenons le diagramme de Bode suivant :
+\begin{figure}[!ht]
 \includegraphics[scale=1]{./III/figure/bode_Tpert_EE1.png}
-\captionof{figure}{Transfert des boucles fermées}
+\caption{Transfert des boucles fermées\label{fig:transfertX/consigne}}
+\end{figure}
 
 Le résultat que nous obtenons confirmes la stabilité asymptotique établie précédemment, cependant les différences notables avec le transfert du modèle d'ordre 2 en basse fréquence explique pourquoi nous n'avons pas pu respecter exactement le cahier des charges. 
 
@@ -165,20 +180,32 @@ P = \begin{pmatrix}
 0 &0& 1& 0\\ 0& 0& 0& 1\\1& 0& 0& 0\\ 0& 1& 0& 0
 \end{pmatrix}
 \end{equation}
+Nous obtenons ainsi comme dans la section précédente, un modèle d'ordre 4 qui a comme vecteur d'état : 
+\begin{equation}
+\overline{X} = \begin{pmatrix}
+\theta & \omega & i_1& i_2
+\end{pmatrix}
+\end{equation}
 
-Les performances du système bouclé ont les mêmes problèmes que pour le modèle d'ordre supérieur. Avec le même résultat pour l'erreur d'estimation que pour le modèle d'ordre 3, ces résultats était prévisible.
+Les performances du système bouclé ont les mêmes problèmes que pour le modèle d'ordre 3. Les reconstructions des états ne convergent pas vers 0, comme nous l'avions vu précédemment, ce qui perturbe l'asservissement en vitesse.
 
-De plus, les approximations de modélisation ont montré dans l'analyse des modèles une erreur statique que nous ne pouvons pas corriger avec une commande construite sur le modèle d'ordre 2. Nous avons toutefois voulu analyser le transfert entre $Vg$ et la consigne et obtenons :
+Nous avons toutefois voulu analyser le transfert entre $\overline{X}$ et $V_g$ et obtenons :
+\begin{figure}
 \includegraphics[scale=1]{./III/figure/bode_Tpert_EE0.png}
-\captionof{figure}{Transfert des boucles fermées}
+\caption{}
+\end{figure}
 Nous avons de plus amples écart en basse fréquence avec un dépassement encore plus grand que pour le modèle d'ordre 3. Ce dépassement joue beaucoup sur les oscillations du système en boucle fermé. Le cahier des charges n'est encore une fois pas respecté pour ce modèle mais admet un temps de réponse proche de celui du modèle d'ordre 2.
 
-En sachant ceci, nous savons que les dynamiques qui ont été simplifiés ne sont pas l'origine des écarts que nous venons d'exposer, il s'agit de la dynamique de l'observateur qui n'est pas très optimale. 
+En sachant ceci, nous savons que les dynamiques qui ont été simplifiés ne sont pas l'origine des écarts que nous venons d'exposer, il s'agit de la dynamique de l'observateur qui n'est pas optimale. 
 
-\subsection{Simulation SIMULINK}
-Nous avons réutilisé la commande simulé précédemment pour l'implanter dans les modèles d'ordre 3 et 4. Ce prototypage rapide a eu les résultats suivant :
+\subsection{Simulation $SIMULINK$}
+Nous avons réutilisé la commande simulé précédemment pour l'implanter dans les modèles d'ordre 3 et 4. Ce prototype de modèle a eu les résultats en figure \ref{fig:reponseTemporelleSIMULINK}.
+\begin{figure}[!ht]
 \includegraphics[scale=.3]{./III/figure/res_SIMULINK.png}
-\captionof{figure}{Réponses temporelles des boucles fermées sous SIMULINK}
+\caption{Réponses temporelles des boucles fermées sous SIMULINK\label{fig:reponseTemporelleSIMULINK}}
+
+\end{figure}
+
 Ces résultats nous permettent de regarder une simulation des signaux de $Vg(t)$. D'après ces résultats, la commande que nous souhaitons appliquer respecte beaucoup mieux le cahier des charges que d'après l'analyse précédente. Cependant, nous ne pouvons en tirer aucune conclusion , il reste encore d'autres modèles plus complexes sur lequel notre commande doit être tester.
 
 

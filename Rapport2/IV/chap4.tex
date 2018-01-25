@@ -33,9 +33,11 @@ Dans cette partie, nous allons expliquer les démarches que nous utiliserons pou
 		
 		Nous avons placé des points de mesure au sur le signal de référence ainsi qu'en sortie du système. Nous obtenons ainsi une réponse temporelle que nous allons étudier dans la sous section suivante.
 		\subsubsection{Simulation et étude de performances}
-		Utilisons maintenant la simulation précédente pour étudier les performances de notre commande. Nous avons dans un premier temps observer la reconstruction d'état du système et nous avons pu noter un problème. Ce problème apparait sur la reconstruction des états, nous avons un nouveau paramètre que nous n'avons pas modélisé dans les parties \ref{chap:modelisation} et \ref{chap:analyse}. 
+		\paragraph{Nouveau paramètres non linéaire}
+		Utilisons maintenant la simulation précédente pour étudier les performances de notre commande. Nous avons dans un premier temps observé la reconstruction d'état du système et nous avons pu noter un problème. Un premier problème apparait, nous avons un nouveau paramètre que nous n'avons pas modélisé dans les parties \ref{chap:modelisation} et \ref{chap:analyse}. 
 		
-		Cette nouvelle dynamique correspond à la mesure de la position du moteur : elle se retrouve être borné entre $[-5V; +5V]$ qui correspond aux limites des tensions générés par le banc moteur. Si elle dépasse un seuil, elle est immédiatement retranscrit sur le seuil opposé. Nous pouvons représenter ce phénomène avec le système d'équation suivant :
+			
+		Cette nouvelle dynamique correspond à la mesure de la position du moteur : elle se retrouve être borné entre $[-5V; +5V]$ qui correspond aux limites des tensions générés par le banc moteur. Si elle dépasse l'un des seuils, elle est immédiatement retranscrite sur le seuil opposé. Nous pouvons représenter ce phénomène avec le système d'équation suivant :
 		\begin{align*}
 		V_s(t) = \left\lbrace \begin{aligned}
 		&K_rK_s\theta_s \text{ si } \theta_s \in \left[\frac{-5}{K_rK_s}; \frac{+5}{K_rK_s}\right]\\
@@ -46,20 +48,25 @@ Dans cette partie, nous allons expliquer les démarches que nous utiliserons pou
 		\end{align*}
 		La non linéarité de cette dynamique a été enlevé lors de la modélisation du système en modèle linéaire. Cela pose un problème pour la reconstruction de la vitesse par rapport à la position : nous avions remarqué en \ref{sub:observateurSurModelO4} et en \ref{eqn:erreurRecompoOrdreSup} que lorsque l'observateur(pour l'ordre 2) était implémenté sur des modèle d'ordre supérieur, la dynamique de l'erreur de reconstruction n'était pas uniquement dépendante de lui même, les états non présents dans le modèle d'ordre 2, i.e. les 2 courants $i_1$ et $i_2$, ajoutent un décalage dans la reconstruction des états $\omega$ et $\theta$.
 		% Convergence rrapide 
-		Avec tous ces éléments, nous sommes capables d'expliquer pourquoi les résultats obtenus pour les valeurs propres décidées dans les parties précédente donnent une reconstruction trop erroné de l'état du système. La reconstruction de la vitesse par rapport à la position qui est renvoyé vers l'opposé à chaque dépassement de $[-5;5]$ avec les valeurs propres de l'observateur placé en $3\times v_{p_{des}}$ (cf \ref{sub:constructionObeservateur})
-		% Le décalge à cause 
 		
-				
+\paragraph{Prototype 0}			
+Avec tous ces éléments, nous sommes capables d'expliquer pourquoi les résultats obtenus pour les valeurs propres décidées dans les parties précédente donnent une reconstruction trop erroné de l'état du système. La reconstruction de la vitesse par rapport à la position qui est renvoyé vers l'opposé à chaque dépassement de $[-5;5]$ avec les valeurs propres de l'observateur placé en $3\times v_{p_{des}}$ (cf \ref{sub:constructionObeservateur}) donnent une restitution décalé, qui converge très mal et qui donc ne peut pas être utilisé pour calculer une commande. La non linéarité apparait, pour une consigne de vitesse de $3V$, à peu près 4 fois par seconde, ce qui donne $25Hz157rad.s^{-1}$. Si l'on se réfère à la figure  Nous choisissons de commencer l'étude d'un nouveau prototype.
+
+\paragraph{Prototype 1}
+Nous avons changé les valeurs propres de l'observateur pour les faire correspondre avec les valeurs 				
 		% Changement des valeurs propres.
 			
 		% Nouvelle simulation.
-		Une nouvelle simulation faite sur ce nouveau prototype nous donne les résultats montré dans la figure \ref{fig:SimuNL_ref_sortieVS_VM}. Nous pouvons voir une erreur sur le régime permanent qui subsiste toujours. Ce léger décalage devrait pouvoir être corrigé sur un modèle linéaire avec un ajout d'un gain pur compenser ce manque. Or, nous sommes sur un modèle non linéaire et cette méthode ne peut pas fonctionner. 
+		
+Une nouvelle simulation faite sur ce nouveau prototype nous donne les résultats montré dans la figure \ref{fig:SimuNL_ref_sortieVS_VM}. Nous pouvons voir une erreur sur le régime permanent qui subsiste toujours. Ce léger décalage devrait pouvoir être corrigé sur un modèle linéaire avec un ajout d'un gain pur compenser ce manque. Or, nous sommes sur un modèle non linéaire et cette méthode ne peut pas fonctionner. 
+\begin{figure}
 		\begin{center}
 		\includegraphics[width= .8\textwidth]{./IV/images/NL_Position--ref_sortie_RE.PNG}
-		\captionof{figure}{Simulation des signaux $V_s$ (Bloc du haut), de $y_{ref}$(Bloc du bas/courbe violet) et de $V_m$(Bloc du bas/courbe jaune)\label{fig:SimuNL_ref_sortieVS_VM} }
-		\end{center}		
+		\caption{Simulation des signaux $V_s$ (Bloc du haut), de $y_{ref}$(Bloc du bas/courbe violet) et de $V_m$(Bloc du bas/courbe jaune)\label{fig:SimuNL_ref_sortieVS_VM} }
+		\end{center}	
+\end{figure}	
 		
-		Un zoom sur l'erreur du régime permanent, disponoble en annexe \ref{annex:modl_NL_SIMULINK} - figures \ref{fig:SIMULINK_NL_erreur_reponse} et \ref{fig:SIMULINK_NL_erreur_reponse_zoom}, nous indique que pour une consigne $y_{ref} = 3$, nous obtenons $V_m(t_f)\approx 2.85$. Nous avons donc une erreur en régime statique \begin{align*}
+		Un zoom sur l'erreur du régime permanent, disponoble en annexe \ref{annex:modl_NL_SIMULINK} - figures \ref{fig:SIMULINK_NL_erreur_reponse} et \ref{fig:SIMULINK_NL_erreur_reponse_zoom}, nous indque que pour une consigne $y_{ref} = 3$, nous obtenons $V_m(t_f)\approx 2.85$. Nous avons donc une erreur en régime statique \begin{align*}
 		\epsilon = \frac{y_{ref}}{V_m(t_f)} = 5\%
 		\end{align*}
 		\subsection{Retour d'état intégral}
