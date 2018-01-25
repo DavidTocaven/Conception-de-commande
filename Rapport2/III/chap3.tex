@@ -34,7 +34,7 @@ u(t) = Ny_{ref}-Ky(t)
 \end{align*}
 Ainsi la nouvelle dynamique du système est donnée par la matrice $A' = (A-BK)$ et doit admettre les valeurs propres que nous désirons appliquer à notre système. $A$ et $B$ étant des paramètres du système, nous allons utiliser le gain $K$ pour répondre à ce problème. Avec la fonction $place$ de MATLAB, nous sommes capable de concevoir ce vecteur $K$. 
 
-\subsection{Observateur ordre plein sur modèle d'ordre 2}
+\subsection{Observateur ordre plein sur modèle d'ordre 2\label{sub:constructionObeservateur}}
 Pour pouvoir réaliser notre commande par retour d'état, nous devons tous d'abord reconstruire l'ensemble des états du système dont nous n'avons pas accès. Dans notre cas, nous disposons d'une mesure de la vitesse $\Omega$ avec la tension de sortie $V_s$ mais aucune information sur la position $\Theta$, l'implémentation d'un observateur est donc nécessaire pour au minimum reconstruire cet état.\\
 Nous préférons reconstruire $\Omega$ et $\theta$ à partir de $V_s$ et de l'entrée du modèle d'ordre 2 pour simplifier les calculs nécessaire à sa construction. Il est représenté par :
 \begin{align*}
@@ -49,8 +49,8 @@ Nous préférons reconstruire $\Omega$ et $\theta$ à partir de $V_s$ et de l'en
 &\dot{\epsilon} = \dot{x} - \dot{\hat{x}}\\
 &\Leftrightarrow \dot{\epsilon} = Ax +Bu - F\hat{x} - Gy - Hu 
 \text{   en considérant }M=1 \text{ et } N = 0\\
-& \Leftrightarrow \dot{\epsilon} = Ax - F\hat{x} - GCx + u(B-H)\\
-& \dot{\epsilon} = (A-GC-F)x + F\epsilon + u(B-H)
+& \Leftrightarrow \dot{\epsilon} = Ax - F\hat{x} - GCx + (B-H)u\\
+& \dot{\epsilon} = (A-GC-F)x + F\epsilon + (B-H)u
 \end{align*} 
 Il vient alors $F = A-GC$ et $B=H$ pour obtenir $\dot{\epsilon} = F\epsilon$. Ainsi l'erreur d'estimation est autonome et ne dépend pas des entrées et sorties du système, et il vient $\epsilon(t) = e^{Ft}\epsilon(0)$. Les valeurs propres de $F$ vont ainsi déterminer la dynamique de l'erreur d'estimation, nous choisissons de les faire dépendre des valeurs propres désirées dans la partie \ref{sub:Calcul du retour etat} en les multipliant par 3, pour une convergence encore plus rapide. 
 

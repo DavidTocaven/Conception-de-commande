@@ -44,8 +44,9 @@ Dans cette partie, nous allons expliquer les démarches que nous utiliserons pou
 		\end{aligned}
 		\right.		
 		\end{align*}
-		La non linéarité de cette dynamique a été enlevé lors de la modélisation du système en modèle linéaire. Cela pose un problème pour la reconstruction de la vitesse par rapport à la position : nous avions remarqué en \ref{sub:observateurSurModelO4} et en \ref{eqn:erreurRecompoOrdreSup}. Dans ce paragraphes, nous mettions en avant que l'observateur implémenté sur des modèle d'ordre supérieur, il ajoutait une dynamique supplémentaire à la reconstruction de l'état du système. 
+		La non linéarité de cette dynamique a été enlevé lors de la modélisation du système en modèle linéaire. Cela pose un problème pour la reconstruction de la vitesse par rapport à la position : nous avions remarqué en \ref{sub:observateurSurModelO4} et en \ref{eqn:erreurRecompoOrdreSup} que lorsque l'observateur(pour l'ordre 2) était implémenté sur des modèle d'ordre supérieur, la dynamique de l'erreur de reconstruction n'était pas uniquement dépendante de lui même, les états non présents dans le modèle d'ordre 2, i.e. les 2 courants $i_1$ et $i_2$, ajoutent un décalage dans la reconstruction des états $\omega$ et $\theta$.
 		% Convergence rrapide 
+		Avec tous ces éléments, nous sommes capables d'expliquer pourquoi les résultats obtenus pour les valeurs propres décidées dans les parties précédente donnent une reconstruction trop erroné de l'état du système. La reconstruction de la vitesse par rapport à la position qui est renvoyé vers l'opposé à chaque dépassement de $[-5;5]$ avec les valeurs propres de l'observateur placé en $3\times v_{p_{des}}$ (cf \ref{sub:constructionObeservateur})
 		% Le décalge à cause 
 		
 				
@@ -62,7 +63,7 @@ Dans cette partie, nous allons expliquer les démarches que nous utiliserons pou
 		\epsilon = \frac{y_{ref}}{V_m(t_f)} = 5\%
 		\end{align*}
 		\subsection{Retour d'état intégral}
-		Ce nouveau prototype de commande va calculer un nouvel retour d'état, en utilisant cette fois ci la différence entre la référence et la sortie mesurée du système. Cette erreur ($y__{ref} - y_{m}$) va ensuite être intégré 
+		Ce nouveau prototype de commande va calculer un nouveau retour d'état, en utilisant cette fois ci la différence entre la référence et la sortie mesurée du système. L'erreur qui est ici : $\epsilon = y_{ref} - y_m$ va ensuite être intégré puis amplifier via un gain $K_i$.
 		\subsubsection{Conclusion et Validation}
 	\subsection{Simulation sur moteur Réel}
 		Nous souhaitons maintenant améliorer notre prototype avec le banc moteur directement. En utilisant la fonction de prototypage rapide de MATLAB, nous sommes capables de générer une émulation du micro contrôleur. Celui ci va s'occuper de récupérer les sorties mesurées du banc moteur, calculer la commande correspondantes et la générer sur l'entrée de commande du moteur. 

@@ -155,7 +155,7 @@ EEIntegral.K = place(EEIntegral.a, EEIntegral.b, [3*vp_desire ;-1]);
 
 
 %% Bloc de commande
-Te = 0.052;
+Te = 0.026;
 %% input : 
 CommTD.a = [obsver.F-EE2.ee.b*K];
 CommTD.b = [EE2.ee.b*N obsver.G];
@@ -201,7 +201,8 @@ CommTD_integral.b = [[0;0] obsver.G ; 1 0];
 CommTD_integral.c = [-[0 EEIntegral.K(2)] EEIntegral.K(3)];
 CommTD_integral.d = [0 0];
 CommTD_integral.ee = ss(CommTD_integral.a, CommTD_integral.b, CommTD_integral.c, CommTD_integral.d);
-CommTD_integral.td = c2d(CommTD_integral.ee, 0.052);
+% Discretisation
+CommTD_integral.td = c2d(CommTD_integral.ee,Te, 'tustin');
 step(CommTD_integral.ee);
 %% save in file
 CommTD_integral.ft=tf(CommTD_integral.td);
