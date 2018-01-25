@@ -52,17 +52,32 @@ static float mu2 =  0.84;
 */
 
 // Inversion vecteur entrée commande
-
+/*
+// pr la ref
 static float mu0 =  0.00007;
 static float mu1 =  0;
 static float mu2 =  0.00007;
-
+// pr y
 static float d1 =  1.385;
 static float d2 =  -0.476;
-
+// pr Vs
 static float my0 =  1.35;
 static float my1 =  -2.135;
 static float my2 =  0.84;
+*/
+static float my0 =  0.258469;
+static float my1 =  -0.201367;
+static float my2 =  -0.255350;
+static float my3 =  0.204486;
+
+static float d1 =  -2.163429;
+static float d2 =  1.490926;
+static float d3 =  -0.318114;
+
+static float mu0 =  -0.000234;
+static float mu1 =  0.000205;
+static float mu2 =  0.000234;
+static float mu3 =  -0.000205;
 /*
 static float my0 =  1.421848;
 static float my1 =  -2.529573;
@@ -79,14 +94,17 @@ static float mu2 =  0.000045;
 float s0 ; // sortie k
 float s1 ; // sortie k-1
 float s2 ; // sortie k-2
+float s3 ; // sortie k-3			AJ intégrateur
 
 float ref0 ; // consigne k
 float ref1 ; // consigne k-1
 float ref2 ; // consigne k-2
+float ref3 ; // 	consigne k-3		AJ intégrateur
 
 float mes0 ; // Y mesure k
 float mes1 ; // Y mesure k-1
 float mes2 ; // Y mesure k-2
+float mes3 ; // Y mesure k-3			AJ intégrateur
 
 
 // ******************** //
@@ -133,8 +151,8 @@ void echelon_dac() /* Lié à T3 */
 		etat=1;
 		SET_SFRBIT(P3.3);
 
-		printf_entier_console("CAN = %d ", V_can0);
-		printf_entier_console("CNA = %d\n", V_cna0);
+		//printf_entier_console("CAN = %d ", V_can0);
+		//printf_entier_console("CNA = %d\n", V_cna0);
 		consigne = 3;
 		//   consigne = (-1)*consigne;
 
@@ -147,9 +165,9 @@ void echelon_dac() /* Lié à T3 */
 		etat=0;
 		CLR_SFRBIT(P3.3);
 		// consigne = 0;
-		printf_entier_console("CAN = %d ", V_can0);
-		printf_entier_console("CNA = %d\n", V_cna0);
-		consigne = -1;
+		//printf_entier_console("CAN = %d ", V_can0);
+		//printf_entier_console("CNA = %d\n", V_cna0);
+		consigne = 0;
 
 		//init_commande();
 	}
@@ -165,17 +183,20 @@ void init_commande()
 	s0 = 0;
 	s1 = 0;
 	s2 = 0;
+	s3 = 0; //		AJ intégrateur
 	// init reference
 	ref0 = 0;
 	ref1 = 0;
 	ref2 = 0;
+	ref3 = 0;
 	// init Y mesure
 	mes0 = 0;
 	mes1 = 0;
 	mes2 = 0;
+	mes3 = 0;
 }
 
-
+//float cTest=-5;  // pr test can cna
 
 
 /* fonction de generation d'un echelon sur la voie 0 du DAC */
@@ -183,17 +204,19 @@ void init_commande()
 TRAP(0x22,acquisition_adc);
 void acquisition_adc() /* Lié à T2 */
 {
+	
 	T=T+26; // periode de 52ms donc on ajoute 52ms au temps écoulé
 
 	CLR_SFRBIT(ADCIR);          // reset du drapeau
 	SET_SFRBIT(ADST);           // activation sequence conversion
 
 	WAIT_UNTIL_BIT_SET(ADCIR);  // attente fin conversion Vg, 10us ecoulees
-	V_can0 = ADDAT;// & 0x03FF;      // lecture conversion Vg
+	V_can0 = ADDAT & 0x03FF;      // lecture conversion Vg
 
 	// AJOUT ETUDIANTS
 
 	// commande 
+	ref3 = ref2;
 	ref2 = ref1;
 	ref1 = ref0;
 	ref0 = consigne;
@@ -202,35 +225,47 @@ void acquisition_adc() /* Lié à T2 */
 
 	/*Adapation CAN [0;1023] vers [0;5]*/
 	//mes0 = (V_can0 *(5/1023));
+	mes3 = mes2;
 	mes2 = mes1;
 	mes1 = mes0;
 	/* Adapatation mesure [0;5] vers [-5;5]*/
 
-	mes0 = ((V_can0 *(5.0/1023.0))*2.0) -5.0;
+	mes0 = V_can0 *(10.0/1023.0) -5.0;
 
-
+	s3 = s2;
 	s2 = s1;
 	s1 = s0;
 
-//	s0 =  d1*s1 + d2*s2 /* valeur des sorties précédentes */
-//	   + my0*mes0 + my1*mes1 + my2*mes2 /* entrée de y mesure  */
-//	   + mu0*ref0 + mu1*ref1 + mu2*ref2 ; /* entrée de consigne  */
-	   
-	s0 = ref0; // test
+	s0 =  -d1*s1 - d2*s2 - d3*s3 /* valeur des sorties précédentes */
+	   + my0*mes0 + my1*mes1 + my2*mes2 + my3*mes3 /* entrée de y mesure  */
+	   + mu0*ref0 + mu1*ref1 + mu2*ref2 + mu3*ref3; /* entrée de consigne  */
+	/*
+	// test CNA  CAN
+	cTest+=.01;
+	if(cTest >5)
+  	{
+	  	cTest=-5;
+	  	printf_entier_console("min%d\n",0);
+  	}
+	s0 = cTest;
+	   */
+	//s0 = ref0; // test
 	// s0 = ref0 - mes0;
 
 	/* Adaptation de la sortie [-5;5] vers CNA [2048;4095] */
-	V_cna0 = (unsigned int)(2047.0/5.0*((consigne + 5.0)/2.0)+2048.0);//(unsigned int)(2047.0/5.0*((s0 + 5.0)/2.0)+2048.0);
+	V_cna0 = (unsigned int)(2047.0/5.0*((s0 + 5.0)/2.0)+2048.0);//(unsigned int)(2047.0/5.0*((s0 + 5.0)/2.0)+2048.0);
 	//V_cna0 = V_cna0/10;
 
 	/* envoie du temps et de la valeur du CAN sur la ligne série */
 	/* pour stockage et tracé avec GnuPlot depuis le PC */
+	/*
 	printf_entier_console("T = %d ", T);
 	printf_entier_console("Consigne = %d ", consigne);
 	printf_entier_console("CAN = %u ", V_can0);
 	printf_entier_console("CNA = %u\n", V_cna0);
-
-
+	*/
+	//printf_entier_console("%d ", V_cna0);
+	//printf_entier_console("%d\n", V_can0);
 	dac0_output(V_cna0);
 }
 

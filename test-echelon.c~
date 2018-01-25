@@ -133,8 +133,8 @@ void echelon_dac() /* Lié à T3 */
 		etat=1;
 		SET_SFRBIT(P3.3);
 
-		printf_entier_console("CAN = %d ", V_can0);
-		printf_entier_console("CNA = %d\n", V_cna0);
+		//printf_entier_console("CAN = %d ", V_can0);
+		//printf_entier_console("CNA = %d\n", V_cna0);
 		consigne = 3;
 		//   consigne = (-1)*consigne;
 
@@ -147,8 +147,8 @@ void echelon_dac() /* Lié à T3 */
 		etat=0;
 		CLR_SFRBIT(P3.3);
 		// consigne = 0;
-		printf_entier_console("CAN = %d ", V_can0);
-		printf_entier_console("CNA = %d\n", V_cna0);
+		//printf_entier_console("CAN = %d ", V_can0);
+		//printf_entier_console("CNA = %d\n", V_cna0);
 		consigne = -1;
 
 		//init_commande();
@@ -175,7 +175,7 @@ void init_commande()
 	mes2 = 0;
 }
 
-
+float cTest=-5;
 
 
 /* fonction de generation d'un echelon sur la voie 0 du DAC */
@@ -183,6 +183,7 @@ void init_commande()
 TRAP(0x22,acquisition_adc);
 void acquisition_adc() /* Lié à T2 */
 {
+	
 	T=T+26; // periode de 52ms donc on ajoute 52ms au temps écoulé
 
 	CLR_SFRBIT(ADCIR);          // reset du drapeau
@@ -206,7 +207,7 @@ void acquisition_adc() /* Lié à T2 */
 	mes1 = mes0;
 	/* Adapatation mesure [0;5] vers [-5;5]*/
 
-	mes0 = ((V_can0 *(5.0/1023.0))*2.0) -5.0;
+	mes0 = V_can0 *(10.0/1023.0) -5.0;
 
 
 	s2 = s1;
@@ -215,22 +216,29 @@ void acquisition_adc() /* Lié à T2 */
 //	s0 =  d1*s1 + d2*s2 /* valeur des sorties précédentes */
 //	   + my0*mes0 + my1*mes1 + my2*mes2 /* entrée de y mesure  */
 //	   + mu0*ref0 + mu1*ref1 + mu2*ref2 ; /* entrée de consigne  */
+	cTest+=.01;
+	if(cTest >5)
+  	{
+	  	cTest=-5;
+	  	printf_entier_console("min%d\n",0);
+  	}
+	s0 = cTest;
 	   
-	s0 = ref0; // test
+	//s0 = ref0; // test
 	// s0 = ref0 - mes0;
 
 	/* Adaptation de la sortie [-5;5] vers CNA [2048;4095] */
-	V_cna0 = (unsigned int)(2047.0/5.0*((consigne + 5.0)/2.0)+2048.0);//(unsigned int)(2047.0/5.0*((s0 + 5.0)/2.0)+2048.0);
+	V_cna0 = (unsigned int)(2047.0/5.0*((s0 + 5.0)/2.0)+2048.0);//(unsigned int)(2047.0/5.0*((s0 + 5.0)/2.0)+2048.0);
 	//V_cna0 = V_cna0/10;
 
 	/* envoie du temps et de la valeur du CAN sur la ligne série */
 	/* pour stockage et tracé avec GnuPlot depuis le PC */
-	printf_entier_console("T = %d ", T);
+	/*printf_entier_console("T = %d ", T);
 	printf_entier_console("Consigne = %d ", consigne);
 	printf_entier_console("CAN = %u ", V_can0);
-	printf_entier_console("CNA = %u\n", V_cna0);
-
-
+	printf_entier_console("CNA = %u\n", V_cna0);*/
+	printf_entier_console("%d ", V_cna0);
+	printf_entier_console("%d\n", V_can0);
 	dac0_output(V_cna0);
 }
 
