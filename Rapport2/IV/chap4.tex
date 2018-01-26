@@ -54,62 +54,78 @@ Dans cette partie, nous allons expliquer les démarches que nous utiliserons pou
 		% Convergence rrapide 
 		
 \paragraph{Prototype 0}			
-Avec tous ces éléments, nous sommes capables d'expliquer pourquoi les résultats obtenus pour les valeurs propres décidées dans les parties précédente donnent une reconstruction trop erroné de l'état du système. La reconstruction de la vitesse par rapport à la position qui est renvoyé vers l'opposé à chaque dépassement de $[-5;5]$ avec les valeurs propres de l'observateur placé en $3\times v_{p_{des}}$ (cf \ref{sub:constructionObeservateur}) donnent une restitution décalée, qui converge très mal et qui donc ne peut pas être utilisé pour calculer une commande. La non linéarité apparait, pour une consigne de vitesse de $3V$, à peu près 4 fois par seconde. L'observation de la réponse de ce prototype est disponible sur la figure \ref{fig:repNL_proto0}.
+Avec tous ces éléments, nous sommes capables d'expliquer pourquoi les résultats obtenus pour les valeurs propres décidées dans les parties précédente donnent une reconstruction trop erroné de l'état du système. La reconstruction de la vitesse par rapport à la position qui est renvoyé vers l'opposé à chaque dépassement de $[-5;5]$ avec les valeurs propres de l'observateur placé en $3\times v_{p_{des}}$ (cf \ref{sub:constructionObeservateur}) donnent une restitution décalée, qui converge très mal et qui donc ne peut pas être utilisé pour calculer une commande. La non linéarité apparait, pour une consigne de vitesse de $3V$, à peu près 4 fois par seconde. L'observation de la réponse de ce prototype est disponible sur la figure \ref{fig:repNL_proto0}. Dans cette réponse temorelle, le gain K est donnée par le vecteur suivant :
+\begin{equation}\label{eqn:gainRetourEtat}
+K = \begin{pmatrix}
+0& 0.089
+\end{pmatrix}
+\end{equation}
+Pour rappel, nous annulons le retour de l'état de position pour asservir le moteur en vitesse uniquement. (cf \ref{sub:constructionAsservissement}).
 \begin{figure}[!ht]
 \centering
 \includegraphics[width = .8\textwidth]{./IV/images/NL_simulation_observateurtropRapide.PNG}
-\caption{Simulation réponse temporelle du modèle linéaire commandé par prototype 0\label{fig:repNL_proto0}}
+\caption{Simulation réponse temporelle du modèle linéaire commandé par le prototype 0\label{fig:repNL_proto0}}
 Simulation des signaux $V_s$ (Bloc du haut), de $y_{ref}$(Bloc du bas/courbe violet) et de $V_m$(Bloc du bas/courbe jaune)
 \end{figure}
 Nous observons sur cette figure que le changement de seuil de la tension $V_s$ fausse totalement la reconstruction de la vitesse. Pour minimiser l'erreur sur ce modèle, nous devons faire coller les valeurs propres de l'observateur avec celles du système en boucle fermé. Cela devrait réduire les effets non linéaires de la sortie $V_s$. Nous choisissons de commencer l'étude d'un nouveau prototype.
 
 \paragraph{Prototype 1}
-Nous avons changé les valeurs propres de l'observateur pour les faire correspondre avec les valeurs propres désirés. 				
+Nous avons changé les valeurs propres de l'observateur pour les faire correspondre avec les valeurs propres désirés. 		
 		% Changement des valeurs propres.
 			
 		% Nouvelle simulation.
 		Une nouvelle simulation faite sur ce nouveau prototype nous donne les résultats montré dans la figure \ref{fig:fig:repNL_proto1}. Nous pouvons voir une erreur sur le régime permanent qui subsiste toujours. Ce léger décalage devrait pouvoir être corrigé sur un modèle linéaire avec un ajout d'un gain pur compenser ce manque. Or, nous sommes sur un modèle non linéaire et cette méthode ne peut pas fonctionner.
 \begin{figure}[!ht]
 \centering
-\includegraphics[width= .8\textwidth]{./IV/images/NL_Position--ref_sortie_RE.PNG}
-\caption{Simulation réponse temporelle du modèle linéaire commandé par prototype 0\label{fig:repNL_proto1} }
-Simulation des signaux $V_s$ (Bloc du haut), de $y_{ref}$(Bloc du bas/courbe violet) et de $V_m$(Bloc du bas/courbe jaune)
+\includegraphics[width= .8\textwidth]{./IV/images/repNL_proto1.pdf}
+\caption{Simulation réponse temporelle du modèle linéaire commandé par le prototype 1\label{fig:repNL_proto1} }
 \end{figure}
 		Un zoom sur l'erreur du régime permanent, disponoble en annexe \ref{annex:modl_NL_SIMULINK} - figures \ref{fig:SIMULINK_NL_erreur_reponse} et \ref{fig:SIMULINK_NL_erreur_reponse_zoom}, nous indque que pour une consigne $y_{ref} = 3$, nous obtenons $V_m(t_f)\approx 2.85$. Nous avons donc une erreur en régime statique \begin{align*}
 \epsilon = \frac{y_{ref}}{V_m(t_f)} = 5\%
 \end{align*}
-Nous décidons de passer à l'implémentation d'un nouveau prototype, car celui l'erreur du régime permanent de celui ci nous semble beaucoup trop importante.
+Avant de terminer l'analyse de ce prototype, nous nous intéressons au signal de commande envoyé sur l'émulation du moteur. Celle ci se trouve dans la figure \ref{fig:comNL_proto1}. 
+\begin{figure}[!ht]
+\centering
+\includegraphics[width = .8\textwidth]{./IV/images/comNLproto1.pdf}
+\caption{Simulation signal de commande modèle non linéaire avec le prototype 1\label{fig:comNL_proto1}}
+\end{figure}  
+La commande a une amplitude supérieur à celle de la référence, nous sommes donc dans un asservissement tel que la référence ne peux pas demander la vitesse maximale du moteur. En effet, si la référence demande une vitesse du moteur qui amène un signal de commande dépassant la tension maximale, la vitesse ne sera plus asservi par la commande, et nous serons dans un cas non déterminé où nous n'avons aucune possibilité de savoir si le cahier des charges sera respecté.
+Nous décidons de passer à l'implémentation d'un nouveau prototype. Ce prochain prototype devra corriger l'erreur de position ou du moins la minimiser et il devra vérifier que la commande ne dépasse pas le seuil maximal de la référence, pour un temps de réponse toujours dans les close du cahier des charges.
 %TODO --> Action intégrale
-%\subsection{Retour d'état avec action intégrale}
-%		Ce nouveau prototype de commande va calculer un nouveau retour d'état, en utilisant cette fois ci la différence entre la référence et la sortie mesurée du système. Pour sa construction, nous nous référons au cours du Master ISTR EEA sur la construction d'un retour d'état. 
-%
-%		
-%Dans cet asservissement, un nouvel état du système noté $x_i$ apparait dans la chaine directe. Il est décrit par la dynamique suivante :
-%		\begin{equation}\label{eqn:dynamique_Xi}
-%		\dot{x}_i = y_{mes} - y_{ref}
-%		\end{equation}
-%		Ainsi, cet état dépend directement de la mesure et de la référence. Les équations du reste de l'espace d'état sont inchangés, et ainsi nous pouvons obtenir une nouvelle représentation d'état donnée avec comme vecteur d'état $X(t) = \begin{pmatrix}
-%		x & x_i
-%		\end{pmatrix} = \begin{pmatrix}
-%		\theta & \omega & x_i
-%		\end{pmatrix}$
-%\begin{equation}\label{eqn:EERetourIntegral}
-%\dot{X} = \begin{pmatrix}
-%A&0 \\ C& 0
-%\end{pmatrix}X(t) + \begin{pmatrix}
-%B \\ 0
-%\end{pmatrix}u(t) + \begin{pmatrix}
-%0 \\ -1
-%\end{pmatrix}y_{ref}
-%\end{equation}		
-%		
-%Nous posons ensuite la nouvelle loi de commande :\begin{equation}
-%		\label{eqn:loideCommande_retourIntegral}
-%		u(t) = -K_ix_i(t) - K_px(t)
-%\end{equation}
-%		Le gain $K_i$ est le gain intégral associé à $x_i$ et le gain $K_p$ correspond au gain du retour d'état précédemment établi. Ces gains seront calculés comme un placement de pôle, avec la fonction \emph{place}, une fois que les valeurs propres sont choisies. Pour celles ci, nous voulons appliquer la même dynamique que celle étudié en \ref{sub:Calcul du retour etat} en plus de la nouvelle (pour $x_i$).  
-%		\subsubsection{Simulation modèle linéaire et non linéaire}
-%		Nous avons appliqué ce retour d'état dans des simulations pour observer les changements de l'action intégrale, dans un premier temps dans sur un modèle linéaire puis dans un second temps sur le modèle non linéaire.
+
+\begin{center}
+Nous proposons de modéliser un nouveau prototype de commande en réutilisant le retour d'état et en ajoutant une action intégrale.
+\end{center}
+\subsection{Retour d'état avec action intégrale}
+		Ce nouveau prototype de commande va calculer un nouveau retour d'état, en utilisant cette fois ci la différence entre la référence et la sortie mesurée du système. Pour sa construction, nous nous référons au cours du Master ISTR EEA sur la construction d'un retour d'état. 
+
+		
+Dans cet asservissement, un nouvel état du système noté $x_i$ apparait dans la chaine directe. Il est décrit par la dynamique suivante :
+		\begin{equation}\label{eqn:dynamique_Xi}
+		\dot{x}_i = y_{mes} - y_{ref}
+		\end{equation}
+		Ainsi, cet état dépend directement de la mesure et de la référence. Les équations du reste de l'espace d'état sont inchangés, et ainsi nous pouvons obtenir une nouvelle représentation d'état donnée avec comme vecteur d'état $X(t) = \begin{pmatrix}
+		x & x_i
+		\end{pmatrix} = \begin{pmatrix}
+		\theta & \omega & x_i
+		\end{pmatrix}$
+\begin{equation}\label{eqn:EERetourIntegral}
+\dot{X} = \begin{pmatrix}
+A&0 \\ C& 0
+\end{pmatrix}X(t) + \begin{pmatrix}
+B \\ 0
+\end{pmatrix}u(t) + \begin{pmatrix}
+0 \\ -1
+\end{pmatrix}y_{ref}
+\end{equation}		
+		
+Nous posons ensuite la nouvelle loi de commande :\begin{equation}
+		\label{eqn:loideCommande_retourIntegral}
+		u(t) = -K_ix_i(t) - K_px(t)
+\end{equation}
+		Le gain $K_i$ est le gain intégral associé à $x_i$ et le gain $K_p$ correspond au gain du retour d'état précédemment établi. Ces gains seront calculés comme un placement de pôle, avec la fonction \emph{place}, une fois que les valeurs propres sont choisies. Pour celles ci, nous voulons appliquer la même dynamique que celle étudié en \ref{sub:Calcul du retour etat} en plus de la nouvelle (pour $x_i$).  
+		\subsubsection{Simulation de l'action intégrale sur modèle linéaire et non linéaire}
+		Nous avons appliqué ce retour d'état dans des simulations pour observer les changements de l'action intégrale, dans un premier temps dans sur un modèle linéaire puis dans un second temps sur le modèle non linéaire.
 		
 		
 		\subsection{Conclusion et Validation}
