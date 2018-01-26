@@ -16,8 +16,9 @@
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {5.1}{\ignorespaces Sch\IeC {\'e}ma des diff\IeC {\'e}rents composants du montage.\relax }}{20}{figure.caption.14}
 \contentsline {figure}{\numberline {5.2}{\ignorespaces Erreurs de conversions possibles sur le CAN\relax }}{21}{figure.caption.15}
-\contentsline {figure}{\numberline {5.3}{\ignorespaces Erreurs de conversions entre le CAN et le CNA\relax }}{22}{figure.caption.16}
-\contentsline {figure}{\numberline {5.4}{\ignorespaces Sch\IeC {\'e}ma de la commande par retour d'\IeC {\'e}tat \IeC {\`a} temps continue.\relax }}{23}{figure.caption.17}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Erreurs de conversions entre le CAN et le CNA (pour le C167 n\IeC {\textdegree }1)\relax }}{22}{figure.caption.16}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Erreurs de conversions entre le CAN et le CNA (pour le C167 n\IeC {\textdegree }2)\relax }}{22}{figure.caption.16}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Sch\IeC {\'e}ma de la commande par retour d'\IeC {\'e}tat \IeC {\`a} temps continue.\relax }}{23}{figure.caption.17}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {6.1}{\ignorespaces Valeurs possibles et possibles du CAN\relax }}{25}{figure.caption.18}
 \contentsline {figure}{\numberline {6.2}{\ignorespaces Valeurs possibles et possibles du CNA\relax }}{25}{figure.caption.18}
