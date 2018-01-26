@@ -1,17 +1,20 @@
 \chapter{Validation de la commande en temps continue sur le modèle non linéaire}
 \label{ValidationCommande}
 %% Chemin d'accès au répertoire : Conception-de-commande\Implémentation Commande Moteur\AGarder\Commandes_matlab
-Maintenant que les étapes de démonstration et d'émulation de la commande sont terminés, nous allons étudier notre premier prototype, que nous nommerons prototype 0, et qui correspondra  notre solution 0. Nous allons d'abord effectuer ce que nous appelons un \emph{Model in the loop} où nous allons chercher à améliorer ce premier prototype en utilisant uniquement des simulations. Par la suite, nous améliorerons le prototype en utilisation une technique d'émulation dite \emph{Software in the loop}.
+Maintenant que les étapes de démonstration et de simulation de la commande sur des modèles linéaires sont terminés, nous allons pouvoir créer notre premier prototype, que nous nommerons prototype 0. Il correspondra à notre solution 0. Nous allons d'abord effectuer ce que nous appelons un \emph{Model in the loop} où nous allons chercher à améliorer ce premier prototype en utilisant uniquement des simulations. Par la suite, nous améliorerons le prototype en utilisation une technique d'émulation dite \emph{Software in the loop}.
 \section{Protocoles MIL/SIL}\label{sec:prtocoleMIL_SIL}
 Dans cette partie, nous allons expliquer les démarches que nous utiliserons pour valider nos prototypes. 
 	\subsection{Model in the loop (MIL)}
-	Pour faire une validation MIL, nous allons utiliser le modèle non linéaire pour simuler la correction. Toute cette opération sera effectué sous MATLAB à l'aide d'un bloc \emph{SIMULINK} qui simule le modèle non linéaire. Pour valider le prototype de commande du correcteur, celui-ci devra respecter la ou les condition que nous lui imposerons. S'il ce n'est pas le cas, une amélioration de ce prototype sera nécessaire et elle nous permettra de créer un prototype N (pour N itérations de cette boucle). 
-	Nous devons d'abord fixer une marge d'erreur par rapport au cahier des charges défini en \ref{chap:commande} : 
-	\begin{align}\label{eqn_margeErreur}
-		M_\epsilon < 1\%
-	\end{align}
-	Tant que notre prototype ne sera pas en dessous de cette marge, nous devrons le modifier et refaire le test.
-	\subsection{SIL}
+	Pour faire une validation MIL, nous allons utiliser le modèle non linéaire pour simuler la correction. Toute cette opération sera effectué sous $MATLAB$ à l'aide d'un bloc \emph{SIMULINK} qui simule le modèle non linéaire. Pour valider le prototype de commande du correcteur, celui-ci devra respecter la ou les condition que nous lui imposerons. S'il ce n'est pas le cas, une amélioration de ce prototype sera nécessaire et elle nous permettra de créer un prototype N (pour N itérations de cette boucle). 
+%	Nous devons d'abord fixer une marge d'erreur par rapport au cahier des charges défini en \ref{chap:commande} : 
+%	\begin{align}\label{eqn_margeErreur}
+%		M_\epsilon < 1\%
+%	\end{align}
+%	Tant que notre prototype ne sera pas en dessous de cette marge, nous devrons le modifier et refaire le test.
+	\subsection{Software in the loop (SIL)}
+	Après la validation en MIL, nous passerons à une validation \emph{Software in the loop}. Le prototype obtenu au bout de la boucle MIL sera ici testé sur sa partie logicielle. Nous testerons ici si le temps concret de commande est vérifié, en branchant directement le calcul de la commande sur un autre ordinateur ou bien en utilisant un moteur réel. Pour cela, nous n'hésiterons pas à effectuer un prototypage rapide, une fonction de \emph{MATLAB}, qui permet de recevoir et d'émettre des signaux analogiques depuis un ordinateur via un une carte E/S. 
+	
+	De même que pour le MIL, si le prototype $N$ ne valide pas le cahier des charges, nous devons recommencer le test en créant un nouveau prototype $N+1$ jusqu'à que la commande soit satisfaisante. 
 \section{Test des prototypes des commande à temps continue}
 	%	Test des commandes TC sur MNL et Moteur
 	% 	Utilisation protocoles MIL  (ne le ré-explique pas)  
@@ -51,29 +54,75 @@ Dans cette partie, nous allons expliquer les démarches que nous utiliserons pou
 		% Convergence rrapide 
 		
 \paragraph{Prototype 0}			
-Avec tous ces éléments, nous sommes capables d'expliquer pourquoi les résultats obtenus pour les valeurs propres décidées dans les parties précédente donnent une reconstruction trop erroné de l'état du système. La reconstruction de la vitesse par rapport à la position qui est renvoyé vers l'opposé à chaque dépassement de $[-5;5]$ avec les valeurs propres de l'observateur placé en $3\times v_{p_{des}}$ (cf \ref{sub:constructionObeservateur}) donnent une restitution décalé, qui converge très mal et qui donc ne peut pas être utilisé pour calculer une commande. La non linéarité apparait, pour une consigne de vitesse de $3V$, à peu près 4 fois par seconde, ce qui donne $25Hz157rad.s^{-1}$. Si l'on se réfère à la figure  Nous choisissons de commencer l'étude d'un nouveau prototype.
+Avec tous ces éléments, nous sommes capables d'expliquer pourquoi les résultats obtenus pour les valeurs propres décidées dans les parties précédente donnent une reconstruction trop erroné de l'état du système. La reconstruction de la vitesse par rapport à la position qui est renvoyé vers l'opposé à chaque dépassement de $[-5;5]$ avec les valeurs propres de l'observateur placé en $3\times v_{p_{des}}$ (cf \ref{sub:constructionObeservateur}) donnent une restitution décalée, qui converge très mal et qui donc ne peut pas être utilisé pour calculer une commande. La non linéarité apparait, pour une consigne de vitesse de $3V$, à peu près 4 fois par seconde. L'observation de la réponse de ce prototype est disponible sur la figure \ref{fig:repNL_proto0}.
+\begin{figure}[!ht]
+\centering
+\includegraphics[width = .8\textwidth]{./IV/images/NL_simulation_observateurtropRapide.PNG}
+\caption{Simulation réponse temporelle du modèle linéaire commandé par prototype 0\label{fig:repNL_proto0}}
+Simulation des signaux $V_s$ (Bloc du haut), de $y_{ref}$(Bloc du bas/courbe violet) et de $V_m$(Bloc du bas/courbe jaune)
+\end{figure}
+Nous observons sur cette figure que le changement de seuil de la tension $V_s$ fausse totalement la reconstruction de la vitesse. Pour minimiser l'erreur sur ce modèle, nous devons faire coller les valeurs propres de l'observateur avec celles du système en boucle fermé. Cela devrait réduire les effets non linéaires de la sortie $V_s$. Nous choisissons de commencer l'étude d'un nouveau prototype.
 
 \paragraph{Prototype 1}
-Nous avons changé les valeurs propres de l'observateur pour les faire correspondre avec les valeurs 				
+Nous avons changé les valeurs propres de l'observateur pour les faire correspondre avec les valeurs propres désirés. 				
 		% Changement des valeurs propres.
 			
 		% Nouvelle simulation.
-		Une nouvelle simulation faite sur ce nouveau prototype nous donne les résultats montré dans la figure \ref{fig:SimuNL_ref_sortieVS_VM}. Nous pouvons voir une erreur sur le régime permanent qui subsiste toujours. Ce léger décalage devrait pouvoir être corrigé sur un modèle linéaire avec un ajout d'un gain pur compenser ce manque. Or, nous sommes sur un modèle non linéaire et cette méthode ne peut pas fonctionner. 
-		\begin{figure}
-		\centering
-		\includegraphics[width= .8\textwidth]{./IV/images/NL_Position--ref_sortie_RE.PNG}
-		\caption{Simulation des signaux $V_s$ (Bloc du haut), de $y_{ref}$(Bloc du bas/courbe violet) et de $V_m$(Bloc du bas/courbe jaune)\label{fig:SimuNL_ref_sortieVS_VM} }
-		\end{figure}
+		Une nouvelle simulation faite sur ce nouveau prototype nous donne les résultats montré dans la figure \ref{fig:fig:repNL_proto1}. Nous pouvons voir une erreur sur le régime permanent qui subsiste toujours. Ce léger décalage devrait pouvoir être corrigé sur un modèle linéaire avec un ajout d'un gain pur compenser ce manque. Or, nous sommes sur un modèle non linéaire et cette méthode ne peut pas fonctionner.
+\begin{figure}[!ht]
+\centering
+\includegraphics[width= .8\textwidth]{./IV/images/NL_Position--ref_sortie_RE.PNG}
+\caption{Simulation réponse temporelle du modèle linéaire commandé par prototype 0\label{fig:repNL_proto1} }
+Simulation des signaux $V_s$ (Bloc du haut), de $y_{ref}$(Bloc du bas/courbe violet) et de $V_m$(Bloc du bas/courbe jaune)
+\end{figure}
 		Un zoom sur l'erreur du régime permanent, disponoble en annexe \ref{annex:modl_NL_SIMULINK} - figures \ref{fig:SIMULINK_NL_erreur_reponse} et \ref{fig:SIMULINK_NL_erreur_reponse_zoom}, nous indque que pour une consigne $y_{ref} = 3$, nous obtenons $V_m(t_f)\approx 2.85$. Nous avons donc une erreur en régime statique \begin{align*}
-		\epsilon = \frac{y_{ref}}{V_m(t_f)} = 5\%
-		\end{align*}
-		\subsection{Retour d'état intégral}
-		Ce nouveau prototype de commande va calculer un nouveau retour d'état, en utilisant cette fois ci la différence entre la référence et la sortie mesurée du système. L'erreur qui est ici : $\epsilon = y_{ref} - y_m$ va ensuite être intégré puis amplifier via un gain $K_i$.
-		\subsubsection{Conclusion et Validation}
+\epsilon = \frac{y_{ref}}{V_m(t_f)} = 5\%
+\end{align*}
+Nous décidons de passer à l'implémentation d'un nouveau prototype, car celui l'erreur du régime permanent de celui ci nous semble beaucoup trop importante.
+%TODO --> Action intégrale
+%\subsection{Retour d'état avec action intégrale}
+%		Ce nouveau prototype de commande va calculer un nouveau retour d'état, en utilisant cette fois ci la différence entre la référence et la sortie mesurée du système. Pour sa construction, nous nous référons au cours du Master ISTR EEA sur la construction d'un retour d'état. 
+%
+%		
+%Dans cet asservissement, un nouvel état du système noté $x_i$ apparait dans la chaine directe. Il est décrit par la dynamique suivante :
+%		\begin{equation}\label{eqn:dynamique_Xi}
+%		\dot{x}_i = y_{mes} - y_{ref}
+%		\end{equation}
+%		Ainsi, cet état dépend directement de la mesure et de la référence. Les équations du reste de l'espace d'état sont inchangés, et ainsi nous pouvons obtenir une nouvelle représentation d'état donnée avec comme vecteur d'état $X(t) = \begin{pmatrix}
+%		x & x_i
+%		\end{pmatrix} = \begin{pmatrix}
+%		\theta & \omega & x_i
+%		\end{pmatrix}$
+%\begin{equation}\label{eqn:EERetourIntegral}
+%\dot{X} = \begin{pmatrix}
+%A&0 \\ C& 0
+%\end{pmatrix}X(t) + \begin{pmatrix}
+%B \\ 0
+%\end{pmatrix}u(t) + \begin{pmatrix}
+%0 \\ -1
+%\end{pmatrix}y_{ref}
+%\end{equation}		
+%		
+%Nous posons ensuite la nouvelle loi de commande :\begin{equation}
+%		\label{eqn:loideCommande_retourIntegral}
+%		u(t) = -K_ix_i(t) - K_px(t)
+%\end{equation}
+%		Le gain $K_i$ est le gain intégral associé à $x_i$ et le gain $K_p$ correspond au gain du retour d'état précédemment établi. Ces gains seront calculés comme un placement de pôle, avec la fonction \emph{place}, une fois que les valeurs propres sont choisies. Pour celles ci, nous voulons appliquer la même dynamique que celle étudié en \ref{sub:Calcul du retour etat} en plus de la nouvelle (pour $x_i$).  
+%		\subsubsection{Simulation modèle linéaire et non linéaire}
+%		Nous avons appliqué ce retour d'état dans des simulations pour observer les changements de l'action intégrale, dans un premier temps dans sur un modèle linéaire puis dans un second temps sur le modèle non linéaire.
+		
+		
+		\subsection{Conclusion et Validation}
 	\subsection{Simulation sur moteur Réel}
-		Nous souhaitons maintenant améliorer notre prototype avec le banc moteur directement. En utilisant la fonction de prototypage rapide de MATLAB, nous sommes capables de générer une émulation du micro contrôleur. Celui ci va s'occuper de récupérer les sorties mesurées du banc moteur, calculer la commande correspondantes et la générer sur l'entrée de commande du moteur. 
+		Nous souhaitons maintenant améliorer notre prototype avec le banc moteur directement. En utilisant la fonction de prototypage rapide de $MATLAB$, nous sommes capables de générer une émulation du micro contrôleur. Celui ci va s'occuper de récupérer les sorties mesurées du banc moteur, calculer la commande correspondantes et la générer sur l'entrée de commande du moteur. 
 		\subsubsection{Adaptation du modèle}
+		Pour cette étude, nous avons réutilisé le bloc de simulation utilisé pour le $MIL$. Nous le connectons au bloc conçu pour envoyer et recevoir des signaux analogiques de la carte E/S. Ensuite, un $build$ de la simulation complète est nécessaire pour ensuite lancer une émulation de la commande en temps réel.
 		\subsubsection{Test et étude de performances}
+		%TODO --> Présentation proto 
+		Nous avons à notre disposition plusieurs prototypes déjà étudié en $MIL$. Pour cette partie, nous souhaitons ...
+		
+		% Prototype 1
+		Nous avons 
 		\subsubsection{Conclusion et Validation}
 		
 %\chapter{Planification de la suite de l'asservissement}

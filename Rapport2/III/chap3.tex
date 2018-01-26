@@ -216,7 +216,10 @@ Avec les changements de base calculé précédemment, nous avons souhaité analy
 
 
 \section{Simulation $SIMULINK$ des modèles linéaires}
-Maintenant que l'observateur est prêt à être implémenter sur les modèles d'ordre 3 et 4, nous allons pouvoir commencer à exécuter des simulations des commandes de ces deux modèles. Deux choix s'offrent à nous, nous pouvons utilisé le changement de base et donc un système en espace d'état de notre système bouclé. Dans ce cas là, nous aurions accès à la vitesse asservis en fonction d'une référence. Le deuxième choix et celui qui nous semble le plus judicieux, consiste à brancher chaque élément sur un schéma $SIMULINK$. Nous avons ainsi accès à tous les échanges de signaux entre les blocs. Les schémas blocs que nous avons simulés sont disponibles en annexe \ref{Annex:SIMULINK_RE}. La réponse temporelle de $V_g(t)$ se trouve, pour les modèles linéaires d'ordre 2 à 3, dans la figure \ref{fig:reponseModelesLineairesSIMULINK}, ainsi que la commande qui est associé à cette réponse, en figure \ref{fig:reponseModelesLineairesSIMULINK}.
+Maintenant que l'observateur est prêt à être implémenter sur les modèles d'ordre 3 et 4, nous allons pouvoir commencer à exécuter des simulations des commandes de ces deux modèles. Deux choix s'offrent à nous, nous pouvons utilisé le changement de base et donc un système en espace d'état de notre système bouclé. Dans ce cas là, nous aurions accès à la vitesse asservis en fonction d'une référence. Le deuxième choix et celui qui nous semble le plus judicieux, consiste à brancher chaque élément sur un schéma $SIMULINK$. Nous avons ainsi accès à tous les échanges de signaux entre les blocs. 
+
+
+Les schémas blocs que nous avons simulés sont disponibles en annexe \ref{Annex:SIMULINK_RE}. La réponse temporelle de $V_g(t)$ se trouve, pour les modèles linéaires d'ordre 2 à 3, dans la figure \ref{fig:reponseModelesLineairesSIMULINK}, ainsi que la commande qui est associé à cette réponse, en figure \ref{fig:reponseModelesLineairesSIMULINK}.
 \begin{figure}[!ht]
 \centering
 \includegraphics[scale=.3]{./III/figure/res_SIMULINK.png}
@@ -224,7 +227,7 @@ Maintenant que l'observateur est prêt à être implémenter sur les modèles d'
 \includegraphics[scale=.4]{./III/figure/commande-u-ML_ordre2-3-4.pdf}
 \caption{Commandes $u(t)$ associées aux résultats de la figure \ref{fig:reponseModelesLineairesSIMULINK}\label{fig:commandesML-1V}}
 \end{figure}
-
+Sur ces figures, pour le modèle linéaire d'ordre 4, nous avons obtenu le bon temps de réponse et pas d'oscillations. L'erreur du régime permanent est de $2\%$.
 Ces résultats nous permettent de regarder une simulation des signaux de $Vg(t)$. D'après ces résultats, la commande que nous souhaitons appliquer respecte le cahier des charges en termes d'oscillations de la réponse et de temps de réponse mais pas pour le gain statique. Cependant, nous ne pouvons en tirer aucune conclusion , il reste encore d'autres modèles plus complexes sur lequel notre commande doit être tester.
 
 
