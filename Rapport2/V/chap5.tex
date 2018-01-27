@@ -39,16 +39,24 @@ f_e &=& 1\text{kHz}\\
 \caption{\label{fig:errCAN}Erreurs de conversions possibles sur le CAN}
 \end{figure}
 %%%% CNA 
-\hspace{3mm} \textbf{CNA :} (Conversion Numérique Analogique.) Ici, le convertisseur transforme le signal numérique en un signal analogique après un temps de conversion $t_{CNA}$. Nous avons besoin de ce type de convertisseur pour la génération de la sortie dans notre cas, $V_{s}$. La qualité de notre conversion dépend de plusieurs éléments similaires au CAN. L'entrée du CNA est un entier codé sur 12 bits et il génère une tension comprise entre $-5$ et $5$ Volts. 
+\hspace{3mm} \textbf{CNA :} (Conversion Numérique Analogique.) Ici, le convertisseur transforme le signal numérique en un signal analogique après un temps de conversion $t_{CNA}$ (équation \ref{equ:tcan}). Nous avons besoin de ce type de convertisseur pour la génération de la sortie dans notre cas, $V_{s}$. La qualité de notre conversion dépend de plusieurs éléments similaires au CAN. L'entrée du CNA est un entier codé sur 12 bits et il génère une tension comprise entre $-5$ et $5$ Volts. 
+\begin{eqnarray}
+\label{equ:tcan}
+t_{CAN} &=& 14*t_{cc} + 2*t_{sc} + 4*TLC \\
+&=&  9,7 \mu s%\\
+%T_{CNA} &=& %% TODO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% /!\  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{eqnarray}
+
+Par manque de temps, nous n'avons pas eu le temps mettre en place un protocole complet d'étude des erreurs de conversions, nous avons uniquement émis des valeurs avec le CNA et les avons lu avec le CAN afin que les valeurs mesurées et générées correspondent à peu prés à celles désirées. Nous avons fait ceci pour 1000 valeurs. Nous avons réaliser ce test pour les deux micro-contrôleurs et cela donne des résultats différents. La figure \ref{fig:errCAN_1} est le résultat de l'analyse du micro-contrôleur de gauche en salle de TP. Nous voyons que la conversion est assez mauvaise, d'autres tests ont mis en évidence que le problème vient du CAN : de multiples lectures d'une tension constante donnent des résultats avec une variation importante, trop pour être du bruit numérique ou électromagnétique. Nous avons ré effectué le même test sur le second micro-contrôleur (celui de droite) et, figure \ref{fig:errCAN}, on remarque qu'il y a deux saturations : avant $E1$ et après $E2$. Entre les deux, la conversion est à peu près constante. Le second C167 est donc plus fiable en terme de lecture et d'écriture de tensions.
 
 
-Par manque de temps, nous n'avons pas eu le temps mettre en place un protocole complet d'étude des erreurs de conversions, nous avons uniquement émis des valeurs avec le CNA et les avons lu avec le CAN afin que les valeurs mesurées et générées correspondent à peu prés à celles désirées. Nous avons fait ceci pour 1000 valeurs \ref{fig:errCAN}. On remarque qu'il y a deux saturations : avant $E1$ et après $E2$. Entre les deux, la conversion est à peu près constante. Cette approche présente l'avantage d'être rapide mais elle est néanmoins peu précise. En effet, les erreurs du CAN peuvent être masqués par le CNA et inversement. Elle ne permet non plus de savoir d'où vient le problème. 
+Cette approche présente l'avantage d'être rapide mais elle est néanmoins peu précise. En effet, les erreurs du CAN peuvent être masqués par celles du CNA et inversement. Elle ne permet non plus de savoir d'où vient le problème, à moins d'effectuer d'autres expériences. 
 \begin{figure}[!ht]
 \begin{minipage}[t]{.48\textwidth}
 
 \centering 		
 \includegraphics[width=.9\textwidth]{./V/images/CAN_CNA_mesures_1.pdf}
-\caption{\label{fig:errCAN}Erreurs de conversions entre le CAN et le CNA (pour le C167 n°1)}
+\caption{\label{fig:errCAN_1}Erreurs de conversions entre le CAN et le CNA (pour le C167 n°1)}
 \end{minipage}\hfill%
 \begin{minipage}[t]{.48\textwidth}
 \centering 		
@@ -56,7 +64,6 @@ Par manque de temps, nous n'avons pas eu le temps mettre en place un protocole c
 \caption{\label{fig:errCAN}Erreurs de conversions entre le CAN et le CNA (pour le C167 n°2)}
 \end{minipage}
 \end{figure}
-\newpage
 
 Un protocole de test complet aurait été :\\
 \begin{itemize}
@@ -76,11 +83,7 @@ Un protocole de test complet aurait été :\\
 		\item À partir des ces résultats, créer une fonction qui corrige les erreurs, si possible.
 	\end{itemize}
 \end{itemize}
-\begin{eqnarray}
-T_{CAN} &=& 14*t_{cc} + 2*t_{sc} + 4*TLC \\
-&=&  9,7 \mu s%\\
-%T_{CNA} &=& %% TODO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% /!\  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\end{eqnarray}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% /!\  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% /!\  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% /!\  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\\

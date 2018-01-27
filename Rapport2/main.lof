@@ -7,23 +7,25 @@
 \contentsline {figure}{\numberline {2.3}{\ignorespaces P\IeC {\^o}les et z\IeC {\'e}ros dans le plan complexe du transfert vers $V_g(t)$ du mod\IeC {\`e}les EE0.\relax }}{10}{figure.caption.7}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {3.1}{\ignorespaces R\IeC {\'e}ponse du syst\IeC {\`e}me asservi\relax }}{13}{figure.caption.8}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Transfert des boucles ferm\IeC {\'e}es\relax }}{14}{figure.caption.9}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Transfert des boucles ferm\IeC {\'e}es\relax }}{15}{figure.caption.10}
-\contentsline {figure}{\numberline {3.4}{\ignorespaces R\IeC {\'e}ponses temporelles des boucles ferm\IeC {\'e}es sous SIMULINK\relax }}{16}{figure.caption.11}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Transfert de la boucle ferm\IeC {\'e}, mod\IeC {\`e}le lin\IeC {\'e}aire d'ordre 3\relax }}{14}{figure.caption.9}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Transfert de la boucle ferm\IeC {\'e}, mod\IeC {\`e}le lin\IeC {\'e}aire d'ordre 4\relax }}{15}{figure.caption.10}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces R\IeC {\'e}ponses de l'erreur de reconstruction de l'\IeC {\'e}tat $\omega $(vitesse) des mod\IeC {\`e}le d'ordre 2 \IeC {\`a} 4\relax }}{16}{figure.caption.11}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces R\IeC {\'e}ponses temporelles des boucles ferm\IeC {\'e}es sous $SIMULINK$\relax }}{17}{figure.caption.12}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Commandes $u(t)$ associ\IeC {\'e}es aux r\IeC {\'e}sultats de la figure \ref {fig:reponseModelesLineairesSIMULINK}\relax }}{17}{figure.caption.12}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Sch\IeC {\'e}ma \emph {SIMULINK} complet de l'asservissement du mod\IeC {\`e}le du moteur Non lin\IeC {\'e}aire\relax }}{18}{figure.caption.12}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Simulation des signaux $V_s$ (Bloc du haut), de $y_{ref}$(Bloc du bas/courbe violet) et de $V_m$(Bloc du bas/courbe jaune) \relax }}{19}{figure.caption.13}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Sch\IeC {\'e}ma \emph {SIMULINK} complet de l'asservissement du mod\IeC {\`e}le du moteur Non lin\IeC {\'e}aire\relax }}{19}{figure.caption.13}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Simulation des signaux $V_s$ (Bloc du haut), de $y_{ref}$(Bloc du bas/courbe violet) et de $V_m$(Bloc du bas/courbe jaune) \relax }}{20}{figure.caption.14}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Sch\IeC {\'e}ma des diff\IeC {\'e}rents composants du montage.\relax }}{20}{figure.caption.14}
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Erreurs de conversions possibles sur le CAN\relax }}{21}{figure.caption.15}
-\contentsline {figure}{\numberline {5.3}{\ignorespaces Erreurs de conversions entre le CAN et le CNA (pour le C167 n\IeC {\textdegree }1)\relax }}{22}{figure.caption.16}
-\contentsline {figure}{\numberline {5.4}{\ignorespaces Erreurs de conversions entre le CAN et le CNA (pour le C167 n\IeC {\textdegree }2)\relax }}{22}{figure.caption.16}
-\contentsline {figure}{\numberline {5.5}{\ignorespaces Sch\IeC {\'e}ma de la commande par retour d'\IeC {\'e}tat \IeC {\`a} temps continue.\relax }}{23}{figure.caption.17}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Sch\IeC {\'e}ma des diff\IeC {\'e}rents composants du montage.\relax }}{21}{figure.caption.15}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Erreurs de conversions possibles sur le CAN\relax }}{22}{figure.caption.16}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Erreurs de conversions entre le CAN et le CNA (pour le C167 n\IeC {\textdegree }1)\relax }}{23}{figure.caption.17}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Erreurs de conversions entre le CAN et le CNA (pour le C167 n\IeC {\textdegree }2)\relax }}{23}{figure.caption.17}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Sch\IeC {\'e}ma de la commande par retour d'\IeC {\'e}tat \IeC {\`a} temps continue.\relax }}{24}{figure.caption.18}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {6.1}{\ignorespaces Valeurs possibles et possibles du CAN\relax }}{25}{figure.caption.18}
-\contentsline {figure}{\numberline {6.2}{\ignorespaces Valeurs possibles et possibles du CNA\relax }}{25}{figure.caption.18}
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Valeurs possibles et possibles du CAN\relax }}{26}{figure.caption.19}
+\contentsline {figure}{\numberline {6.2}{\ignorespaces Valeurs possibles et possibles du CNA\relax }}{26}{figure.caption.19}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {7.1}{\ignorespaces Sch\IeC {\'e}ma \emph {SIMULINK} complet de l'asservissement du mod\IeC {\`e}le du moteur Non lin\IeC {\'e}aire\relax }}{36}{figure.7.1}
-\contentsline {figure}{\numberline {7.2}{\ignorespaces Sch\IeC {\'e}ma \emph {SIMULINK} du \emph {sub-system} de commande\relax }}{36}{figure.7.2}
-\contentsline {figure}{\numberline {7.3}{\ignorespaces Mesure de simulation de l'erreur $\epsilon $ entre la r\IeC {\'e}f\IeC {\'e}rence et la sortie $V_s$ du mod\IeC {\`e}le Non lin\IeC {\'e}aire\relax }}{37}{figure.7.3}
-\contentsline {figure}{\numberline {7.4}{\ignorespaces Mesure de simulation de l'erreur $\epsilon $ du mod\IeC {\`e}le Non lin\IeC {\'e}aire centr\IeC {\'e} sur l'axe des ordonn\IeC {\'e}es en $[0.144; 0.16].$\relax }}{37}{figure.7.4}
+\contentsline {figure}{\numberline {7.1}{\ignorespaces Sch\IeC {\'e}ma \emph {SIMULINK} complet de l'asservissement du mod\IeC {\`e}le du moteur Non lin\IeC {\'e}aire\relax }}{37}{figure.caption.31}
+\contentsline {figure}{\numberline {7.2}{\ignorespaces Sch\IeC {\'e}ma \emph {SIMULINK} du \emph {sub-system} de commande\relax }}{38}{figure.caption.32}
+\contentsline {figure}{\numberline {7.3}{\ignorespaces Mesure de simulation de l'erreur $\epsilon $ entre la r\IeC {\'e}f\IeC {\'e}rence et la sortie $V_s$ du mod\IeC {\`e}le Non lin\IeC {\'e}aire\relax }}{38}{figure.caption.33}
+\contentsline {figure}{\numberline {7.4}{\ignorespaces Mesure de simulation de l'erreur $\epsilon $ du mod\IeC {\`e}le Non lin\IeC {\'e}aire centr\IeC {\'e} sur l'axe des ordonn\IeC {\'e}es en $[0.144; 0.16].$\relax }}{39}{figure.caption.34}
