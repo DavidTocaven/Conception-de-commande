@@ -19,10 +19,10 @@ Dans cette partie, nous allons expliquer les démarches que nous utiliserons pou
 	%	Test des commandes TC sur MNL et Moteur
 	% 	Utilisation protocoles MIL  (ne le ré-explique pas)  
 	%			The PLAN
-	\begin{abstract}
+	\begin{center}
 	A présent, nous pouvons commencer à tester les prototypes de commandes du moteur sur des modèles plus complexe : nous disposons pour cela d'un modèle non linéaire ainsi que d'un banc moteur. Nous suivront les consignes que nous venons de présenter en \ref{sec:prtocoleMIL_SIL}, en commençant par présenter le moyen utilisé pour adapter la simulation. 
 	Comme il est évoqué dans le titre de cette section, nous sommes ici en temps continu. Les hypothèses pour la discrétisation ne sont pas traités dans cette partie, nous avons choisi de construire le prototype de commande à temps discret quand nous aurons d'abord validé complètement la commande en temps continu, et que nous auront présenté toutes les contraintes que la discrétisation devra surmonter. 
-	\end{abstract}
+	\end{center}
 	%% TODO - ref vers parti discrétisation.
 	\section{Simulation sur Modèle Non linéaire}
 		
@@ -82,27 +82,29 @@ Nous avons changé les valeurs propres de l'observateur pour les faire correspon
 		% Changement des valeurs propres.
 			
 		% Nouvelle simulation.
-		Une nouvelle simulation faite sur ce nouveau prototype nous donne les résultats montré dans la figure \ref{fig:fig:repNL_proto1}. Nous pouvons voir une erreur sur le régime permanent qui subsiste toujours. Ce léger décalage devrait pouvoir être corrigé sur un modèle linéaire avec un ajout d'un gain pur compenser ce manque. Or, nous sommes sur un modèle non linéaire et cette méthode ne peut pas fonctionner.
-\begin{figure}[!ht]
-\centering
-\includegraphics[width= .8\textwidth]{./IV/images/repNL_proto1.pdf}
-\caption{Simulation réponse temporelle du modèle linéaire commandé par le prototype 1\label{fig:repNL_proto1} }
-\end{figure}
-		Un zoom sur l'erreur du régime permanent, disponoble en annexe \ref{annex:modl_NL_SIMULINK} - figures \ref{fig:SIMULINK_NL_erreur_reponse} et \ref{fig:SIMULINK_NL_erreur_reponse_zoom}, nous indque que pour une consigne $y_{ref} = 3$, nous obtenons $V_m(t_f)\approx 2.85$. Nous avons donc une erreur en régime statique \begin{align*}
-\epsilon_y = y_{ref}-V_m(t_f) = 0.15 \text{, qui correspond pour la consgne demandée à : } \epsilon = 5\%
+Une nouvelle simulation faite sur ce nouveau prototype nous donne les résultats montré dans la figure \ref{fig:fig:repNL_proto1}. Nous pouvons voir une erreur sur le régime permanent qui subsiste toujours. Ce léger décalage devrait pouvoir être corrigé sur un modèle linéaire avec un ajout d'un gain pur compenser ce manque. Or, nous sommes sur un modèle non linéaire et cette méthode ne peut pas fonctionner.
+
+
+Un zoom sur l'erreur du régime permanent, disponoble en annexe \ref{annex:modl_NL_SIMULINK} - figures \ref{fig:SIMULINK_NL_erreur_reponse} et \ref{fig:SIMULINK_NL_erreur_reponse_zoom}, nous indque que pour une consigne $y_{ref} = 3$, nous obtenons $V_m(t_f)\approx 2.85$. Nous avons donc une erreur en régime statique \begin{align*}
+\epsilon_y = y_{ref}-V_m(t_f) = 0.15 \text{, qui correspond pour la consgne demandée à : } \epsilon = \frac{\epsilon_y}{y_{ref}}5\%
 \end{align*}
 Avant de terminer l'analyse de ce prototype, nous nous intéressons au signal de commande envoyé sur l'émulation du moteur. Celle ci se trouve dans la figure \ref{fig:comNL_proto1}. 
+
 \begin{figure}[!ht]
-\centering
+\begin{minipage}{.5\textwidth}
+\includegraphics[width= .8\textwidth]{./IV/images/repNL_proto1.pdf}
+\caption{Simulation réponse temporelle du modèle linéaire commandé par le prototype 1\label{fig:repNL_proto1} }
+\end{minipage}
+\begin{minipage}{.5\textwidth}
 \includegraphics[width = .8\textwidth]{./IV/images/comNLproto1.pdf}
 \caption{Simulation signal de commande modèle non linéaire avec le prototype 1\label{fig:comNL_proto1}}
+\end{minipage}
 \end{figure}  
 La commande a une amplitude supérieur à celle de la référence, nous sommes donc dans un asservissement tel que la référence ne peux pas demander la vitesse maximale du moteur. En effet, si la référence demande une vitesse du moteur qui amène un signal de commande dépassant la tension maximale, la vitesse ne sera plus asservi par la commande, et nous serons dans un cas non déterminé où nous n'avons aucune possibilité de savoir si le cahier des charges sera respecté.
 Nous décidons de passer à l'implémentation d'un nouveau prototype. Ce prochain prototype devra corriger l'erreur de position ou du moins la minimiser et il devra vérifier que la commande ne dépasse pas le seuil maximal de la référence, pour un temps de réponse toujours dans les close du cahier des charges.
-%TODO --> Action intégrale
 
 \begin{center}
-Nous proposons de modéliser un nouveau prototype de commande en réutilisant le retour d'état et en ajoutant une action intégrale.
+\textit{Nous proposons de modéliser un nouveau prototype de commande en réutilisant le retour d'état et en ajoutant une action intégrale.}
 \end{center}
 %\subsection{Retour d'état avec action intégrale}
 \section{Retour d'état avec action intégrale}
@@ -141,7 +143,7 @@ Nous posons ensuite la nouvelle loi de commande :\begin{equation}
  		\end{align}
  		Nous annulons encore le retour de la vitesse dans la chaine directe. Nous allons maintenant effectuer des simulations de ce nouveau retour sur le modèle linéaire. Une fois les simulations validés, nous pourrons passer à la validation de ce nouveau prototype sur un modèle non linéaire.
 		%\subsubsection{Simulation de l'action intégrale sur modèle linéaire et non linéaire}
-		\subsection{Simulation de l'action intégrale sur modèle linéaire}
+		\subsection{Simulation de l'action intégrale sur modèle linéaire et prototype sur modèle non linéaire}
 		Les simulations que nous avons effectué de ce retour d'état ont été faites uniquement sur le modèle linéaire d'ordre 4 qui est, de par son ordre, le plus complexe des modèle linéaire à notre disposition. Nous avons effectué les simulations avec l'environnement \emph{SIMULINK}, le schéma du retour est disponible en annexe \ref{Annex:SIMULINK_RE}, figure \ref{fig:sousSystemeRI}. Dans ces schémas, nous n'avons pas mesuré la vitesse du moteur, nous l'avons reconstruit. Le signal de $y_{mes}$ ne peut pas être la vitesse car inaccessible au mesure. Nous sommes donc obligés de reconstruire ce signal, via l'observateur en utilisant $\hat{x}$.	 
 		
 
@@ -163,12 +165,24 @@ Nous obtenons les courbes présentés en figures \ref{fig:rep_RI_lineaire} et \r
 Comme nous le disions précédemment, le signal utilisé pour faire converger de l'erreur du régime statique est un signal reconstitué grâce à l'observateur. Cependant, il prend aussi les inconvénients de celui ci. Nous avions remarqué que l'observateur disposait d'une dynamique de reconstruction erroné(\ref{sub:etudeTransfertErreurCommande}), nous la retrouvons ici dans cette simulation.
 		La commande appliquée est tout à fait convenable, elle ne dépasse pas la référence ce qui signifie qu'il est possible d'augmenter cette référence. Le temps de réponse n'a pas pu être mesuré correctement, cependant les observations de la figure \ref{fig:rep_RI_lineaire} nous montrent que le régime statique est atteint quand la simulation dépasse les 1 seconde.
 		\subsubsection{Prototype 2}
-		Nous avons choisi de mettre les émulations dans la validation d'un nouveau prototype de modèle de commande.
+		Nous avons choisi de mettre ce nouveau l'asservissement dans un nouveau prototype. Il est donc composé d'un retour d'état avec une action intégrale. Pour le valider, nous allons maintenant le simuler sur le modèle non linéaire qui a été introduit pour les deux premiers prototypes. Nous pouvons observer les résultats sur les deux figures \ref{fig:rep_RI_Nonlineaire} pour le signal de performances $Vg(t)$ et \ref{fig:com_RI_Nonlineaire} pour la commande $u(t)$ qui est envoyé dans le procédé non linéaire.
+		\begin{figure}[!ht]
+		\begin{minipage}{.5\textwidth}
+		\includegraphics[width = \textwidth]{./IV/images/rep_RI_NonLineaire.pdf}
+		\caption{Réponse temporelle du système Non linéaire asservis avec un retour d'état avec action intégrale\label{fig:rep_RI_Nonlineaire}}
+\end{minipage}
+\begin{minipage}{.5\textwidth}
+\includegraphics[width = \textwidth]{./IV/images/com_RI_Nonlineaire.pdf}
+\caption{Commande du système Non linéaire asservis avec un retour d'état avec action intégrale\label{fig:com_RI_Nonlineaire}}
+\end{minipage}
+		\end{figure}
+		Sur ces courbes, nous pouvons noter que l'erreur du régime statique est, cette fois ci, $\epsilon_y = 3 - 2.885 = 0.115$, soit, $\epsilon = 3.8\%$. Cette valeur est inférieure à tous les prototypes testés jusqu'à présent, il s'agit donc du meilleur prototype en régime permanent. Le temps de monté est lui aussi respecté et nous n'avons pas d'oscillations. Nous pouvons juger notre commande comme valide.
 		\subsection{Conclusion et Validation}
+	Les 3 prototypes qui ont sont ressortis du \emph{Model in the loop} n'ont pas tous la même valeurs. Nous avons donc un prototype 0 qui est possède un observateur avec de mauvaises valeurs propres. Nous avons aussi un autre prototype qui lui dispose d'un bonne dynamique en régime transitoire mais n'a pas de bon régime permanent. Enfin, le prototype 2, dispose aussi d'un très bon régime transitoire mais il n'attend pas l'idéal d'une erreur nulle en régime permanent. 
 	\section{Simulation sur moteur Réel}
-		Nous souhaitons maintenant améliorer notre prototype avec le banc moteur directement. En utilisant la fonction de prototypage rapide de $MATLAB$, nous sommes capables de générer une émulation du micro contrôleur. Celui ci va s'occuper de récupérer les sorties mesurées du banc moteur, calculer la commande correspondantes et la générer sur l'entrée de commande du moteur. 
+		Nous souhaitons maintenant améliorer nos prototypes avec le banc moteur directement. En utilisant la fonction de prototypage rapide de $MATLAB$, nous sommes capables de générer une émulation du micro contrôleur. Celui ci va s'occuper de récupérer les sorties mesurées du banc moteur, calculer la commande correspondantes et la générer sur l'entrée de commande du moteur. 
 		\subsubsection{Adaptation du modèle}
-		Pour cette étude, nous avons réutilisé le bloc de simulation utilisé pour le $MIL$. Nous le connectons au bloc conçu pour envoyer et recevoir des signaux analogiques de la carte E/S. Ensuite, un $build$ de la simulation complète est nécessaire pour ensuite lancer une émulation de la commande en temps réel.
+		Pour cette étude, nous avons réutilisé le bloc de simulation utilisé pour le $MIL$. Nous le connectons au bloc conçu pour envoyer et recevoir des signaux analogiques de la carte E/S. Ensuite, un $build$ de la simulation complète est nécessaire pour ensuite lancer une émulation de la commande en temps réel. 
 		\subsubsection{Test et étude de performances}
 		%TODO --> Présentation proto 
 		Nous avons à notre disposition plusieurs prototypes déjà étudié en $MIL$. Pour cette partie, nous souhaitons ...
