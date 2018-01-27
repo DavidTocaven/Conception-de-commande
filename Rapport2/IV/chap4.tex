@@ -179,17 +179,28 @@ Comme nous le disions précédemment, le signal utilisé pour faire converger de
 		Sur ces courbes, nous pouvons noter que l'erreur du régime statique est, cette fois ci, $\epsilon_y = 3 - 2.885 = 0.115$, soit, $\epsilon = 3.8\%$. Cette valeur est inférieure à tous les prototypes testés jusqu'à présent, il s'agit donc du meilleur prototype en régime permanent. Le temps de monté est lui aussi respecté et nous n'avons pas d'oscillations. Nous pouvons juger notre commande comme valide.
 		\subsection{Conclusion et Validation}
 	Les 3 prototypes qui ont sont ressortis du \emph{Model in the loop} n'ont pas tous la même valeurs. Nous avons donc un prototype 0 qui est possède un observateur avec de mauvaises valeurs propres. Nous avons aussi un autre prototype qui lui dispose d'un bonne dynamique en régime transitoire mais n'a pas de bon régime permanent. Enfin, le prototype 2, dispose aussi d'un très bon régime transitoire mais il n'attend pas l'idéal d'une erreur nulle en régime permanent. 
-	\section{Simulation sur moteur Réel}
-		Nous souhaitons maintenant améliorer nos prototypes avec le banc moteur directement. En utilisant la fonction de prototypage rapide de $MATLAB$, nous sommes capables de générer une émulation du micro contrôleur. Celui ci va s'occuper de récupérer les sorties mesurées du banc moteur, calculer la commande correspondantes et la générer sur l'entrée de commande du moteur. 
-		\subsubsection{Adaptation du modèle}
-		Pour cette étude, nous avons réutilisé le bloc de simulation utilisé pour le $MIL$. Nous le connectons au bloc conçu pour envoyer et recevoir des signaux analogiques de la carte E/S. Ensuite, un $build$ de la simulation complète est nécessaire pour ensuite lancer une émulation de la commande en temps réel. 
-		\subsubsection{Test et étude de performances}
-		%TODO --> Présentation proto 
-		Nous avons à notre disposition plusieurs prototypes déjà étudié en $MIL$. Pour cette partie, nous souhaitons ...
+	
+	
+	
+	
+%%% Partie sur le moteur Réel	
+\section{Simulation sur moteur Réel}
+		Nous souhaitons maintenant améliorer nos prototypes avec le banc moteur directement. En utilisant la fonction de prototypage rapide de $MATLAB$, nous sommes capables de générer une émulation du micro contrôleur. Celui ci va s'occuper de récupérer les sorties mesurées du banc moteur, calculer la commande correspondantes et la générer sur l'entrée de commande du moteur. Cette partie va utiliser le protocole $SIL$ décrit en début de chapitre.
+		\subsection{Adaptation du modèle}
+Pour cette étude, nous avons réutilisé le bloc de simulation utilisé pour le $MIL$. Nous le connectons au bloc conçu pour envoyer et recevoir des signaux analogiques de la carte E/S. Ensuite, un $build$ de la simulation complète est nécessaire pour ensuite lancer une émulation de la commande en temps réel. Vous trouverez le schéma $SIMULINK$ que nous avons utilisé en annexe, figure (\ref{fig:schemaSIMU_MoteurReel}).
+		\subsection{Test et étude de performances}
+		Nous avons à notre disposition plusieurs prototypes déjà étudié en $MIL$. Cependant, nous n'utiliserons que les prototypes 1 et 2, qui disposent des meilleurs performances. Pour cette partie, nous souhaitons surtout analyser si les contraintes de temps réel sont respectés. Nous sommes dans une émulation, c'est à dire que chaque temps, entre la réception et l'émission est compté.
 		
+		%Par des soucis de mise en place de test et d'accès au matériel, nous avons été capables d'itérer une seule fois la boucle du $SIL$, sur le prototype 1. Nous aurions aimé pouvoir validé le prototype 2
+		\subsubsection{$SIL$ du Prototype 1}		
 		% Prototype 1
-		Nous avons 
-		\subsubsection{Conclusion et Validation}
+		Les résultats obtenus sur l'émulation de la commande du prototype 1 vont vous être présentés dans cette partie. Nous avons, pour la 
+		\begin{figure}[!ht]
+		\centering
+		\includegraphics[width = .7\textwidth]{./IV/images/repNL_proto1.pdf}
+		\caption{Réponse teporelle $V_g(t)$, commande émulé et procédé réel\label{fig:rep_MoteurReel_proto1}}
+\end{figure}				
+		\subsection{Conclusion et Validation}
 		
 %\chapter{Planification de la suite de l'asservissement}
 %\label{chap:suite}
