@@ -123,9 +123,17 @@ Nous posons ensuite la nouvelle loi de commande :\begin{equation}
 		\label{eqn:loideCommande_retourIntegral}
 		u(t) = -K_ix_i(t) - K_px(t)
 \end{equation}
-		Le gain $K_i$ est le gain intégral associé à $x_i$ et le gain $K_p$ correspond au gain du retour d'état précédemment établi. Ces gains seront calculés comme un placement de pôle, avec la fonction \emph{place}, une fois que les valeurs propres sont choisies. Pour celles ci, nous voulons appliquer la même dynamique que celle étudié en \ref{sub:Calcul du retour etat} en plus de la nouvelle (pour $x_i$).  
+		Le gain $K_i$ est le gain intégral associé à $x_i$ et le gain $K_p$ correspond au gain du retour d'état précédemment établi. Ces gains seront calculés comme un placement de pôle, avec la fonction \emph{place}, une fois que les valeurs propres sont choisies. Pour celles ci, nous voulons appliquer la même dynamique que celle étudié en \ref{sub:Calcul du retour etat} en plus de la nouvelle (pour $x_i$). Les valeurs obtenu pour les gains sont les suivantes :
+		\begin{align}
+		K_p &= \begin{pmatrix}
+		0&0.5825  
+		\end{pmatrix}\\
+		K_i &=  28.5507
+ 		\end{align}
+ 		Nous annulons encore le retour de la vitesse dans la chaine directe. Nous allons maintenant effectuer des simulations de ce nouveau retour sur le modèle linéaire. Une fois les simulations validés, nous pourrons passer à la validation de ce nouveau prototype sur un modèle non linéaire.
 		\subsubsection{Simulation de l'action intégrale sur modèle linéaire et non linéaire}
-		Nous avons appliqué ce retour d'état dans des simulations pour observer les changements de l'action intégrale, dans un premier temps dans sur un modèle linéaire puis dans un second temps sur le modèle non linéaire.
+		Les simulations que nous avons effectué de ce retour d'état ont été faites uniquement sur le modèle linéaire d'ordre 4 qui est, de par son ordre, le plus complexe des modèle linéaire à notre disposition. Nous avons effectué les simulations avec l'environnement \emph{SIMULINK}, le schéma du retour est disponible en annexe \ref{Annex:SIMULINK_RE}, figure \ref{fig:sousSystemeRI}. 
+		
 		
 		
 		\subsection{Conclusion et Validation}

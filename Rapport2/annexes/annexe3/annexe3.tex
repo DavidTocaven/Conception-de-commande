@@ -24,27 +24,29 @@
 }
 \section*{Modèles Non linéaire}\label{annex:modl_NL_SIMULINK}
 \addcontentsline{toc}{section}{Modèles Non linéaire}
-\begin{figure}
+\subsection*{Schéma $SIMULNK$}
+\begin{figure}[!ht]
 \centering
 \includegraphics[width = \textwidth]{./annexes/annexe3/NL_RE_BlocEntier.png}
 \caption{Schéma \emph{SIMULINK} complet de l'asservissement du modèle du moteur Non linéaire\label{fig:SIMULINK_NL_schema}}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[!ht]
 \centering
 \includegraphics[width = \textwidth]{./annexes/annexe3/NL_RE_blocAsservissement.PNG}
 \caption{Schéma \emph{SIMULINK} du \emph{sub-system} de commande\label{fig:SIMULINK_NL_subsystem_schema}}
 \end{figure}
 
-\begin{figure}
+\subsection*{Réponses temporelles}
+\begin{figure}[!ht]
 \centering
 \includegraphics[width = .9\textwidth]{./annexes/annexe3/NL_erreur-Consigne_Vs_RE.png}
-\caption{Mesure de simulation de l'erreur $\epsilon$ entre la référence et la sortie $V_s$ du modèle Non linéaire\label{fig:SIMULINK_NL_erreur_reponse}}
+\caption{Mesure de simulation de l'erreur entre la référence et la sortie $V_s$ du modèle Non linéaire\label{fig:SIMULINK_NL_erreur_reponse}}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[!ht]
 \centering
 \includegraphics[width = .9\textwidth]{./annexes/annexe3/NL_erreur-Consigne_Vs_RE_zoom.png}
-\caption{Mesure de simulation de l'erreur $\epsilon$ du modèle Non linéaire centré sur l'axe des ordonnées en $[0.144; 0.16].$\label{fig:SIMULINK_NL_erreur_reponse_zoom}}	
+\caption[Mesure de simulation de l'erreur entre la référence et la sortie $V_s$ du modèle Non linéaire zoomé]{Mesure de simulation de l'erreur $\epsilon$ du modèle Non linéaire centré sur l'axe des ordonnées en $[0.144; 0.16].$\label{fig:SIMULINK_NL_erreur_reponse_zoom}}	
 \end{figure}
 
