@@ -1,20 +1,20 @@
 	 Paramètres de la commande en temps discret 
 
 static float my0 =  0.000000;
-static float my1 =  0.495929;
-static float my2 =  -0.882315;
+static float my1 =  0.496927;
+static float my2 =  -0.699086;
 
-static float my3 =  0.392370;
+static float my3 =  0.245178;
 
-static float d1 =  -2.185916;
+static float d1 =  -1.831234;
 
-static float d2 =  1.530031;
+static float d2 =  1.073920;
 
-static float d3 =  -0.335114;
+static float d3 =  -0.209866;
 
 static float mu0 =  0.000000;
-static float mu1 =  -0.000446;
-static float mu2 =  0.000836;
+static float mu1 =  -0.588879;
+static float mu2 =  1.103733;
 
-static float mu3 =  -0.000390;
+static float mu3 =  -0.514855;
 
