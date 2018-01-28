@@ -16,7 +16,7 @@ Nous allons, dans cette partie, nous consacrer à une étude des contraintes mat
 		%(ordo,taches,validation TR,temps calcul, fréquence fonctionnement)
 Pour ce projet, nous disposons d'un micro-contrôleur \emph{C167} fabriqué par Siemens. Il est dans une carte \emph{microsys167-Eth} qui lui  ajoute des interfaces, des fonctionnalités et de la mémoire. La carte cadence le micro-contrôleur à $20\text{ }MHz$, ajoute un $1\text{ }Mo$ de RAM et $512\text{ } Ko$ de Flash-EPROM. Nous disposons aussi d'adaptateurs de tension ($\left[-5;5\right]$ Volt vers $\left[0;5\right]$ Volt). Le \emph{C167} offre différentes fonctionnalités, dont les interruptions matérielles, les taches, les timers périodiques et un débogueur. Nous avons également des outils de développement permettant depuis un ordinateur, de créer un programme en \emph{C}, le compiler pour le \emph{C167}, l'envoyer sur celui-ci et si besoin de le déboguer et récupérer des valeurs sur un terminal. La fréquence de fonctionnement du \emph{C167} est de $20 $ MHz et un cycle instruction faut 4 cycle CPU, donc la fréquence d'instruction est de $5 $ MHz.
 Le \emph{C167} a également des entrées et des sorties numériques et analogiques. Nous allons maintenant vous parlez des problématiques de conversions.
-	\subsection{CAN / CNA}
+	\subsection{CAN / CNA\label{sub:CAN_CNA}}
 %		(protocole correction, temps conversion, échantillonnage bits )	
 \subsubsection{CAN}
 %%%% CAN			
@@ -97,7 +97,7 @@ Un protocole de test complet aurait été :\\
 \section{Transformation CAN/CNA}
 \subsection{CAN}
 Afin de réalisé notre commande, nous avons dût transformer la valeur entière lue pour $V_S$ par le CAN en un équivalent de la tension de type nombre à virgule flottante.  Figure \ref{fig:CAN_p}, nous pouvons observer les valeurs que peut convertir le CAN et les valeurs dont nous avons besoins. Nous n'utilisons ici que la moitié de la valeur lue par le convertisseur car nous n'avons besoin de convertir que des valeurs comprises entre $0$ et $5$ Volt. Ici, la plage de conversion est donc à moitié utilisée. 
-Dans un premier temps, nous avons décaler la valeur lue (avec un et bit a bit) afin d'avoir la valeur sur $\left[ 0 , 1023\right]$,  puis  nous avons réalisé la conversion en tension avec l'équation \ref{equ:CAN}.
+Dans un premier temps, nous avons décaler la valeur lue (avec un et bit a bit) afin d'avoir la valeur sur $\left[ 0 , 1023\right]$,  puis  nous avons réalisé la conversion en tension avec l'équation \ref{equ:CAN1}.
 \begin{figure}[!ht]%
 \begin{minipage}{.5\textwidth}%
 \centering
@@ -127,7 +127,7 @@ La génération de la sortie $V_M$ nécessite aussi une conversion du CNA depuis
 
 \begin{figure}[!ht]%
 \begin{minipage}{.5\textwidth}%
-\begin{equation}
+\begin{equation}\label{eqn:CNA1}
 \begin{array}{l}
 \left\lbrace
 \begin{array}{lcl}
@@ -152,11 +152,24 @@ V_{CNA} &=& \frac{2^{11}-1}{5}V_{red}+2048\\
 \section{Implémentation sur micro-contrôleur}	
 Nous souhaitons dans cette partie vous présenter comment nous avons aborder l'implémentation des commandes sur le micro-contrôleur. Nous aborderons dans un premier temps une revue des tâches que nous avons utilisées. 
 		\subsection{Description des taches}
-		Une première tâche sera dédié à la génération d'un échelon. Nous souhaitons observer des changements de front de la consigne, c'est pourquoi il est intéressant de faire évoluer cette consigne périodiquement. Dans cette tâche, qui déroule du squelette obtenu sur les fichiers sources, nousallons avoir le déroulement du 
-		 
-		
+		\paragraph*{Génération échelon}
+		Une première tâche sera dédié à la génération d'un échelon. Nous souhaitons observer des changements de front de la consigne, c'est pourquoi il est intéressant de faire évoluer cette consigne périodiquement. Dans cette tâche, qui déroule du squelette obtenu sur les fichiers sources, nous allons avoir le déroulement suivant : \begin{itemize}
+		\item[État 1] Valeur de la consigne mise à l'état haut. Variable d'état = 2
+		\item[État 2] Valeur de la consigne mise à l'état bas. Variable d'état = 1
+\end{itemize}
+La fréquence d'appel de cette tâche n'a pas de grand impact sur les contraintes temps réel. Les timers ont déjà été programmé sur une fréquence de $f_{ech} = \frac{3.36}{2}Hz$, nous garderons ce résultat dans le reste de l'étude.		 
+\paragraph{Acquisition des mesures}		 
+		Cette tâche beaucoup plus principale que la précédente doit permettre de récupérer la valeur lue sur le CAN, calculer la commande associée et la transmettre au CNA. Ce déroulement a été décrit dans le schéma \ref{fig:GeneralSCHEMA}. Il est important de faire attention au conversion obtenu dans les équations \ref{eqn:CNA1} et \ref{equ:CAN1}.
 		%	Acquisition 
 		%	ref : CAN/CNA
 		%         Conversion
-		\subsection{implémentation}
+		\subsection{Implémentation}
+		Vous trouverez le code implémenté en langage C des tâches dans l'annexe \ref{Annex:codeC}. Nous avons aussi inclus un fichier de génération de paramètres via un modèle discret de $MATLAB$. Ce fichier génère un \emph{.txt} en fonction des paramètres de l'équation récurrente du prototype de commande.
 		\subsection{Validation et correction}
+		Nous avons obtenu des problèmes pour le prototype qui a été discrétisé dans la partie \ref{chap:Command} et qui est contenu dans le programme. Il semble que certaines problématiques nous ait échappé, notamment les notions de correction des CAN CNA évoquée dans \ref{sub:CAN_CNA}. Pour évaluer si le problème venait de la conversion, nous avons tout de même été capable de générer un échelon de tension qui vous est présenté dans la figure ci dessous. 
+		\begin{figure}[!ht]
+		\centering
+		\includegraphics[width = .7\textwidth]{./VI/images/MicroC-reponseEchelon.png}
+		\caption{Réponse à un échelon +2V, -2V}
+\end{figure}				
+		
