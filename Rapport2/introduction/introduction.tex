@@ -1,59 +1,72 @@
 \chapter*{Introduction}
 \addcontentsline{toc}{chapter}{Introduction}
 \label{chap:Intro}
-\begin{LARGE}
-Le rapport final inclura une hiérarchisation des émulations et des validations expérimentales, des justifications pour les choix matériels et logiciels, la prise en compte des informations à traiter sur une chaîne d'acquisition, un raisonnement construit pour les protocoles expérimentaux, un bilan sur le projet.\\
-A RÉÉCRIRE.
-\end{LARGE}
-Plan \\
-intro a refaire\\
-Les 2 chapitres de théories\\
-1. Validation de la commande TC sur modèle NL \\
-	1.1. Protocoles MIL/SIL\\
-		1.1.1. MIL\\
-		1.1.2. SIL\\	
-	1.2. Commande temps continue\\
-		1.2.1 Simulation \\
-			1.2.1.1. Adaptation modèle (avec nl)\\
-			1.2.1.2. Simulation et étude de perf\\
-			1.2.1.3. Conclusion et Validation\\
-		1.2.1 Sur moteur Réel (proto rapide)\\
-			1.2.1.1. Adaptation modèle (avec nl)\\
-			1.2.1.2. test et étude de perf\\
-			1.2.1.3. Conclusion et Validation\\
-2. Commande temps discret \\
-	2.1. Contraintes hardware \\
-		2.1.1. CAN / CNA (protocole correction, temps conversion, échantillonnage bits )\\
-		2.1.2. C167 (ordo,taches,validation TR,temps calcul, fréquence fonctionnement)\\
-		2.2.3. Conclusion  (contraintes tempo, squelette code correcteur)\\
-	2.2. Transformation commande en TD\\
-		2.1.1. Fonctions de transferts (observateur + retour état = 2 ft)\\
-		2.1.2. Transformée en z\\		
-%	2.3. I et étude de perf\\
-%		2.3.1. Création commande TD matlab\\
-%		2.3.2. Simulation et étude de perf\\
-%		1.3.3. Conclusion et Validation\\
-3. Implémentation \\
-	3.1. Correction CAN/CNA\\
-		3.1.1. Implémentation prog récupération lu/écrite\\
-		3.1.2. Correction \\
-		3.1.3. Validation \\
-	3.2. Implémentation \\
-		3.2.1. Description taches\\
-		3.2.2. implémentation\\
-	3.3. Validation et correction 
+% \begin{LARGE}
+% Le rapport final inclura une hiérarchisation des émulations et des validations expérimentales, des justifications pour les choix matériels et logiciels, la prise en compte des informations à traiter sur une chaîne d'acquisition, un raisonnement construit pour les protocoles expérimentaux, un bilan sur le projet.\\
+% A RÉÉCRIRE.
+% \end{LARGE}
+% Plan \\
+% intro a refaire\\
+% Les 2 chapitres de théories\\
+% 1. Validation de la commande TC sur modèle NL \\
+% 	1.1. Protocoles MIL/SIL\\
+% 		1.1.1. MIL\\
+% 		1.1.2. SIL\\	
+% 	1.2. Commande temps continue\\
+% 		1.2.1 Simulation \\
+% 			1.2.1.1. Adaptation modèle (avec nl)\\
+% 			1.2.1.2. Simulation et étude de perf\\
+% 			1.2.1.3. Conclusion et Validation\\
+% 		1.2.1 Sur moteur Réel (proto rapide)\\
+% 			1.2.1.1. Adaptation modèle (avec nl)\\
+% 			1.2.1.2. test et étude de perf\\
+% 			1.2.1.3. Conclusion et Validation\\
+% 2. Commande temps discret \\
+% 	2.1. Contraintes hardware \\
+% 		2.1.1. CAN / CNA (protocole correction, temps conversion, échantillonnage bits )\\
+% 		2.1.2. C167 (ordo,taches,validation TR,temps calcul, fréquence fonctionnement)\\
+% 		2.2.3. Conclusion  (contraintes tempo, squelette code correcteur)\\
+% 	2.2. Transformation commande en TD\\
+% 		2.1.1. Fonctions de transferts (observateur + retour état = 2 ft)\\
+% 		2.1.2. Transformée en z\\		
+% %	2.3. I et étude de perf\\
+% %		2.3.1. Création commande TD matlab\\
+% %		2.3.2. Simulation et étude de perf\\
+% %		1.3.3. Conclusion et Validation\\
+% 3. Implémentation \\
+% 	3.1. Correction CAN/CNA\\
+% 		3.1.1. Implémentation prog récupération lu/écrite\\
+% 		3.1.2. Correction \\
+% 		3.1.3. Validation \\
+% 	3.2. Implémentation \\
+% 		3.2.1. Description taches\\
+% 		3.2.2. implémentation\\
+% 	3.3. Validation et correction 
 
-4. Bilan 
-Dans cet UE, nous devons réaliser la commande d’un système temps réel du prototypage à l'implémentation sur un microcontrôleur : nous devons asservir un banc de moteurs à courant continu à l'aide d'un micro-contrôleur C167. 
+% 4. Bilan 
+Pour l'UE \emph{Conception et mise en œuvre de Commande à temps réel}, nous devons réaliser la commande d’un système temps réel, à partir de la modélisation du procédé jusqu'à l'implémentation sur un micro-contrôleur. 
 
-Ce premier rapport contient toute la partie théorique. Celle-ci est décomposée dans les trois premiers chapitres et un dernier chapitre qui détaille la suite des étapes à réaliser.
+Notre problématique est la suivante : asservir un banc de moteurs à courant continu via un micro-contrôleur C167. Pour y parvenir, nous allons utiliser des références du Master EEA ISTR, 1er et 2ème année, ainsi que des ressources matérielles et logicielle disponibles dans les salles de TP de l'université. L'objectif de ce rapport est de vous présenter l'ensemble de nos travaux pour répondre à cette problématique. Ceux-ci ont été séparé en deux parties qui vous sont présentés ci dessous.
+
+\paragraph*{Première partie}
+La première partie de ce rapport contient toute la partie théorique. Celle-ci est décomposée dans les trois premiers chapitres dont nous faisons la liste ci dessous.
 
 Le \emph{chapitre \ref{chap:modelisation} : Modélisation} contient l'étude physique qui nous a été donné en cours, le modèle le plus précis, non linéaire et variant, les différentes simplifications de celui-ci. 
 
 Ensuite, dans le \emph{chapitre \ref{chap:analyse} : Analyse}, nous avons effectué une analyse de nos différents modèles afin de maîtriser l’impact de nos simplifications, étudier les performances de notre systèmes et définir celles souhaitées. Nous avons réalisé cela grâce, autant que nous avons pu, a une approche théorique et grâce à des simulations.
 
 Le \emph{chapitre \ref{chap:commande} : Synthèse de commande}, qui est le dernier chapitre de la partie théorique, contient la conception de l'asservissement et l'étude des performances de celle-ci sur les différents modèles de notre système.
- 
-Dans le \emph{chapitre \ref{chap:suite} : Planification de la suite de l'asservissement }, nous détaillons comment nous allons testé la validité de nos modèles par rapport au modèle physique et les différentes étapes de la mise en \oe uvre sur micro-contrôleur. Ce chapitre nous permettra d'organiser au mieux notre démarche afin que la commande implémentée respecte bien les contraintes temps réel, garantisse la stabilité et les performances attendues tout en étant adaptée au support d'implémentation et au moteur asservi.
+
+\paragraph*{Seconde partie}
+Pour cette seconde partie, nous allons nous intéresser à l'implémentation de la commande. Nous serons dans un cadre de conception et validation de prototype à l'aide de protocole.
+
+Le \emph{chapitre \ref{chap:Validation} Validation de la commande en temps continue sur le modèle non linéaire} va permettre d'introduire les protocoles utilisés pour valider les prototype de commande. Nous verrons si, au bout de ces test, nous devons oui ou non créer d'autres prototypes pour permettre la commande du système.
+
+Dans le \emph{chapitre \ref{chap:commandeTempsDiscret} Commande à temps discret}, nous étudierons les moyens à notre disposition pour rendre la commande à temps discret.
+
+Enfin, le \emph{chapitre \ref{:chap:Implementation}, Implémentation} portera sur la programmation de la loi de commande sur le C167. Nous devons alors pour cela, relever les problématiques liés à l’électronique et l'informatique.
+
+
+% Dans le \emph{chapitre \ref{chap:suite} : Planification de la suite de l'asservissement }, nous détaillons comment nous allons testé la validité de nos modèles par rapport au modèle physique et les différentes étapes de la mise en \oe uvre sur micro-contrôleur. Ce chapitre nous permettra d'organiser au mieux notre démarche afin que la commande implémentée respecte bien les contraintes temps réel, garantisse la stabilité et les performances attendues tout en étant adaptée au support d'implémentation et au moteur asservi.
 
  % from sillabus :  les étudiants apprendront à réaliser la commande d’un système temps réel de bout en bout, du prototypage à la mise en œuvre sur un calculateur numérique (type microcontrôleur). Pour cela, ils apprendront à tenir compte des contraintes matérielles de la chaîne de contrôle-commande (i.e. du calculateur au procédé) pour effectuer le bon choix des différentes interfaces et de la meilleure architecture logicielle.
