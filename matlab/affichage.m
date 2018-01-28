@@ -77,7 +77,9 @@ figure (8)
 %%
 %%
 simuEE0=simu;
+%%
 simuEE1=simu;
+%%
 simuEE2=simu;
 figure (9)
     plot(simuEE0.time,simuEE0.signals.values(:,1),'k',...%ref

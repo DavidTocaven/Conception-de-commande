@@ -1,10 +1,5 @@
 \chapter{Commande temps discret}
-Afin d'implémenter la commande,  nous allons adapter la commande de façon à ce qu'elle soit implémentable sur le micro-contrôleur. Ensuite, nous évaluerons cette transformation. Voici, ci-dessous figure \ref{fig:GeneralSCHEMA}, le schéma général des différents éléments.	
-
-	  	
-	  	
-	  	
-
+Afin d'implémenter la commande, nous allons adapter la commande de façon à ce qu'elle soit exécutable sur le micro-contrôleur. Ensuite, nous évaluerons cette transformation. Nous avons choisi d'implémenter la commande par retour d'état basé observateur car c'est celle que nous avons la plus aboutie compte tenu des spécifications. 
 \section{Discrétisation de la commande}
 Nous allons à présent transformer la commande en temps continue en une forme qui permet l'implémentation sur un micro-contrôleur. Nous avons choisi de l'implémenter sous la forme d'une équation récurrente. Pour cela, dans un premier temps, nous avons transformer la commande (composée d'un observateur, d'un retour d'état et d'un pré-compensateur) en une forme espace d'états puis nous la discrétiserons. Ensuite, nous allons la transformer en une fonction de transfert pour finalement la transformer en équation récurrente.
 	\subsection{Espace d'état à temps discret de la commande}
@@ -18,7 +13,7 @@ La commande est de la forme suivante (figure \ref{fig:comTC}) :
 \end{figure}
 
 
-Voici, issue des équations \ref{equ:obs} et \ref{equ:obs2}, l'observateur simplifié (équation \ref{equ:obsSimp}).
+Voici, issue des équations \ref{equ:obs} et \ref{equ:obs2}, l'observateur simplifié (équation \ref{equ:obsSimp}). Nous avons choisi de reconstruire l'observateur avec des valeurs propres désirées accélérée $3$ fois car en simulation, cela réduit l'erreur de gain statique sur le système d'ordre 4 en boucle fermé.
 \begin{equation}
 \label{equ:obsSimp}
 \left\lbrace
@@ -54,26 +49,29 @@ Nous allons rassembler ces équations afin de créer un nouvel espace d'état:
 \left\lbrace
 \begin{aligned}
 &\dot z (t) = (F-KB)z(t) + 
-\begin{bmatrix} G &  BN \end{bmatrix}  
-\begin{bmatrix} V_S(t) \\ V_{ref}(t)  \end{bmatrix}  
+\begin{bmatrix} BN &  G  \end{bmatrix}  
+\begin{bmatrix}  V_{ref}(t) \\ V_S(t) \end{bmatrix}  
 \\
 &u(t) = -Kz(t) + 
 \begin{bmatrix} N &  0 \end{bmatrix}  
-\begin{bmatrix} V_S(t) \\ V_{ref}(t)  \end{bmatrix}  
+\begin{bmatrix} V_{ref}(t) \\ V_S(t) \end{bmatrix}  
 \end{aligned}
 \right.
 \end{array}
 \end{equation}
 %2. EE(z)
-Maintenant que nous avons exprimer la commande sous la forme d'un espace d'état, avec pour entrées $V_{ref}(t)$ la consigne et $V_S(t)$, la sortie de position mesurée, nous pouvons discrétisé la commande. Nous avons choisis de discrétiser la commande grâce à matlab, avec l'option \emph{tustin} afin d'avoir une commande la plus fidèle possible à celle en temps continue.
+Maintenant que nous avons exprimer la commande sous la forme d'un espace d'état, avec pour entrées $V_{ref}(t)$ la consigne et $V_S(t)$, la sortie de position mesurée, nous pouvons discrétiser la commande. Nous avons choisis de discrétiser la commande grâce à matlab, avec l'option \emph{zoh} afin de discrétiser la commande avec un bloqueur d'ordre 0 : \begin{equation}
+ B_O(p)=\frac{1 - e^{-pT_e}}{p}
+ \end{equation}
+ Où $Te=0.052$ secondes, c'est a dire $5.2$ fois la fréquence maximale propre au moteur (voir chapitre \ref{chap:implem}.
 Cela donne la commande à temps discret suivante :
 \begin{equation}
 \label{equ:EEcomTD}
 \begin{array}{rl}
 & \left\lbrace
 \begin{array}{rclcl}
-z(z-1) 	&=& A z(z) &+& B \begin{bmatrix} V_S(t) \\ V_{ref}(t)  \end{bmatrix}  \\
-u(z)  	&=& C z(z) &+& D \begin{bmatrix} V_S(t) \\ V_{ref}(t)  \end{bmatrix}  
+z(z-1) 	&=& A z(z) &+& B \begin{bmatrix} V_{ref}(t) \\ V_S(t)  \end{bmatrix}  \\
+u(z)  	&=& C z(z) &+& D \begin{bmatrix} V_{ref}(t) \\ V_S(t)  \end{bmatrix}  
 \end{array}
 \right.\\
 &\\
@@ -82,45 +80,53 @@ u(z)  	&=& C z(z) &+& D \begin{bmatrix} V_S(t) \\ V_{ref}(t)  \end{bmatrix}
 \begin{array}{rclcclc}
 z(z-1) 	&=& 
 \begin{bmatrix}
-0.7679 		&  0.03725\\
--0.00193   	& 0.6207
+-23.05   	&   1\\
+-88.94    	&  	-9
 \end{bmatrix} &z(z) 
 &+& \begin{bmatrix}
-0.08301  &  0.2089\\
-3.612  	 &	0.001737
+0  		&	20.74\\
+85.71 	&	80.05
 \end{bmatrix} 
-&\begin{bmatrix} V_S(t) \\ V_{ref}(t)  \end{bmatrix}  \\
+&\begin{bmatrix} V_{ref}(t) \\ V_S(t)  \end{bmatrix}  \\
 u(z)  	&=& \begin{bmatrix}
-8.589*10^{-05}  &  -0.07211
+0 		&	 -0.08899
 \end{bmatrix} &z(z) &+& \begin{bmatrix}
-1.35  & -7.73*10^{-05}
+1.511  	&    0
 \end{bmatrix} 
-&\begin{bmatrix} V_S(t) \\ V_{ref}(t)  \end{bmatrix}  
+&\begin{bmatrix} V_{ref}(t) \\ V_S(t)  \end{bmatrix}  
 \end{array}
 \right.
 \end{array}
 \end{equation}
+
+
+
+ 
+
+ 
+
+
 	\subsection{Équation récurrente}
 %1. EE 		= 2*tf(z)
 	Nous allons maintenant transformer l'espace d'état de l'équation \ref{equ:EEcomTD} en fonctions de transferts, à l'aide de matlab :
 \begin{eqnarray}
-\frac{u(z)}{V_s(z)} &=& \frac{1.35 z^2 - 2.135 z + 0.8435}{    z^2 - 1.389 z + 0.4767}\\
-\frac{u(z)}{V_{ref}(z)}	&=&	\frac{-7.73*10^{-05} z^2 - 8.582*10^{-21} z + 7.73*10^{-05}}{z^2 - 1.389 z + 0.4767}
+\frac{u(z)}{V_{ref}(z)}	&=&	\frac{1.511 z^2 - 1.551 z + 0.3757}{    z^2 - 0.8231 z +  0.1889}\\
+\frac{u(z)}{V_s(z)} &=& \frac{-0.1581 z + 0.1581}{    z^2 - 0.8231 z +  0.1889}
 \end{eqnarray}
 
 %2. 2*tf(z) = 1*tf(z^-1)
 
 Afin d'avoir une commande causale, nous avons passer les fonctions de transferts en $z^{-1}$ :
 \begin{eqnarray}
-\label{equ:ftTD1}\frac{u(z^{-1})}{V_s(z^{-1})} &=& \frac{1.35  - 2.135 z^{-1} + 0.8435 z^{-2}}{    1 - 1.389 z^{-1} + 0.4767 z^{-2}}\\
-\label{equ:ftTD2}\frac{u(z^{-1})}{V_{ref}(z^{-1})}	&=&	\frac{-7.73*10^{-05} - 8.582*10^{-21} z^{-1} + 7.73*10^{-05} z^{-2}}{    1 - 1.389 z^{-1} + 0.4767 z^{-2}}
+\label{equ:ftTD1}\frac{u(z^{-1})}{V_{ref}(z^{-1})} &=& \frac{1.511 - 1.551 z^{-1} + 0.3757 z^{-2}}{    1 - 0.8231 z^{-1} +  0.1889z^{-2}}\\
+\label{equ:ftTD2}\frac{u(z^{-1})}{V_s(z^{-1})}	&=&	\frac{-0.1581 z^{-1} + 0.1581z^{-2}}{    1 - 0.8231 z^{-1} +  0.1889z^{-2}}
 \end{eqnarray}
 Nous avons ensuite, à partir des équations \ref{equ:ftTD1} et  \ref{equ:ftTD2}, créer une seule équation :
 \begin{equation}
 \label{equ:eqTDz-}
 \begin{array}{lcl}
-u(z^{-1})(1 - 1.389 z^{-1} + 0.4767 z^{-2}) &=& (1.35  - 2.135 z^{-1} + 0.8435 z^{-2})  V_s(z^{-1}) \\
-&&+ (-7.73*10^{-05} - 8.582*10^{-21} z^{-1} + 7.73*10^{-05} z^{-2})V_{ref}(z^{-1})
+u(z^{-1})(1 - 0.8231 z^{-1} +  0.1889 z^{-2}) &=& (1.511 - 1.551 z^{-1} + 0.3757 z^{-2})  V_{ref}(z^{-1}) \\
+&&+ (-0.1581 z^{-1} + 0.1581z^{-2})V_{s}(z^{-1})
 \end{array}
 \end{equation}
 Nous avons maintenant une seule équation pour représenter la commande à temps discret.%
@@ -129,13 +135,29 @@ Il faut maintenant la transformée en équation récurrente, pour cela nous allo
 \begin{equation}
 f(z)z^n = f_{k+n}
 \end{equation}
-Cela donne, une fois réorganiser de façon a isoler la sortie $u_k$ et à partir de l'équation \ref{equ:eqTDz-} :
+Cela donne, une fois réorganiser de façon à isoler la sortie $u_k$ et à partir de l'équation \ref{equ:eqTDz-} :
 \begin{equation}
 \begin{array}{lcl}
-u_k &=&  1.389 u_{k-1} - 0.4767 u_{k-2} + 1.35Vs_{k}  - 2.135 Vs_{k-1} + 0.8435 Vs_{k-2}  \\
-&& -7.73*10^{-05}Vr_k - 8.582*10^{-21} Vr_{k-1} + 7.73*10^{-05} Vr_{k-2}
+u_k &=&  0.8231 u_{k-1} - 0.1889  u_{k-2} \\
+&& + 1.511 Vr_k - 1.551 Vr_{k-1}  + 0.3757 Vr_{k-2}\\
+&& - 0.1581 Vs_{k-1} + 0.1581 Vs_{k-2}  \\
 \end{array}
 \end{equation}
-Où,par soucis de lisibilité, $Vs = V_s$ et $Vr = V_{ref}$.
-Le coût temporel de ce calcul est au minimum de $8*400ns = 3,2 ms$.
-Maintenant que nous avons une équation implémentable sur micro contrôleur, il faut créer un code le permettant, à partir de celui fourni.
+Où, par soucis de lisibilité, $Vs = V_s$ et $Vr = V_{ref}$.
+Le coût temporel de ce calcul est au minimum de $7*400ns = 2.8 ms$.
+
+
+
+
+\section{Test de la commande en simulation}
+Afin de vérifier que la commande est bien fonctionnelle à temps discret, nous avons créer un modèle Simulink qui test la commande sous la forme d'une équation récurrente sur les modèles d'ordre 2, 3 et 4. 
+Voici, figure \ref{fig:simuER}, les réponses de ces asservissements à un signal rectangulaire d'amplitude 3 Volts.
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=.5\textwidth]{./V/images/AsserTDEqRec.pdf}
+\caption{\label{fig:simuER}Réponse des systèmes en boucle fermée asservis par équations récurrentes.}
+\end{figure}
+
+Nous pouvons voir que l'erreur statique et le temps de réponse sont important sur l'ordre 2 mais réduisent sur les ordres 3 et 4. 
+
+Maintenant que nous avons une équation implémentable sur micro-contrôleur, il faut créer un code le permettant, à partir de celui fourni.

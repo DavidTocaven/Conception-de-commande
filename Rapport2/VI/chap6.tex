@@ -1,6 +1,7 @@
 \chapter{Implémentation}
-nous avons dans un premier temps évaluer les contraintes lié au support d'implémentation et dans un second temps
-
+\label{chap:implem}
+Maintenant que nous avons nous avons dans un premier temps évaluer les contraintes lié au support d'implémentation et dans un second temps
+Voici, ci-dessous figure \ref{fig:GeneralSCHEMA}, le schéma général des différents éléments.	
 \begin{figure}[!ht]
 \centering 
 \includegraphics[width=.7\textwidth]{./V/images/schemaMO_MICRO.pdf}
@@ -25,12 +26,12 @@ Nous allons détailler deux types de conversions nécessaires à ce projet. \\
 \item La fréquence de conversion du signal analogique $f_{e}$ par rapport à la fréquence utile maximale du signal a convertir $f_{max}$. Le théorème de Shannon préconise d'avoir au moins le rapport de l'équation \ref{equ:Fshannon}, en pratique nous respecterons le rapport de l'équation \ref{equ:Freel}. Cela évite le repliement.
 \begin{eqnarray}
 \label{equ:Fshannon} f_e &>& 2*f_{max}\\
-\label{equ:Freel} f_e & \approx & 10*f_{max}
+\label{equ:Freel} f_e & \approx & 5*f_{max}
 \end{eqnarray}
-Nous avons considéré que la fréquence utile maximale de la position d'un moteur à courant continue est d'environ $f_{max} = 100Hz$. Nous avons donc prendre :
+Nous avons considéré que la fréquence utile maximale de la position d'un moteur à courant continue est d'environ $f_{max} = 100Hz$. Nous avons donc pris :
 \begin{eqnarray}
-f_e &=& 1\text{kHz}\\
-\label{equ:Te} T_e &=& 1 \text{ms}\\
+\label{equ:fe}f_e &=& 520\text{Hz}\\
+\label{equ:Te} T_e &=& 52 \text{ms}\\
 \end{eqnarray}
 \item La conversion doit être linéaire. En effet, il existe différentes erreurs possibles. Il peut y avoir un offset, une erreur de gainn une non-linéarité intégrale ou différentielle (voir figure \ref{fig:errCAN}).
 \end{itemize}
@@ -106,8 +107,8 @@ La génération de la sortie $V_M$ nécessite aussi une conversion du CNA depuis
 \begin{equation}
 \begin{array}{lcl}
 V_{red}	&=&	\frac{1}{2}V_{com}+2,5\\
-V_{CNA} &=& \frac{10}{2^{12}-1}V_{red}-5\\
-V_{CNA} &=& \frac{V_{com}}{819} - \frac{4090}{819}
+V_{CNA} &=& \frac{2^{11}-1}{5}V_{red}+2048\\
+V_{CNA} &=& \left\lfloor 204.7 V_{com} + 3071.5 \right\rfloor
 \end{array}
 \end{equation}	
 \begin{figure}[!ht]%

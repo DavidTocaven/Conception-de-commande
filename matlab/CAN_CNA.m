@@ -31,7 +31,6 @@ figure(1)
         %axis([-5.5 5.5 -10 2050])
         grid on
 
-%% A Finir        
 %% convertion CNA
 % input
 cna.in.type ='Bits';

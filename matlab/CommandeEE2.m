@@ -7,7 +7,7 @@ vp_desire = [-4 ; - 5];
 %% observateur
 obsver.H = EE2.ee.b;
 obsver.M = eye(size(EE2.ee.a));
-obsver.vp =  3*vp_desire; %*3
+obsver.vp =     vp_desire; %*3
 obsver.G = place(EE2.ee.a', EE2.ee.c(2,:)', obsver.vp)'; % Ne pas utiliser acker
 %%
 obsver.F = EE2.ee.a - obsver.G*EE2.ee.c(2,:);
@@ -146,13 +146,13 @@ bode(EE2_bf.ee(3),EE0_bf.ee(3), EE1_bf.ee(3))
 N = 1/(EE2_bf.gain);
 %% Bloc de commande
 Te = 0.052;
-%% input : 
+%% input : [Vref Vs];
 CommTD.a = obsver.F-EE2.ee.b*K;
 CommTD.b = [EE2.ee.b*N obsver.G];
 CommTD.c = -K;
 CommTD.d = [N 0];
 CommTD.ee = ss(CommTD.a, CommTD.b, CommTD.c, CommTD.d);
-CommTD.zz = c2d(CommTD.ee, Te, 'tustin');
+CommTD.zz = c2d(CommTD.ee, Te, 'zoh');
 CommTD.ft=tf(CommTD.zz);
 ftRef=CommTD.ft(1);
 ftVs=CommTD.ft(2);
