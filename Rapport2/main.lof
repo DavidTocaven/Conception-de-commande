@@ -34,13 +34,17 @@
 \contentsline {figure}{\numberline {6.5}{\ignorespaces Valeurs possibles et possibles du CAN\relax }}{30}{figure.caption.25}
 \contentsline {figure}{\numberline {6.6}{\ignorespaces Valeurs possibles et possibles du CNA\relax }}{30}{figure.caption.26}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {7.1}{\ignorespaces Sous syst\IeC {\`e}me de commande avec action Int\IeC {\'e}grale\relax }}{40}{figure.caption.32}
-\contentsline {figure}{\numberline {7.2}{\ignorespaces Sch\IeC {\'e}ma \emph {SIMULINK} complet de l'asservissement du mod\IeC {\`e}le du moteur Non lin\IeC {\'e}aire\relax }}{41}{figure.caption.35}
-\contentsline {figure}{\numberline {7.3}{\ignorespaces Sch\IeC {\'e}ma \emph {SIMULINK} du \emph {sub-system} de commande\relax }}{41}{figure.caption.36}
-\contentsline {figure}{\numberline {7.4}{\ignorespaces Mesure de simulation de l'erreur entre la r\IeC {\'e}f\IeC {\'e}rence et la sortie $V_s$ du mod\IeC {\`e}le Non lin\IeC {\'e}aire\relax }}{42}{figure.caption.37}
-\contentsline {figure}{\numberline {7.5}{\ignorespaces Mesure de simulation de l'erreur entre la r\IeC {\'e}f\IeC {\'e}rence et la sortie $V_s$ du mod\IeC {\`e}le Non lin\IeC {\'e}aire zoom\IeC {\'e}}}{42}{figure.caption.38}
-\contentsline {figure}{\numberline {7.6}{\ignorespaces Sch\IeC {\'e}ma des blocs $Simulink$ de l'\IeC {\'e}mulation de la commande sur moteur r\IeC {\'e}el\relax }}{43}{figure.caption.39}
-\contentsline {figure}{\numberline {7.7}{\ignorespaces \emph {SIMULINK :} Mod\IeC {\`e}le g\IeC {\'e}n\IeC {\'e}ral\relax }}{44}{figure.caption.42}
-\contentsline {figure}{\numberline {7.8}{\ignorespaces \emph {SIMULINK :} Subsystem des mod\IeC {\`e}les\relax }}{44}{figure.caption.43}
-\contentsline {figure}{\numberline {7.9}{\ignorespaces \emph {SIMULINK :} Subsystem de la commande par fonctions de transferts\relax }}{44}{figure.caption.44}
-\contentsline {figure}{\numberline {7.10}{\ignorespaces \emph {SIMULINK :} Subsystem de la commande par \IeC {\'e}quation r\IeC {\'e}currente\relax }}{45}{figure.caption.45}
+\contentsline {figure}{\numberline {7.1}{\ignorespaces Sous syst\IeC {\`e}me de commande avec action Int\IeC {\'e}grale\relax }}{41}{figure.caption.32}
+\contentsline {figure}{\numberline {7.2}{\ignorespaces Sch\IeC {\'e}ma \emph {SIMULINK} complet de l'asservissement du mod\IeC {\`e}le du moteur Non lin\IeC {\'e}aire\relax }}{42}{figure.caption.35}
+\contentsline {figure}{\numberline {7.3}{\ignorespaces Sch\IeC {\'e}ma \emph {SIMULINK} du \emph {sub-system} de commande\relax }}{42}{figure.caption.36}
+\contentsline {figure}{\numberline {7.4}{\ignorespaces Mesure de simulation de l'erreur entre la r\IeC {\'e}f\IeC {\'e}rence et la sortie $V_s$ du mod\IeC {\`e}le Non lin\IeC {\'e}aire\relax }}{43}{figure.caption.37}
+\contentsline {figure}{\numberline {7.5}{\ignorespaces Mesure de simulation de l'erreur entre la r\IeC {\'e}f\IeC {\'e}rence et la sortie $V_s$ du mod\IeC {\`e}le Non lin\IeC {\'e}aire zoom\IeC {\'e}}}{43}{figure.caption.38}
+\contentsline {figure}{\numberline {7.6}{\ignorespaces Sch\IeC {\'e}ma des blocs $Simulink$ de l'\IeC {\'e}mulation de la commande sur moteur r\IeC {\'e}el\relax }}{44}{figure.caption.39}
+\contentsline {figure}{\numberline {7.7}{\ignorespaces \emph {SIMULINK :} Mod\IeC {\`e}le g\IeC {\'e}n\IeC {\'e}ral\relax }}{45}{figure.caption.42}
+\contentsline {figure}{\numberline {7.8}{\ignorespaces \emph {SIMULINK :} Subsystem des mod\IeC {\`e}les\relax }}{45}{figure.caption.43}
+\contentsline {figure}{\numberline {7.9}{\ignorespaces \emph {SIMULINK :} Subsystem de la commande par fonctions de transferts\relax }}{45}{figure.caption.44}
+\contentsline {figure}{\numberline {7.10}{\ignorespaces \emph {SIMULINK :} Subsystem de la commande par \IeC {\'e}quation r\IeC {\'e}currente\relax }}{46}{figure.caption.45}
+\contentsline {figure}{\numberline {7.11}{\ignorespaces \emph {SIMULINK :} Mod\IeC {\`e}le g\IeC {\'e}n\IeC {\'e}ral\relax }}{48}{figure.caption.48}
+\contentsline {figure}{\numberline {7.12}{\ignorespaces \emph {SIMULINK :} Subsystem des mod\IeC {\`e}les\relax }}{48}{figure.caption.49}
+\contentsline {figure}{\numberline {7.13}{\ignorespaces \emph {SIMULINK :} Subsystem de la commande par fonctions de transferts\relax }}{48}{figure.caption.50}
+\contentsline {figure}{\numberline {7.14}{\ignorespaces \emph {SIMULINK :} Subsystem de la commande par \IeC {\'e}quation r\IeC {\'e}currente\relax }}{49}{figure.caption.51}
