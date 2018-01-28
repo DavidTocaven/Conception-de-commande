@@ -1,6 +1,8 @@
 \chapter{Implémentation}
 \label{chap:implem}
-Maintenant que nous avons nous avons dans un premier temps évaluer les contraintes lié au support d'implémentation et dans un second temps
+Maintenant que nous disposons des loi de commande discrétiser, il est possible de passer à l'étape d'implémentation. Nous avons dans un premier temps évaluer les contraintes lié au support d'implémentation puis, dans un second temps, étudié les transformation nécessaire de la commande pour être implanté dans un micro-contrôleur. Enfin, nous allons aborder l'implémentation en elle même dans le langage visé.
+
+
 Voici, ci-dessous figure \ref{fig:GeneralSCHEMA}, le schéma général des différents éléments.	
 \begin{figure}[!ht]
 \centering 
@@ -49,10 +51,10 @@ t_{CAN} &=& 14*t_{cc} + 2*t_{sc} + 4*TLC \\
 %T_{CNA} &=& %% TODO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% /!\  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{eqnarray}
 
-Par manque de temps, nous n'avons pas eu le temps mettre en place un protocole complet d'étude des erreurs de conversions, nous avons uniquement émis des valeurs avec le CNA et les avons lu avec le CAN afin que les valeurs mesurées et générées correspondent à peu prés à celles désirées. Nous avons fait ceci pour 1000 valeurs. Nous avons réaliser ce test pour les deux micro-contrôleurs et cela donne des résultats différents. La figure \ref{fig:errCAN_1} est le résultat de l'analyse du micro-contrôleur de gauche en salle de TP. Nous voyons que la conversion est assez mauvaise, d'autres tests ont mis en évidence que le problème vient du CAN : de multiples lectures d'une tension constante donnent des résultats avec une variation importante, trop pour être du bruit numérique ou électromagnétique. Nous avons ré effectué le même test sur le second micro-contrôleur (celui de droite) et, figure \ref{fig:errCAN}, on remarque qu'il y a deux saturations : avant $E1$ et après $E2$. Entre les deux, la conversion est à peu près constante. Le second C167 est donc plus fiable en terme de lecture et d'écriture de tensions.
+Par manque de temps, nous n'avons pas pu mettre en place un protocole complet d'étude des erreurs de conversions, nous avons uniquement émis des valeurs avec le CNA et les avons lu avec le CAN afin que les valeurs mesurées et générées correspondent à peu prés à celles désirées. Nous avons fait ceci pour 1000 valeurs. Nous avons réaliser ce test pour les deux micro-contrôleurs et cela donne des résultats différents. La figure \ref{fig:errCAN_1} est le résultat de l'analyse du micro-contrôleur de gauche en salle de TP. Nous voyons que la conversion est assez mauvaise, d'autres tests ont mis en évidence que le problème vient du CAN : de multiples lectures d'une tension constante donnent des résultats avec une variation importante, trop pour être du bruit numérique ou électromagnétique. Nous avons ré effectué le même test sur le second micro-contrôleur (celui de droite) et, figure \ref{fig:errCAN}, on remarque qu'il y a deux saturations : avant $E1$ et après $E2$. Entre les deux, la conversion est à peu près constante. Le second C167 est donc plus fiable en terme de lecture et d'écriture de tensions.
 
 
-Cette approche présente l'avantage d'être rapide mais elle est néanmoins peu précise. En effet, les erreurs du CAN peuvent être masqués par celles du CNA et inversement. Elle ne permet non plus de savoir d'où vient le problème, à moins d'effectuer d'autres expériences. 
+Cette approche présente l'avantage d'être rapide mais elle est néanmoins peu précise. En effet, les erreurs du CAN peuvent être masqués par celles du CNA et inversement. Elle ne permet pas de savoir d'où vient le problème, à moins d'effectuer d'autres expériences sur le CAN et/ou le CNA.
 \begin{figure}[!ht]
 \begin{minipage}[t]{.48\textwidth}
 
@@ -90,8 +92,7 @@ Un protocole de test complet aurait été :\\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% /!\  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% /!\  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% /!\  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	\subsection{Conclusion}
-	  	(contraintes tempo, squelette code correcteur)
+
 
 
 \section{Transformation CAN/CNA}
@@ -127,7 +128,14 @@ V_{CNA} &=& \left\lfloor 204.7 V_{com} + 3071.5 \right\rfloor
 
 %	\subsection{Implémentation d'un programme de test des convertisseurs}
 %	\subsection{Correction}
-\section{Implémentation}	
+\section{Implémentation sur micro-contrôleur}	
+Nous souhaitons dans cette partie vous présenter comment nous avons aborder l'implémentation des commandes sur le micro-contrôleur. Nous aborderons dans un premier temps une revue des tâches que nous avons utilisées. 
 		\subsection{Description des taches}
+		Une première tâche sera dédié à la génération d'un échelon. Nous souhaitons observer des changements de front de la consigne, c'est pourquoi il est intéressant de faire évoluer cette consigne périodiquement. Dans cette tâche, qui déroule du squelette obtenu sur les fichiers sources, nousallons avoir le déroulement du 
+		 
+		
+		%	Acquisition 
+		%	ref : CAN/CNA
+		%         Conversion
 		\subsection{implémentation}
 		\subsection{Validation et correction}
