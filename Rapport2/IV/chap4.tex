@@ -21,7 +21,7 @@ Dans cette partie, nous allons expliquer les démarches que nous utiliserons pou
 	%			The PLAN
 	\begin{center}
 	A présent, nous pouvons commencer à tester les prototypes de commandes du moteur sur des modèles plus complexe : nous disposons pour cela d'un modèle non linéaire ainsi que d'un banc moteur. Nous suivront les consignes que nous venons de présenter en \ref{sec:prtocoleMIL_SIL}, en commençant par présenter le moyen utilisé pour adapter la simulation. 
-	Comme il est évoqué dans le titre de cette section, nous sommes ici en temps continu. Les hypothèses pour la discrétisation ne sont pas traités dans cette partie, nous avons choisi de construire le prototype de commande à temps discret quand nous aurons d'abord validé complètement la commande en temps continu, et que nous auront présenté toutes les contraintes que la discrétisation devra surmonter. 
+	Comme il est évoqué dans le titre de ce chapitre, nous sommes ici en temps continu. Les hypothèses pour la discrétisation ne sont pas traités dans cette partie, nous avons choisi de construire le prototype de commande à temps discret quand nous aurons d'abord validé complètement la commande en temps continu, et que nous auront présenté toutes les contraintes que la discrétisation devra surmonter. 
 	\end{center}
 	%% TODO - ref vers parti discrétisation.
 	\section{Simulation sur Modèle Non linéaire}
@@ -78,15 +78,15 @@ Nous observons sur cette figure que le changement de seuil de la tension $V_s$ f
 
 %\paragraph{Prototype 1}
 \subsubsection{Prototype 1}
-Nous avons changé les valeurs propres de l'observateur pour les faire correspondre avec les valeurs propres désirés. 		
+Nous avons changé les valeurs propres de l'observateur pour les faire correspondre avec les valeurs propres désirées. 		
 		% Changement des valeurs propres.
 			
 		% Nouvelle simulation.
-Une nouvelle simulation faite sur ce nouveau prototype nous donne les résultats montré dans la figure \ref{fig:fig:repNL_proto1}. Nous pouvons voir une erreur sur le régime permanent qui subsiste toujours. Ce léger décalage devrait pouvoir être corrigé sur un modèle linéaire avec un ajout d'un gain pur compenser ce manque. Or, nous sommes sur un modèle non linéaire et cette méthode ne peut pas fonctionner.
+Une nouvelle simulation faite sur ce nouveau prototype nous donne les résultats montrés dans la figure \ref{fig:repNL_proto1}. Nous pouvons voir une erreur sur le régime permanent qui subsiste toujours. Ce léger décalage devrait pouvoir être corrigé sur un modèle linéaire avec un ajout d'un gain pour compenser ce manque. Or, nous sommes sur un modèle non linéaire et cette méthode ne peut pas fonctionner.
 
 
 Un zoom sur l'erreur du régime permanent, disponoble en annexe \ref{annex:modl_NL_SIMULINK} - figures \ref{fig:SIMULINK_NL_erreur_reponse} et \ref{fig:SIMULINK_NL_erreur_reponse_zoom}, nous indque que pour une consigne $y_{ref} = 3$, nous obtenons $V_m(t_f)\approx 2.85$. Nous avons donc une erreur en régime statique \begin{align*}
-\epsilon_y = y_{ref}-V_m(t_f) = 0.15 \text{, qui correspond pour la consgne demandée à : } \epsilon = \frac{\epsilon_y}{y_{ref}}5\%
+\epsilon_y = y_{ref}-V_m(t_f) = 0.15 \text{, qui correspond pour la consgne demandée à : } \epsilon = \frac{\epsilon_y}{y_{ref}} = 5\%
 \end{align*}
 Avant de terminer l'analyse de ce prototype, nous nous intéressons au signal de commande envoyé sur l'émulation du moteur. Celle ci se trouve dans la figure \ref{fig:comNL_proto1}. 
 
@@ -144,7 +144,7 @@ Nous posons ensuite la nouvelle loi de commande :\begin{equation}
  		Nous annulons encore le retour de la vitesse dans la chaine directe. Nous allons maintenant effectuer des simulations de ce nouveau retour sur le modèle linéaire. Une fois les simulations validés, nous pourrons passer à la validation de ce nouveau prototype sur un modèle non linéaire.
 		%\subsubsection{Simulation de l'action intégrale sur modèle linéaire et non linéaire}
 		\subsection{Simulation de l'action intégrale sur modèle linéaire et prototype sur modèle non linéaire}
-		Les simulations que nous avons effectué de ce retour d'état ont été faites uniquement sur le modèle linéaire d'ordre 4 qui est, de par son ordre, le plus complexe des modèle linéaire à notre disposition. Nous avons effectué les simulations avec l'environnement \emph{SIMULINK}, le schéma du retour est disponible en annexe \ref{Annex:SIMULINK_RE}, figure \ref{fig:sousSystemeRI}. Dans ces schémas, nous n'avons pas mesuré la vitesse du moteur, nous l'avons reconstruit. Le signal de $y_{mes}$ ne peut pas être la vitesse car inaccessible au mesure. Nous sommes donc obligés de reconstruire ce signal, via l'observateur en utilisant $\hat{x}$.	 
+		Les simulations sur modèle linéaire que nous avons effectué de ce retour d'état ont été faites uniquement sur le modèle d'ordre 4 qui est, de par son ordre, le plus complexe des modèle linéaire à notre disposition. Nous avons effectué les simulations avec l'environnement \emph{SIMULINK}, le schéma du retour est disponible en annexe \ref{Annex:SIMULINK_RE}, figure \ref{fig:sousSystemeRI}. Dans ces schémas, nous n'avons pas mesuré la vitesse du moteur, nous l'avons reconstruit. Le signal de $y_{mes}$ ne peut pas être la vitesse car inaccessible au mesure. Nous sommes donc obligés de reconstruire ce signal, via l'observateur en utilisant $\hat{x}$.	 
 		
 
 Nous obtenons les courbes présentés en figures \ref{fig:rep_RI_lineaire} et \ref{fig:com_RI_lineaire}.
@@ -165,7 +165,7 @@ Nous obtenons les courbes présentés en figures \ref{fig:rep_RI_lineaire} et \r
 Comme nous le disions précédemment, le signal utilisé pour faire converger de l'erreur du régime statique est un signal reconstitué grâce à l'observateur. Cependant, il prend aussi les inconvénients de celui ci. Nous avions remarqué que l'observateur disposait d'une dynamique de reconstruction erroné(\ref{sub:etudeTransfertErreurCommande}), nous la retrouvons ici dans cette simulation.
 		La commande appliquée est tout à fait convenable, elle ne dépasse pas la référence ce qui signifie qu'il est possible d'augmenter cette référence. Le temps de réponse n'a pas pu être mesuré correctement, cependant les observations de la figure \ref{fig:rep_RI_lineaire} nous montrent que le régime statique est atteint quand la simulation dépasse les 1 seconde.
 		\subsubsection{Prototype 2}
-		Nous avons choisi de mettre ce nouveau l'asservissement dans un nouveau prototype. Il est donc composé d'un retour d'état avec une action intégrale. Pour le valider, nous allons maintenant le simuler sur le modèle non linéaire qui a été introduit pour les deux premiers prototypes. Nous pouvons observer les résultats sur les deux figures \ref{fig:rep_RI_Nonlineaire} pour le signal de performances $Vg(t)$ et \ref{fig:com_RI_Nonlineaire} pour la commande $u(t)$ qui est envoyé dans le procédé non linéaire.
+		Nous avons choisi de mettre cette nouvelle commande dans un nouveau prototype. Il est donc composé d'un retour d'état avec une action intégrale. Pour le valider, nous allons maintenant le simuler sur le même modèle non linéaire qui a été introduit pour les deux premiers prototypes. Nous pouvons observer les résultats sur les deux figures \ref{fig:rep_RI_Nonlineaire} pour le signal de performances $Vg(t)$ et \ref{fig:com_RI_Nonlineaire} pour la commande $u(t)$ qui est envoyé dans le procédé non linéaire.
 		\begin{figure}[!ht]
 		\begin{minipage}{.5\textwidth}
 		\includegraphics[width = \textwidth]{./IV/images/rep_RI_NonLineaire.pdf}
@@ -176,10 +176,9 @@ Comme nous le disions précédemment, le signal utilisé pour faire converger de
 \caption{Commande du système Non linéaire asservis avec un retour d'état avec action intégrale\label{fig:com_RI_Nonlineaire}}
 \end{minipage}
 		\end{figure}
-		Sur ces courbes, nous pouvons noter que l'erreur du régime statique est, cette fois ci, $\epsilon_y = 3 - 2.885 = 0.115$, soit, $\epsilon = 3.8\%$. Cette valeur est inférieure à tous les prototypes testés jusqu'à présent, il s'agit donc du meilleur prototype en régime permanent. Le temps de monté est lui aussi respecté et nous n'avons pas d'oscillations. Nous pouvons juger notre commande comme valide.
+		Sur ces courbes, nous pouvons noter que l'erreur du régime statique est, cette fois ci, $\epsilon_y = 3 - 2.885 = 0.115$, soit, $\epsilon = 3.8\%$. Cette valeur n'est pas inférieure à tous les prototypes testés jusqu'à présent, cependant le signal de commande $u(t)$ ne dépasse pas $y_{ref}$, donc les limites d'amplitude de la commande ne seront pas dépassé. Le temps de monté est lui aussi respecté et nous n'avons pas d'oscillations. La validation de ce prototype n'est pas tout à fait donné, mais nous savons qu'avec l'erreur de reconstruction de $\omega$, obtenir une erreur en régime statique non nul demande la création d'un modèle beaucoup plus perfectionné.
 		\subsection{Conclusion et Validation}
-	Les 3 prototypes qui ont sont ressortis du \emph{Model in the loop} n'ont pas tous la même valeurs. Nous avons donc un prototype 0 qui est possède un observateur avec de mauvaises valeurs propres. Nous avons aussi un autre prototype qui lui dispose d'un bonne dynamique en régime transitoire mais n'a pas de bon régime permanent. Enfin, le prototype 2, dispose aussi d'un très bon régime transitoire mais il n'attend pas l'idéal d'une erreur nulle en régime permanent. 
-	
+	Les 3 prototypes qui ont sont ressortis du \emph{Model in the loop} n'ont pas tous la même valeurs. Nous avons, pour résumé, un prototype 0 possède un observateur avec de mauvaises valeurs propres, et fait osciller la reconstruction des états. Nous disposons aussi d'un autre prototype qui lui contient une bonne dynamique en régime transitoire mais n'a pas un bon régime permanent. Enfin, le prototype 2, dispose aussi d'un très bon régime transitoire mais il n'attend pas l'idéal d'une erreur nulle en régime permanent. 
 	
 	
 	

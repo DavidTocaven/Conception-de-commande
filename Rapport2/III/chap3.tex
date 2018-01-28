@@ -7,13 +7,13 @@ Après l'étude que nous venons de réaliser sur notre système, nous allons ici
 \item Pas d'oscillations
 \item Temps de réponse inférieur à 1 seconde.
 \end{itemize}
-La commande de notre système doit permettre d'asservir le système en vitesse, par rapport à une consigne. Pour respecter, nous allons réaliser un placement de valeurs propres par retour d'état.
+La commande de notre système doit permettre d'asservir le système en vitesse, par rapport à une consigne. Pour le respecter, nous allons réaliser un placement de valeurs propres par retour d'état.
 
 
 
 \subsection{Calcul du retour d'état}
 \label{sub:Calcul du retour etat}
-Pour garantir les performances dynamiques souhaitées, nous allons appliquer un placement de pôles par retour d'état. Ce réajustement des valeurs propres de la matrice dynamique du système nous permettra de répondre aux attentes du cahier des charges si le choix de celles-ci est correct. De même, nous devons choisir des valeurs propres qui ne sont pas être trop éloignées de celles du procédé, pour ne pas être trop exigeant avec la commande et le système. Nous avons avec ces spécifications choisi les valeur propres suivantes :
+Pour garantir les performances dynamiques souhaitées, nous allons appliquer un placement de pôles par retour d'état. Ce réajustement des valeurs propres de la matrice dynamique du système nous permettra de répondre aux attentes du cahier des charges si le choix de celles-ci est correct. De même, nous devons choisir des valeurs propres qui ne sont pas être trop éloignées de celles du procédé, pour ne pas être trop exigeant avec la commande et le système. Nous avons, avec ces spécifications, choisi les valeur propres suivantes :
 \begin{equation}
 \label{equation:valeurPropres}
 \lambda = \begin{pmatrix}
@@ -36,7 +36,7 @@ Ainsi la nouvelle dynamique du système est donnée par la matrice $A' = (A-BK)$
 
 
 \subsection{Observateur ordre plein sur modèle d'ordre 2\label{sub:constructionObeservateur}}
-Pour pouvoir réaliser notre commande par retour d'état, nous devons tous d'abord reconstruire l'ensemble des états du système dont nous n'avons pas accès. Dans notre cas, nous disposons d'une mesure de la position du moteur $\theta$ avec $V_s$ mais aucune mesure nécessaire pour au minimum reconstruire cet état.
+Pour pouvoir réaliser notre commande par retour d'état, nous devons tous d'abord reconstruire l'ensemble des états du système dont nous n'avons pas accès. Dans notre cas, nous disposons d'une mesure de la position du moteur $\theta$ avec $V_s$ mais pas de la vitesse du moteur, $\omega$, qui est nécessaire pour asservir le moteur.
 
 
 Nous préférons reconstruire les deux états $\Omega$ et $\theta$ à partir de $V_s$ et de l'entrée du modèle d'ordre 2 pour simplifier les calculs nécessaire à sa construction. Les équations de l'observateur sont présentées par :
@@ -49,7 +49,7 @@ Nous préférons reconstruire les deux états $\Omega$ et $\theta$ à partir de 
 \end{aligned}
 \right.
 \end{align*}
- où $x$ représente l'état du système, $\hat{x}$ l'état du système reconstruit et $\epsilon$ l'erreur d'estimation à un temps $t$. Nous souhaitons contrôler la dynamique de ce paramètres pour pouvoir estimer correctement notre système. Pour cela, nous nous interressons à : 
+ où $x$ représente l'état du système, $\hat{x}$ l'état du système reconstruit et $\epsilon$ l'erreur d'estimation à un temps $t$. Nous souhaitons contrôler la dynamique de ce paramètre pour pouvoir estimer correctement l'état de notre système. Pour cela, nous nous intéressons à : 
 \begin{eqnarray}
 &&\dot{\epsilon} = \dot{x} - \dot{\hat{x}}\\
 \label{equ:obs2}&\Leftrightarrow & \dot{\epsilon} = Ax +Bu - F\hat{x} - Gy - Hu \text{   en considérant }M=1 \text{ et } N = 0\\
@@ -88,28 +88,28 @@ N = \frac{1}{G_{Vg/y_{ref}}}
 \end{equation}
 
 
-Cependant, pour permettre un asservissement du système en vitesse $\omega$, nous devons modifier légèrement le résultat obtenu. La description telle qu'elle est donnée de ce système bouclé va asservir le système en position, à cause du changement de dynamiques de la position $\theta$ avec le retour d'état. Pour prévenir à cette mauvaise commande, nous avons annulé le retour de la mesure de position dans le système bouclé. 
+Cependant, pour permettre un asservissement du système en vitesse $\omega$, nous devons modifier légèrement le résultat obtenu. La description telle qu'elle est donnée du système bouclé va asservir le système en position, à cause du changement de dynamiques de la position $\theta$ avec le retour d'état. Pour prévenir à cette mauvaise commande, nous avons annulé le retour de la mesure de position dans le système bouclé. 
 
 
 A partir de ce modèle, nous allons être capable d'éprouver la commande obtenu de manière théorique et avec une simulation SIMULINK.
 
 \section{Validation de la commande}
 \subsection{Validation théorique}
-Pour commencer, nous allons identifier les valeurs propres de notre système \ref{eqn:systemeEE2_bf} afin de de connaitre les effets de l'observateur sur le retour d'état, même si a priori celui ci est autonome. Nous obtenons les $\lambda_i$ valeurs propres suivantes : $-5$, $-4$, $-15$ et $-12$. Nous remarquons que les $\lambda_i$ n'ont pas été modifiées : nous avons les valeurs propres désirées par la commande et nous avons celles désirées pour l'erreur d'estimation de l'observateur. 
+Pour commencer, nous allons identifier les valeurs propres de notre système afin de connaitre les effets de l'observateur sur le retour d'état, même si à priori celui ci est autonome. Nous obtenons les $\lambda_i$ valeurs propres suivantes : $-5$, $-4$, $-15$ et $-12$. Nous remarquons que les $\lambda_i$ n'ont pas été modifiées : nous avons les valeurs propres désirées par la commande et nous avons celles désirées pour l'erreur d'estimation de l'observateur. 
 
-\subsection{Simulation SIMULINK}
-Pour compléter la validation de la commande, nous avons crée un prototype avec SIMULINK pour pouvoir simuler une réponse temporelle de la commande de notre système. La description du fichier se trouve en annexe \ref{Annex:SIMULINK_RE}. Nous observons sur les figures suivantes la réponse temporelle à une référence $y_{ref} = 1$ : 
+\subsection{Simulation $SIMULINK$}
+Pour compléter la validation de la commande, nous avons crée un prototype avec $SIMULINK$ pour pouvoir simuler une réponse temporelle de la commande de notre système. La description du fichier se trouve en annexe \ref{Annex:SIMULINK_RE}. Nous observons sur les figures \ref{fig:reponsesSysAsservi} la réponse temporelle à une référence $y_{ref} = 1$ : 
 \begin{figure}[!ht]
 \begin{center}
 \includegraphics[width = \textwidth]{./III/figure/stepEE2bf.png}
-\caption{Réponse du système asservi}
+\caption{Réponse du système asservi\label{fig:reponsesSysAsservi}}
 \end{center}
 \end{figure}
 La réponse du système $Vs$ simulé correspond aux changement de dynamique que nous avons espéré. De plus, après une observation de la commande $u(t)$ appliquée sur le système, nous voyons que la tension maximale envoyée est borné dans l'ordre de grandeur des valeurs admises par le système physique. 
 
 
 \subsection{Analyse boucle fermé du modèle d'ordre 3}
-Notre commande respecte le cahier des charges, nous validons ainsi la commande pour notre modèle d'ordre 2. Nous allons maintenant valider cette même commande sur des modèles supérieur et plus complexes pour compléter sa validation. En effet, notre modèle a été très simplifié pour permettre la création du commande facilement. Si nous arrivons a prouvé que cette commande marche sur des systèmes plus complexes, alors nous aurons prouvé que les dynamiques que nous avons simplifiés ne vont pas perturbé notre commande.
+Notre commande respecte le cahier des charges, nous validons ainsi la commande pour notre modèle linéaire d'ordre 2. Nous allons maintenant analyser cette même commande sur des modèles supérieur et plus complexes pour compléter sa validation. En effet, notre modèle a été très simplifié pour permettre la création d'une commande facilement. Si nous arrivons à prouver que cette commande marche sur des systèmes plus complexes, alors nous aurons prouvé que les dynamiques que nous avons simplifiés ne vont pas perturber notre commande.
 
 \section{Validation sur les modèles d'ordre supérieur}
 \subsection{Changement de base du modèle d'ordre 3}
@@ -157,7 +157,7 @@ Maintenant, nous devons calculer $\overline{A}$, $\overline{B}$, $\overline{C}$,
 Maintenant que nous avons replacé le modèle d'état, nous pouvons commencer l'analyse de celui ci. Avec les résultats obtenus pendant les séances de TD et de cours, nous avons obtenu une relation de la dynamique de l'erreur \begin{equation}\label{eqn:erreurRecompoOrdreSup}
 \dot{\epsilon} = F\epsilon - A_2x_2
 \end{equation}
-avec $A_2$ la partie de la matrice $A$ qui lie l'état $\dot{x_1}$ à $x_2$ dans la nouvelle base. Cet élément modifie les résultats que nous avons obtenu pour le modèle d'ordre 2 en indiquant que l'évolution de l'erreur de reconstruction des états n'est plus en fonction uniquement d'elle même, mais aussi des états qui n'ont pas été reconstruits. Cette nouvelle donné va perturbé la convergence de la reconstruction de l'erreur, nous n'arriverons pas à reconstruire l'ensemble des états. 
+avec $A_2$ la partie de la matrice $A$ qui lie l'état $\dot{x}_1$ à $x_2$ dans la nouvelle base. Cet élément modifie les résultats que nous avons obtenu pour le modèle d'ordre 2 en indiquant que l'évolution de l'erreur de reconstruction des états n'est plus en fonction uniquement d'elle même, mais aussi des états qui n'ont pas été reconstruits. Cette nouvelle donné va perturbé la convergence de la reconstruction de l'erreur, nous n'arriverons pas à reconstruire l'ensemble des états. 
 
 
 Nous allons étudier les nouvelles valeurs propres du système bouclé pour vérifier si celles si correspondent toujours au cahier des charges, en modélisant un espace d'état qui admet comme vecteur d'état $x=\begin{pmatrix}
@@ -216,12 +216,12 @@ Avec les changements de base calculé précédemment, nous avons souhaité analy
 
 
 \section{Simulation $SIMULINK$ des modèles linéaires}
-Maintenant que l'observateur est prêt à être implémenter sur les modèles d'ordre 3 et 4, nous allons pouvoir commencer à exécuter des simulations des commandes de ces deux modèles. Deux choix s'offrent à nous, nous pouvons utilisé le changement de base et donc un système en espace d'état de notre système bouclé. Dans ce cas là, nous aurions accès à la vitesse asservis en fonction d'une référence. Le deuxième choix et celui qui nous semble le plus judicieux, consiste à brancher chaque élément sur un schéma $SIMULINK$. Nous avons ainsi accès à tous les échanges de signaux entre les blocs. 
+Maintenant que l'observateur est prêt à être implémenter sur les modèles d'ordre 3 et 4, nous allons pouvoir commencer à exécuter des simulations des commandes de ces deux modèles. Deux choix s'offrent à nous, nous pouvons utiliser, dans un premier cas, le changement de base et donc un système en espace d'état de notre système bouclé. Dans cette situation, nous aurions accès à la vitesse asservis en fonction d'une référence. Le deuxième choix, celui qui nous semble le plus judicieux, consiste à brancher chaque élément sur un schéma $SIMULINK$. Nous avons ainsi accès à tous les échanges de signaux entre tous les blocs. 
 
 
 Les schémas blocs que nous avons simulés sont disponibles en annexe \ref{Annex:SIMULINK_RE}. La réponse temporelle de $V_g(t)$ se trouve, pour les modèles linéaires d'ordre 2 à 3, dans la figure \ref{fig:reponseModelesLineairesSIMULINK}, ainsi que la commande qui est associé à cette réponse, en figure \ref{fig:reponseModelesLineairesSIMULINK}.\begin{figure}[!ht]
 \centering
-\includegraphics[width = .7\textwidth]{./III/figure/res_SIMULINK.png}
+\includegraphics[width = .8\textwidth]{./III/figure/res_SIMULINK.png}
 \caption{Réponses temporelles des boucles fermées sous $SIMULINK$\label{fig:reponseModelesLineairesSIMULINK}}
 \end{figure}
 
