@@ -1,13 +1,13 @@
-	 Paramètres de la commande en temps discret 
+	 Parametres de la commande en temps discret 
 
 static float my0 =  1.510621;
-static float my1 =  -2.696995;
-static float my2 =  1.203440;
+static float my1 =  -2.140479;
+static float my2 =  0.752529;
 
-static float d1 =  -1.668301;
-static float d2 =  0.694000;
+static float d1 =  -1.300908;
+static float d2 =  0.434620;
 
 static float mref0 =  0.000000;
-static float mref1 =  -0.000090;
-static float mref2 =  0.000090;
+static float mref1 =  -0.121555;
+static float mref2 =  0.121555;
 

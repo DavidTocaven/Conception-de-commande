@@ -34,6 +34,7 @@
 % pour utiliser 		% floatbarrier
 %\usepackage{placeins}
 %\usepackage{floatrow}
+\usepackage[colorinlistoftodos]{todonotes}
 \usepackage{setspace}			% Espacement entre les lignes
 \usepackage{abstract}			% Modifier la mise en page de l'abstract
 \usepackage[T1]{fontenc}		% Police et mise en page (marges) du document
@@ -53,6 +54,50 @@
 \sethlcolor{grisclair}
 \definecolor{darkgreen}{RGB}{0,100,0}
 
+%======================= Lstlisting parametres ==================
+% Langage C
+
+\lstdefinestyle{C}{
+  breaklines=true,
+  frame=L,
+  language=C,
+  keywordstyle=\bfseries\color{green!40!black},
+  commentstyle=\itshape\color{purple!40!black},
+  identifierstyle=\color{blue},
+  stringstyle=\color{orange},
+  tabsize  = 2,
+  showstringspaces=false,
+}
+% Makefile
+\lstdefinestyle{Makefile}{
+ language=[gnu] make,
+   keywordstyle=\color{teal}\textbf,
+   stringstyle=\color{blue},
+   identifierstyle=\itshape
+   }
+% Bash
+\lstdefinestyle{Bash}{
+  language=bash,
+  basicstyle=\ttfamily
+}
+% MAtlab
+\lstdefinestyle{Matlab}{
+  language=Matlab,                	  % choose the language of the code
+  basicstyle=\ttfamily,
+  numbers=left,                   % where to put the line-numbers
+  stepnumber=1,                   % the step between two line-numbers.
+  numbersep=5pt,                  % how far the line-numbers are from the code
+  backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
+  commentstyle = \color{darkgreen},
+  showspaces=false,               % show spaces adding particular underscores
+  showstringspaces=false,         % underline spaces within strings
+  showtabs=false,                 % show tabs within strings adding particular underscores
+  tabsize=2,                      % sets default tabsize to 2 spaces
+  captionpos=b,                   % sets the caption-position to bottom
+  breaklines=true,                % sets automatic line breaking
+  breakatwhitespace=true,         % sets if automatic breaks should only happen at whitespace
+  literate={á}{{\'a}}1 {è}{{\`e}}1 {é}{{\'e}}1,
+}
 
 %====================== INFORMATION ET REGLES ======================
 
