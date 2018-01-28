@@ -10,31 +10,32 @@
 \contentsline {figure}{\numberline {3.2}{\ignorespaces Transfert de la boucle ferm\IeC {\'e}, mod\IeC {\`e}le lin\IeC {\'e}aire d'ordre 3\relax }}{14}{figure.caption.9}
 \contentsline {figure}{\numberline {3.3}{\ignorespaces Transfert de la boucle ferm\IeC {\'e}, mod\IeC {\`e}le lin\IeC {\'e}aire d'ordre 4\relax }}{15}{figure.caption.10}
 \contentsline {figure}{\numberline {3.4}{\ignorespaces R\IeC {\'e}ponses de l'erreur de reconstruction de l'\IeC {\'e}tat $\omega $(vitesse) des mod\IeC {\`e}le d'ordre 2 \IeC {\`a} 4\relax }}{16}{figure.caption.11}
-\contentsline {figure}{\numberline {3.5}{\ignorespaces R\IeC {\'e}ponses temporelles des boucles ferm\IeC {\'e}es sous $SIMULINK$\relax }}{17}{figure.caption.12}
-\contentsline {figure}{\numberline {3.6}{\ignorespaces Commandes $u(t)$ associ\IeC {\'e}es aux r\IeC {\'e}sultats de la figure \ref {fig:reponseModelesLineairesSIMULINK}\relax }}{17}{figure.caption.12}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces R\IeC {\'e}ponses temporelles des boucles ferm\IeC {\'e}es sous $SIMULINK$\relax }}{16}{figure.caption.12}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Commandes $u(t)$ associ\IeC {\'e}es aux r\IeC {\'e}sultats de la figure \ref {fig:reponseModelesLineairesSIMULINK}\relax }}{17}{figure.caption.13}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Sch\IeC {\'e}ma \emph {SIMULINK} complet de l'asservissement du mod\IeC {\`e}le du moteur Non lin\IeC {\'e}aire\relax }}{19}{figure.caption.13}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Simulation r\IeC {\'e}ponse temporelle du mod\IeC {\`e}le lin\IeC {\'e}aire command\IeC {\'e} par le prototype 0\relax }}{20}{figure.caption.14}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Simulation r\IeC {\'e}ponse temporelle du mod\IeC {\`e}le lin\IeC {\'e}aire command\IeC {\'e} par le prototype 1 \relax }}{21}{figure.caption.15}
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Simulation signal de commande mod\IeC {\`e}le non lin\IeC {\'e}aire avec le prototype 1\relax }}{21}{figure.caption.15}
-\contentsline {figure}{\numberline {4.5}{\ignorespaces R\IeC {\'e}ponse temporelle du syst\IeC {\`e}me lin\IeC {\'e}aire asservis avec un retour d'\IeC {\'e}tat avec action int\IeC {\'e}grale\relax }}{22}{figure.caption.16}
-\contentsline {figure}{\numberline {4.6}{\ignorespaces Commande du syst\IeC {\`e}me lin\IeC {\'e}aire asservis avec un retour d'\IeC {\'e}tat avec action int\IeC {\'e}grale\relax }}{22}{figure.caption.16}
-\contentsline {figure}{\numberline {4.7}{\ignorespaces R\IeC {\'e}ponse temporelle du syst\IeC {\`e}me Non lin\IeC {\'e}aire asservis avec un retour d'\IeC {\'e}tat avec action int\IeC {\'e}grale\relax }}{22}{figure.caption.17}
-\contentsline {figure}{\numberline {4.8}{\ignorespaces Commande du syst\IeC {\`e}me Non lin\IeC {\'e}aire asservis avec un retour d'\IeC {\'e}tat avec action int\IeC {\'e}grale\relax }}{22}{figure.caption.17}
-\contentsline {figure}{\numberline {4.9}{\ignorespaces R\IeC {\'e}ponse teporelle $V_g(t)$, commande \IeC {\'e}mul\IeC {\'e} et proc\IeC {\'e}d\IeC {\'e} r\IeC {\'e}el\relax }}{23}{figure.caption.18}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Sch\IeC {\'e}ma \emph {SIMULINK} complet de l'asservissement du mod\IeC {\`e}le du moteur Non lin\IeC {\'e}aire\relax }}{19}{figure.caption.14}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Simulation r\IeC {\'e}ponse temporelle du mod\IeC {\`e}le lin\IeC {\'e}aire command\IeC {\'e} par le prototype 0\relax }}{20}{figure.caption.15}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Simulation r\IeC {\'e}ponse temporelle du mod\IeC {\`e}le lin\IeC {\'e}aire command\IeC {\'e} par le prototype 1 \relax }}{21}{figure.caption.16}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Simulation signal de commande mod\IeC {\`e}le non lin\IeC {\'e}aire avec le prototype 1\relax }}{21}{figure.caption.16}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces R\IeC {\'e}ponse temporelle du syst\IeC {\`e}me lin\IeC {\'e}aire asservis avec un retour d'\IeC {\'e}tat avec action int\IeC {\'e}grale\relax }}{22}{figure.caption.17}
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Commande du syst\IeC {\`e}me lin\IeC {\'e}aire asservis avec un retour d'\IeC {\'e}tat avec action int\IeC {\'e}grale\relax }}{22}{figure.caption.17}
+\contentsline {figure}{\numberline {4.7}{\ignorespaces R\IeC {\'e}ponse temporelle du syst\IeC {\`e}me Non lin\IeC {\'e}aire asservis avec un retour d'\IeC {\'e}tat avec action int\IeC {\'e}grale\relax }}{22}{figure.caption.18}
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Commande du syst\IeC {\`e}me Non lin\IeC {\'e}aire asservis avec un retour d'\IeC {\'e}tat avec action int\IeC {\'e}grale\relax }}{22}{figure.caption.18}
+\contentsline {figure}{\numberline {4.9}{\ignorespaces R\IeC {\'e}ponse teporelle $V_g(t)$, commande \IeC {\'e}mul\IeC {\'e} et proc\IeC {\'e}d\IeC {\'e} r\IeC {\'e}el\relax }}{23}{figure.caption.19}
+\contentsline {figure}{\numberline {4.10}{\ignorespaces R\IeC {\'e}ponse teporelle $V_g(t)$, commande \IeC {\'e}mul\IeC {\'e} et proc\IeC {\'e}d\IeC {\'e} r\IeC {\'e}el, capture comment\IeC {\'e}e \relax }}{23}{figure.caption.19}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Sch\IeC {\'e}ma des diff\IeC {\'e}rents composants du montage.\relax }}{25}{figure.caption.19}
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Erreurs de conversions possibles sur le CAN\relax }}{26}{figure.caption.20}
-\contentsline {figure}{\numberline {5.3}{\ignorespaces Erreurs de conversions entre le CAN et le CNA (pour le C167 n\IeC {\textdegree }1)\relax }}{27}{figure.caption.21}
-\contentsline {figure}{\numberline {5.4}{\ignorespaces Erreurs de conversions entre le CAN et le CNA (pour le C167 n\IeC {\textdegree }2)\relax }}{27}{figure.caption.21}
-\contentsline {figure}{\numberline {5.5}{\ignorespaces Sch\IeC {\'e}ma de la commande par retour d'\IeC {\'e}tat \IeC {\`a} temps continue.\relax }}{28}{figure.caption.22}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Sch\IeC {\'e}ma des diff\IeC {\'e}rents composants du montage.\relax }}{25}{figure.caption.20}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Erreurs de conversions possibles sur le CAN\relax }}{26}{figure.caption.21}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Erreurs de conversions entre le CAN et le CNA (pour le C167 n\IeC {\textdegree }1)\relax }}{27}{figure.caption.22}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Erreurs de conversions entre le CAN et le CNA (pour le C167 n\IeC {\textdegree }2)\relax }}{27}{figure.caption.22}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Sch\IeC {\'e}ma de la commande par retour d'\IeC {\'e}tat \IeC {\`a} temps continue.\relax }}{28}{figure.caption.23}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {6.1}{\ignorespaces Valeurs possibles et possibles du CAN\relax }}{30}{figure.caption.23}
-\contentsline {figure}{\numberline {6.2}{\ignorespaces Valeurs possibles et possibles du CNA\relax }}{30}{figure.caption.23}
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Valeurs possibles et possibles du CAN\relax }}{30}{figure.caption.24}
+\contentsline {figure}{\numberline {6.2}{\ignorespaces Valeurs possibles et possibles du CNA\relax }}{30}{figure.caption.24}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {7.1}{\ignorespaces Sous syst\IeC {\`e}me de commande avec action Int\IeC {\'e}grale\relax }}{40}{figure.caption.33}
-\contentsline {figure}{\numberline {7.2}{\ignorespaces Sch\IeC {\'e}ma \emph {SIMULINK} complet de l'asservissement du mod\IeC {\`e}le du moteur Non lin\IeC {\'e}aire\relax }}{41}{figure.caption.38}
-\contentsline {figure}{\numberline {7.3}{\ignorespaces Sch\IeC {\'e}ma \emph {SIMULINK} du \emph {sub-system} de commande\relax }}{41}{figure.caption.39}
-\contentsline {figure}{\numberline {7.4}{\ignorespaces Mesure de simulation de l'erreur entre la r\IeC {\'e}f\IeC {\'e}rence et la sortie $V_s$ du mod\IeC {\`e}le Non lin\IeC {\'e}aire\relax }}{42}{figure.caption.41}
-\contentsline {figure}{\numberline {7.5}{\ignorespaces Mesure de simulation de l'erreur entre la r\IeC {\'e}f\IeC {\'e}rence et la sortie $V_s$ du mod\IeC {\`e}le Non lin\IeC {\'e}aire zoom\IeC {\'e}}}{42}{figure.caption.42}
-\contentsline {figure}{\numberline {7.6}{\ignorespaces Sch\IeC {\'e}ma des blocs $Simulink$ de l'\IeC {\'e}mulation de la commande sur moteur r\IeC {\'e}el\relax }}{43}{figure.caption.44}
+\contentsline {figure}{\numberline {7.1}{\ignorespaces Sous syst\IeC {\`e}me de commande avec action Int\IeC {\'e}grale\relax }}{40}{figure.caption.34}
+\contentsline {figure}{\numberline {7.2}{\ignorespaces Sch\IeC {\'e}ma \emph {SIMULINK} complet de l'asservissement du mod\IeC {\`e}le du moteur Non lin\IeC {\'e}aire\relax }}{41}{figure.caption.39}
+\contentsline {figure}{\numberline {7.3}{\ignorespaces Sch\IeC {\'e}ma \emph {SIMULINK} du \emph {sub-system} de commande\relax }}{41}{figure.caption.40}
+\contentsline {figure}{\numberline {7.4}{\ignorespaces Mesure de simulation de l'erreur entre la r\IeC {\'e}f\IeC {\'e}rence et la sortie $V_s$ du mod\IeC {\`e}le Non lin\IeC {\'e}aire\relax }}{42}{figure.caption.42}
+\contentsline {figure}{\numberline {7.5}{\ignorespaces Mesure de simulation de l'erreur entre la r\IeC {\'e}f\IeC {\'e}rence et la sortie $V_s$ du mod\IeC {\`e}le Non lin\IeC {\'e}aire zoom\IeC {\'e}}}{42}{figure.caption.43}
+\contentsline {figure}{\numberline {7.6}{\ignorespaces Sch\IeC {\'e}ma des blocs $Simulink$ de l'\IeC {\'e}mulation de la commande sur moteur r\IeC {\'e}el\relax }}{43}{figure.caption.45}

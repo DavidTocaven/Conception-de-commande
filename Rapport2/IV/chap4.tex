@@ -192,16 +192,39 @@ Pour cette étude, nous avons réutilisé le bloc de simulation utilisé pour le
 		Nous avons à notre disposition plusieurs prototypes déjà étudié en $MIL$. Cependant, nous n'utiliserons que les prototypes 1 et 2, qui disposent des meilleurs performances. Pour cette partie, nous souhaitons surtout analyser si les contraintes de temps réel sont respectés. Nous sommes dans une émulation, c'est à dire que chaque temps, entre la réception et l'émission est compté.
 		
 		%Par des soucis de mise en place de test et d'accès au matériel, nous avons été capables d'itérer une seule fois la boucle du $SIL$, sur le prototype 1. Nous aurions aimé pouvoir validé le prototype 2
-		\subsubsection{$SIL$ du Prototype 1}		
+		\subsubsection{Étude du Prototype 1}		
 		% Prototype 1
-		Les résultats obtenus sur l'émulation de la commande du prototype 1 vont vous être présentés dans cette partie. Nous avons, pour la 
-		\begin{figure}[!ht]
-		\centering
-		\includegraphics[width = .7\textwidth]{./IV/images/repNL_proto1.pdf}
-		\caption{Réponse teporelle $V_g(t)$, commande émulé et procédé réel\label{fig:rep_MoteurReel_proto1}}
+		Les résultats obtenus sur l'émulation de la commande du prototype 1 vont vous être présentés dans cette partie.
+\begin{figure}[!ht]
+\begin{minipage}{.5\textwidth}
+\includegraphics[width = \textwidth]{./IV/images/repMoteurReel_proto1.pdf}
+		\caption{Réponse teporelle $V_g(t)$, commande émulé et procédé réel\label{fig:rep_MoteurReel_proto1}}		
+\end{minipage}
+\begin{minipage}{.5\textwidth}
+\includegraphics[width = \textwidth]{./IV/images/rep_MoteurReel_proto1.pdf}
+		\caption{Réponse teporelle $V_g(t)$, commande émulé et procédé réel, capture commentée \label{fig:rep_MoteurReel_proto1zoom}}
+\end{minipage}
 \end{figure}				
-		\subsection{Conclusion et Validation}
-		
+Les observations des performances du système semblent, pour une simple analyse de cette réponse, perturbées par le temps de réponse de l'un des deux éléments du test. Nous remarquons que $V_g(t)$ est beaucoup plus lent qu'en simulation : la courbe de monté est décalé avec la consigne de manière significative. Les relevés donnent les résultats suivants : temps de montée $t_m = 2s$. Il est donc impératif de tester un nouveau prototype. 
+
+\subsubsection{Étude du Prototype 2}
+Nous n'avons pas été en mesure de valider ce prototype, pour plusieurs raisons. Nous avons été retardé lors de la simulation de ce nouveau prototype, les multiples problèmes rencontrés lors de l'implémentation \emph{SIMULINK} ne nous ont pas permis de faire des test sur le banc moteur. 
+
+\subsection{Conclusion et Validation}
+Au cours de ce chapitre, nous avons pu aborder la mise en place des validations avec les protocoles utilisés pour y arriver. Grâce à ces outils, nous avons été capable de créer 3 prototypes de commande, un premier que nous allons abandonner du fait de ses mauvais résultats sur simulation avec un procédé non linéaire. Un deuxième prototype est quand à lui validé sur le modèle non linéaire mais doit être améliorer, i.e donner d'autres prototype, pour être validé sur émulation avec le moteur réel. Le troisième et dernier prototype est pour nous le plus compliqué mais aussi celui en qui possède le plus de chance de réussir : sa construction mathématique fait de ce prototype un bloc de calcul fort et il devrait sans doute converger vers la bonne solution à notre problème.
+
+
+Nous allons maintenant passer au début de l'implémentation des prototypes sur des calculateurs électroniques. Nous devons pour cela analyser les contraintes liées à cette problématique, pour essayer d'écarter les situations qui pourrait amener nos prototypes à échouer dans la commande du moteur. Ces solutions amèneront la création de prototype qui seront des déroulements des deux prototype que nous avons gardé au bout de la $SIL$.
+
+%	Présentation des protot
+%		Résultats des tests simulation NL
+%		Résultats des test émulation
+%	Debut de l'implémentation --> temps discret/ µC
+
+
+
+
+
 %\chapter{Planification de la suite de l'asservissement}
 %\label{chap:suite}
 %Dans ce chapitre, nous allons décrire les étapes suivantes à cette étude théorique. Dans un premier temps sera présenté la validation de notre commande par tests puis il sera abordé les étapes nécessaires à l'implémentation sur micro-contrôleur et la validation finale.
