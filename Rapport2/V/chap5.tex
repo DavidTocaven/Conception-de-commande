@@ -1,4 +1,8 @@
 \chapter{Commande temps discret}
+\begin{center}
+\textit{Voir annexe \ref{Annex:comTD} pour les modèles simulink et les scripts d'affichages.\\
+Voir annexe \ref{Annex:scripts} pour le script de création de la commande à temps discret.}
+\end{center}
 Afin d'implémenter la commande, nous allons adapter la commande de façon à ce qu'elle soit exécutable sur le micro-contrôleur. Ensuite, nous évaluerons cette transformation. Nous avons choisi d'implémenter la commande par retour d'état basé observateur car c'est celle que nous avons la plus aboutie compte tenu des spécifications. 
 \section{Discrétisation de la commande}
 Nous allons à présent transformer la commande en temps continue en une forme qui permet l'implémentation sur un micro-contrôleur. Nous avons choisi de l'implémenter sous la forme d'une équation récurrente. Pour cela, dans un premier temps, nous avons transformer la commande (composée d'un observateur, d'un retour d'état et d'un pré-compensateur) en une forme espace d'états puis nous la discrétiserons. Ensuite, nous allons la transformer en une fonction de transfert pour finalement la transformer en équation récurrente.

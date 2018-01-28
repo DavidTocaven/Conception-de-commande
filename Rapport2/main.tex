@@ -43,6 +43,12 @@
 \usepackage{listings}			% pour inclure du code dans le doc
 \usepackage{soul}				% Pour surligner
 \usepackage{enumitem}
+% style de la stucture (chap, sec, ..)
+\usepackage{titlesec, blindtext, color}	
+\definecolor{gray75}{gray}{0.75}
+\newcommand{\hsp}{\hspace{20pt}}
+\titleformat{\chapter}[hang]{\Huge\bfseries}{\thechapter\hsp\textcolor{gray75}{|}\hsp}{0pt}{\Huge\bfseries}
+
 
 \sethlcolor{grisclair}
 \definecolor{darkgreen}{RGB}{0,100,0}

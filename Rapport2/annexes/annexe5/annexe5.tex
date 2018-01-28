@@ -1,9 +1,9 @@
-\chapter*{Annexe 1 - Scripts Matlab}
-\addcontentsline{toc}{chapter}{Codes Matlab}
-\setcounter{section}{0}
+\chapter*{Annexe 4 - Commande à temps discret}
+\addcontentsline{toc}{chapter}{Commande à temps discret}
+%\setcounter{section}{0}
 % **********************************
 
-\label{Annex:scripts}
+%\label{Annex:comTD}
 \lstset{
   language=Matlab,                	  % choose the language of the code
   basicstyle=\ttfamily,
@@ -22,11 +22,33 @@
   %caption=exo1.m,                 % show the filename of files included with \lstinputlisting;
   literate={á}{{\'a}}1 {è}{{\`e}}1 {é}{{\'e}}1,
 }
-\section*{Modèles et analyses}
-\addcontentsline{toc}{section}{Modèles et analyses}
-\lstinputlisting{./annexes/annexe1/espaceEtat1.m} %{language = MAtlab}
+\section*{Modèles $SIMULNK$}
+\addcontentsline{toc}{section}{Modèles $SIMULNK$}
 
-\section*{Observateur et Asservissement}
-\addcontentsline{toc}{section}{Observateur et Asservissement à temps continue et discret}
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width = \textwidth]{./annexes/annexe4/Commande_TD_general.pdf}
+	\caption{\emph{SIMULINK :} Modèle général}
+\end{figure}
 
-\lstinputlisting{./annexes/annexe1/CommandeEE2_RetourIntTD.m} %{language = MAtlab}
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width = \textwidth]{./annexes/annexe4/Commande_TD_modele.pdf}
+	\caption{\emph{SIMULINK :} Subsystem des modèles}
+\end{figure}
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width = .6\textwidth]{./annexes/annexe4/Commande_TD_comFT.pdf}
+	\caption{\emph{SIMULINK :} Subsystem de la commande par fonctions de transferts}
+\end{figure}
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width = \textwidth]{./annexes/annexe4/Commande_TD_comER.pdf}
+	\caption{\emph{SIMULINK :} Subsystem de la commande par équation récurrente}
+\end{figure}
+\section*{Script Matlab}
+\addcontentsline{toc}{section}{Modèles $SIMULNK$}
+\lstset{caption=Script d'affichage}
+\lstinputlisting{./annexes/annexe4/affichage.m}

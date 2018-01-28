@@ -106,8 +106,6 @@ EE0_obsver.ee = ss(EE0_obsver.A, EE0_obsver.B, EE0_obsver.C, EE0_c.ee.d);
 
 % Analyse du trasfert de epsilon
 EE0_obsver.vp = eig(EE0_obsver.ee);
- bodemag(EE1_obsver.ee(1))
-
 %% 
 
 
@@ -155,7 +153,7 @@ EEIntegral.K = place(EEIntegral.a, EEIntegral.b, [3*vp_desire ;-10]);
 
 
 
-%% Bloc de commande
+%% Bloc de commande temps discret
 Te = 0.026;
 %% input : 
 CommTD.a = [obsver.F-EE2.ee.b*K];
@@ -163,13 +161,12 @@ CommTD.b = [EE2.ee.b*N obsver.G];
 CommTD.c = [-K];
 CommTD.d = [N 0];
 CommTD.ee = ss(CommTD.a, CommTD.b, CommTD.c, CommTD.d);
-CommTD.zz = c2d(CommTD.ee, Te, 'tustin');
+CommTD.zz = c2d(CommTD.ee, Te, 'zoh');
 CommTD.ft=tf(CommTD.zz);
 ftRef=CommTD.ft(1);
 ftVs=CommTD.ft(2);
 %%
 ftTD=CommTD.ft(1)+CommTD.ft(2);
-%% test 
 
 %% save in file
 numY =CommTD.ft(1,1).num{1,1};
@@ -193,7 +190,7 @@ fprintf(File,'static float mref2 =  %f;\n\n',numU(3));
 
 fclose(File);
 
-%% Bloc de commande avec retour d'état intégral
+%% Bloc de commande  par retour d'état avec effet intégral
 % Etat = [x_reconstruit ; xi]
 % Sortie = u_commande
 % Entrée = [y_ref ; y]
@@ -203,17 +200,17 @@ CommTD_integral.c = [-[0 EEIntegral.K(2)] EEIntegral.K(3)];
 CommTD_integral.d = [0 0];
 CommTD_integral.ee = ss(CommTD_integral.a, CommTD_integral.b, CommTD_integral.c, CommTD_integral.d);
 % Discretisation
-CommTD_integral.td = c2d(CommTD_integral.ee,Te, 'tustin');
+CommTD_integral.td = c2d(CommTD_integral.ee,Te, 'zoh');
 %step(CommTD_integral.ee);
-%% save in file
 CommTD_integral.ft=tf(CommTD_integral.td);
 ftRef=CommTD_integral.ft(1);
 ftVs=CommTD_integral.ft(2);
 numY =CommTD_integral.ft(1,1).num{1,1};
 numU =CommTD_integral.ft(1,2).num{1,1};
 denumY = CommTD_integral.ft(1,1).den{1,1};
+%% save in file
 
-File        = fopen('Parametres_Commande_TD.txt','w+');
+File        = fopen('Parametres_Commande_int.txt','w+');
 
 fprintf(File,'\t Paramètres de la commande en temps discret \n\n');
 %ny 1 2 3

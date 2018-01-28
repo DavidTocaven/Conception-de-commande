@@ -1,6 +1,7 @@
 \chapter{Implémentation}
 \label{chap:implem}
-Maintenant que nous avons nous avons dans un premier temps évaluer les contraintes lié au support d'implémentation et dans un second temps
+Dans ce chapitre nous aborderons les problématiques lié à l'implémentation. Nous allons, dans un premier temps, évaluer les contraintes liés au support d'implémentation et dans un second temps les conversions que nous avons effectuer pour que l'entrée et la sortie de notre commande correspondent puissent être utilisé sur le micro-contrôleur. Finalement, nous expliquerons notre implémentation.\\
+
 Voici, ci-dessous figure \ref{fig:GeneralSCHEMA}, le schéma général des différents éléments.	
 \begin{figure}[!ht]
 \centering 
@@ -8,7 +9,7 @@ Voici, ci-dessous figure \ref{fig:GeneralSCHEMA}, le schéma général des diff�
 \caption{\label{fig:GeneralSCHEMA}Schéma des différents composants du montage.}
 \end{figure}
 On remarque qu'il y a 4 composants et le détail, non exhaustif, des éléments utiles de la carte \emph{microsys167-Eth}.
-Le bloc nommé moteur correspond au banc moteur présent en salle de TP. Le bloc adaptateur de tension (Puissance) est la carte qui permet de passer de la tension de commande ($0$ à $5$ Volt) vers une tension adaptée au moteur ($-5$ à $5$ Volt).
+Le bloc nommé moteur correspond au banc moteur présent en salle de TP. Le scope correspond à l'oscilloscope. Le bloc adaptateur de tension (Puissance) est la carte qui permet de passer de la tension de commande ($0$ à $5$ Volt) vers une tension adaptée au moteur ($-5$ à $5$ Volt).
 \section{Contraintes hardware} 
 Nous allons, dans cette partie, nous consacrer à une étude des contraintes matérielles. Dans un premier temps nous verrons quels sont les spécificités du micro-contrôleur. Puis, nous verrons les convertisseurs analogique/numérique et numérique/analogique et nous conclurons sur le choix du micro-contrôleur. 
 	\subsection{Micro-contrôleur C167}
@@ -17,7 +18,7 @@ Pour ce projet, nous disposons d'un micro-contrôleur \emph{C167} fabriqué par 
 Le \emph{C167} a également des entrées et des sorties numériques et analogiques. Nous allons maintenant vous parlez des problématiques de conversions.
 	\subsection{CAN / CNA}
 %		(protocole correction, temps conversion, échantillonnage bits )	
-
+\subsubsection{CAN}
 %%%% CAN			
 Nous allons détailler deux types de conversions nécessaires à ce projet. \\
 \hspace{3mm} \textbf{CAN :} (Conversion Analogique Numérique.) Durant cette opération, le convertisseur échantillonne grâce à un bloqueur (discrétisation temporelle) puis quantifie (discrétisation de l'amplitude) le signal analogique. Il restitue un signal numérique après un temps de conversion $t_{CAN}$. Nous avons besoin de ce type de convertisseur pour la lecture des entrées dans notre cas, $V_{D}$. La qualité de notre conversion dépend de plusieurs éléments : 
@@ -40,7 +41,7 @@ Nous avons considéré que la fréquence utile maximale de la position d'un mote
 \includegraphics[width=.6\textwidth]{./V/images/CAN.pdf}
 \caption{\label{fig:errCAN}Erreurs de conversions possibles sur le CAN}
 \end{figure}
-%%%% CNA 
+\subsubsection{CNA}
 \hspace{3mm} \textbf{CNA :} (Conversion Numérique Analogique.) Ici, le convertisseur transforme le signal numérique en un signal analogique après un temps de conversion $t_{CNA}$ (équation \ref{equ:tcan}). Nous avons besoin de ce type de convertisseur pour la génération de la sortie dans notre cas, $V_{s}$. La qualité de notre conversion dépend de plusieurs éléments similaires au CAN. L'entrée du CNA est un entier codé sur 12 bits et il génère une tension comprise entre $-5$ et $5$ Volts. 
 \begin{eqnarray}
 \label{equ:tcan}
@@ -95,27 +96,49 @@ Un protocole de test complet aurait été :\\
 
 
 \section{Transformation CAN/CNA}
-%can
+\subsection{CAN}
 Afin de réalisé notre commande, nous avons dût transformer la valeur entière lue pour $V_S$ par le CAN en un équivalent de la tension de type nombre à virgule flottante.  Figure \ref{fig:CAN_p}, nous pouvons observer les valeurs que peut convertir le CAN et les valeurs dont nous avons besoins. Nous n'utilisons ici que la moitié de la valeur lue par le convertisseur car nous n'avons besoin de convertir que des valeurs comprises entre $0$ et $5$ Volt. Ici, la plage de conversion est donc à moitié utilisée. 
-Dans un premier temps, nous avons décaler la valeur lue (avec un et bit a bit) afin d'avoir la valeur sur $\left[ 0 , 1023\right]$ (équation \ref{equ:CAN1}) puis  nous avons réalisé la conversion en tension avec l'équation \ref{equ:CAN}.
-\begin{eqnarray}
-\label{equ:CAN1}V_{CANr} &=& V_{CAN} \&_{bàb} 1023\\
-\label{equ:CAN}V_{volt} &=& \frac{5}{2^{10}-1}V_{CANr}
-\end{eqnarray}
-%%cna
-La génération de la sortie $V_M$ nécessite aussi une conversion du CNA depuis la tension calculée par la commande (nombre à virgule flottante) vers un entier compris entre $-5$ et $5$ Volts. Néanmoins, la commande calcule une valeur comprise entre $-5$ et $5$ Volts, mais la carte de puissance branchée sur la sortie du CNA nécessite en entrée une tension comprise entre $0$ et $5$ Volt. Il faut donc, dans un premier temps, redresser la valeur calculée $V_{com}$ par la sortie sur une intervalle $\left[0;5\right]$ $V_{redr}$, puis le convertir en entier $V_{CNA}$. Pour cela nous utilisons les équations suivantes :
-\begin{equation}
-\begin{array}{lcl}
-V_{red}	&=&	\frac{1}{2}V_{com}+2,5\\
-V_{CNA} &=& \frac{2^{11}-1}{5}V_{red}+2048\\
-V_{CNA} &=& \left\lfloor 204.7 V_{com} + 3071.5 \right\rfloor
-\end{array}
-\end{equation}	
+Dans un premier temps, nous avons décaler la valeur lue (avec un et bit a bit) afin d'avoir la valeur sur $\left[ 0 , 1023\right]$,  puis  nous avons réalisé la conversion en tension avec l'équation \ref{equ:CAN}.
 \begin{figure}[!ht]%
 \begin{minipage}{.5\textwidth}%
 \centering
 \includegraphics[width=\textwidth]{./VI/images/CAN_plage.pdf}
 \caption{\label{fig:CAN_p}Valeurs possibles et possibles du CAN}
+\end{minipage}%
+\hfill%
+\begin{minipage}{.5\textwidth}%
+\begin{equation}
+\begin{array}{l}
+\left\lbrace
+\begin{array}{lcl}
+\label{equ:CAN1}V_{CANr} &=& V_{CAN} \&_{bàb} 1023\\
+V_{volt} &=& \frac{5}{2^{10}-1}V_{CANr}
+\end{array}
+\right.\\
+\Rightarrow V_{volt} = \frac{5}{2^{10}-1}( V_{CAN} \&_{bàb} 1023)
+\end{array}
+\end{equation}
+\end{minipage}%
+\end{figure}
+
+
+
+\subsection{CNA}
+La génération de la sortie $V_M$ nécessite aussi une conversion du CNA depuis la tension calculée par la commande (nombre à virgule flottante) vers un entier compris entre $-5$ et $5$ Volts. Néanmoins, la commande calcule une valeur comprise entre $-5$ et $5$ Volts, mais la carte de puissance branchée sur la sortie du CNA nécessite en entrée une tension comprise entre $0$ et $5$ Volt. Il faut donc, dans un premier temps, redresser la valeur calculée $V_{com}$ par la sortie sur une intervalle $\left[0;5\right]$ $V_{redr}$, puis le convertir en entier $V_{CNA}$. Pour cela nous utilisons les équations suivantes :
+
+\begin{figure}[!ht]%
+\begin{minipage}{.5\textwidth}%
+\begin{equation}
+\begin{array}{l}
+\left\lbrace
+\begin{array}{lcl}
+V_{red}	&=&	\frac{1}{2}V_{com}+2,5\\
+V_{CNA} &=& \frac{2^{11}-1}{5}V_{red}+2048\\
+\end{array}
+\right.\\
+\Rightarrow V_{CNA} = \left\lfloor 204.7 V_{com} + 3071.5 \right\rfloor
+\end{array}
+\end{equation}	
 \end{minipage}%
 \hfill%
 \begin{minipage}{.5\textwidth}%

@@ -142,7 +142,6 @@ EE0_bf.ee = ss(EE0_bf.a, EE0_bf.b, EE0_bf.c, EE0_obsver.ee.d);
 EE0_bf.vp = eig(EE0_bf.ee);
 EE0_bf.gain = dcgain(EE0_bf.ee(1));
 
-bode(EE2_bf.ee(3),EE0_bf.ee(3), EE1_bf.ee(3))
 N = 1/(EE2_bf.gain);
 %% Bloc de commande
 Te = 0.052;
